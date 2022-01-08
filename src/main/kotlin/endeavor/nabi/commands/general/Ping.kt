@@ -19,7 +19,7 @@ class Ping : Extension() {
 
         ResponseHelper.responseEmbedInChannel(actionLog, "Nabi is now online!", null, DISCORD_GREEN, null)
 
-        publicSlashCommand { //Public slash commands can be seen by everyone
+        publicSlashCommand(::Ping) { //Public slash commands can be seen by everyone
             name = "ping"
             description = "Pings Nabi to test if she is online."
 
@@ -43,5 +43,6 @@ class Ping : Extension() {
             }
 
         }
+
     }
 }
