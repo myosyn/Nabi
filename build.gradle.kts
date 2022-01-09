@@ -9,7 +9,7 @@ plugins {
     id("com.github.johnrengelman.shadow")
 }
 
-group = "endeavor.nabi"
+group = "myosyn.nabi"
 version = "0.0.1"
 
 repositories {

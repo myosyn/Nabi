@@ -1,26 +1,22 @@
 @file:OptIn(PrivilegedIntent::class)
 
-package endeavor.nabi
+package myosyn.nabi
 
 import com.kotlindiscord.kord.extensions.ExtensibleBot
-import com.kotlindiscord.kord.extensions.utils.env
-import dev.kord.common.entity.Snowflake
-import com.kotlindiscord.kord.extensions.checks.isNotBot
-import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.modules.extra.phishing.DetectionAction
 import com.kotlindiscord.kord.extensions.modules.extra.phishing.extPhishing
 import com.kotlindiscord.kord.extensions.utils.envOrNull
 import dev.kord.gateway.PrivilegedIntent
-import endeavor.nabi.utils.BOT_TOKEN
+import myosyn.nabi.utils.BOT_TOKEN
 
 /*
 Imports the commands that we require.
 Because I decided I'd have them in separate files
 like an idiot.
  */
-import endeavor.nabi.commands.moderation.*
-import endeavor.nabi.commands.developer.*
-import endeavor.nabi.commands.general.*
+import myosyn.nabi.commands.moderation.*
+import myosyn.nabi.commands.developer.*
+import myosyn.nabi.commands.general.*
 
 import org.koin.core.logger.Level
 

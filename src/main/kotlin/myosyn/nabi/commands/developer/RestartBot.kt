@@ -1,8 +1,8 @@
-package endeavor.nabi.commands.developer
+package myosyn.nabi.commands.developer
 
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
-import endeavor.nabi.utils.OWNER_ID
+import endeavor.nabi.commands.moderation.utils.OWNER_ID
 
 class RestartBot : Extension() {
     override val name = "restart"

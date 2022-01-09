@@ -1,4 +1,4 @@
-package endeavor.nabi.extensions
+package myosyn.nabi.extensions
 
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import mu.KotlinLogging

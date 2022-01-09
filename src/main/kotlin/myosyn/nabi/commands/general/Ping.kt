@@ -1,14 +1,11 @@
-package endeavor.nabi.commands.general
+package myosyn.nabi.commands.general
 
 import com.kotlindiscord.kord.extensions.DISCORD_GREEN
-import com.kotlindiscord.kord.extensions.DISCORD_YELLOW
 import com.kotlindiscord.kord.extensions.extensions.Extension
-import com.kotlindiscord.kord.extensions.extensions.publicSlashCommands
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.core.behavior.channel.GuildMessageChannelBehavior
 import dev.kord.rest.builder.message.create.embed
 import kotlinx.datetime.Clock
-import kotlin.time.ExperimentalTime
 
 @Suppress("PrivatePropertyName")
 class Ping : Extension() {
