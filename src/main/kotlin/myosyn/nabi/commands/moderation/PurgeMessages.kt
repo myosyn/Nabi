@@ -8,7 +8,9 @@ import dev.kord.common.entity.Permission
 import dev.kord.core.behavior.channel.GuildMessageChannelBehavior
 
 class PurgeMessages : Extension() {
-    override val name = "purge"
+
+    override val name :String
+        get() = "PurgeMessages"
 
     override suspend fun setup() {
 
@@ -24,14 +26,12 @@ class PurgeMessages : Extension() {
                 val messageAmount = arguments.messages
                 val textChannel = channel as GuildMessageChannelBehavior
 
-                sentry.breadcrumbs(BreadcrumbType.Info) {
-                    category = "commands.moderation.clear.getMessages"
-                    message = "Gathering messages"
-                    data["amount"] = messageAmount
+                val amount = (arguments.amount.toIntorNull() ?: 0)
 
 
                 }
             }
         }
     }
+}
 

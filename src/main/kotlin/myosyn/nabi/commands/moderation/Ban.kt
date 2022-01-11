@@ -24,18 +24,18 @@ class Ban : Extension() {
             }
 
             action {
-                val userArg = arguments.userArguments
+                val kord = this@Ban.kord
+
+                val realTarget = if (arguments.targets.id == kord.selfId)
+                    member
+                else
+                    arguments.target
             }
+    }
 
-
-            class BanArgs : Arguments() {
-                val userArguments by user("banUser", "Person to ban")
-                val message by int("messages", "Messages")
-                val reasons by defaultingString("reason", "The reason for the ban", "No reason provided.")
-            }
-        }
-
-
-
-
-
+    class BanArgs : Arguments() {
+        val userArguments by user("banUser", "Person to ban")
+        val message by int("messages", "Messages")
+        val reasons by defaultingString("reason", "The reason for this ban", "No reason provided.")
+    }
+}

@@ -43,6 +43,8 @@ suspend fun main() {
             add (::SetRPC)
             add (::Shutdown)
             add (::Untimeout)
+            add (::BotSay)
+            add (::Info)
 
             extPhishing {
                 appName = "Nabi"
