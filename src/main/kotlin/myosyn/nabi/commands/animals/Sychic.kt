@@ -12,7 +12,7 @@ class Sychic : Extension() {
             description = "Mommy Sychic"
 
             action {
-                
+
             }
         }
     }

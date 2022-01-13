@@ -17,6 +17,7 @@ like an idiot.
 import myosyn.nabi.commands.moderation.*
 import myosyn.nabi.commands.developer.*
 import myosyn.nabi.commands.general.*
+import myosyn.nabi.commands.animals.*
 
 import org.koin.core.logger.Level
 
@@ -45,6 +46,9 @@ suspend fun main() {
             add (::Untimeout)
             add (::BotSay)
             add (::Info)
+            add (::Cat)
+            add (::Dog)
+            add (::Sychic)
 
             extPhishing {
                 appName = "Nabi"
