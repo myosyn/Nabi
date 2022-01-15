@@ -2,6 +2,8 @@ package myosyn.nabi.commands.general
 
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
+import com.kotlindiscord.kord.extensions.types.respond
+import dev.kord.rest.builder.message.create.embed
 
 class Info : Extension() {
     override val name = "info"
@@ -12,8 +14,12 @@ class Info : Extension() {
             description = "Displays info about Nabi"
 
             action {
-                I'll do this later'
+                respond {
+                    content = "I'll do this later so don't ask me"
 
+                    embed {
+
+                    }
                 }
             }
         }
