@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalTime::class)
 
-package myosyn.nabi.commands.moderation
+package myosyn.nabi.extensions.commands.moderation
 
 import com.kotlindiscord.kord.extensions.annotations.ExtensionDSL
 import com.kotlindiscord.kord.extensions.checks.hasPermission
@@ -9,7 +9,6 @@ import com.kotlindiscord.kord.extensions.commands.application.slash.PublicSlashC
 import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingString
 import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
-import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Permission
 import kotlin.reflect.KFunction0
 

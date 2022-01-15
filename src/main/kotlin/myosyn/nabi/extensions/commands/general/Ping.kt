@@ -1,10 +1,10 @@
-package myosyn.nabi.commands.general
+package myosyn.nabi.extensions.commands.general
 
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
+import com.kotlindiscord.kord.extensions.DISCORD_PINK
 import dev.kord.rest.builder.message.create.embed
-import com.kotlindiscord.kord.extensions.DISCORD_YELLOW
 import kotlinx.datetime.Clock
 
 @Suppress("PrivatePropertyName")
@@ -12,7 +12,7 @@ class Ping : Extension() {
     override val name = "ping"
 
     override suspend fun setup() {
-        ephemeralSlashCommand(::Ping) { // ephemeralSlashCommands can only be seen by yourself.
+        ephemeralSlashCommand(::PingArguments) { // ephemeralSlashCommands can only be seen by yourself.
             name = "ping"
             description = "Pings Nabi to test if she is online."
 
@@ -21,7 +21,7 @@ class Ping : Extension() {
 
                 respond {
                     embed {
-                        color = "DISCORD_YELLOW"
+                        color = DISCORD_PINK
                         title = "A request has been sent back"
 
                         timestamp = Clock.System.now()
@@ -38,4 +38,8 @@ class Ping : Extension() {
         }
 
     }
+}
+
+fun PingArguments(): Any {
+
 }

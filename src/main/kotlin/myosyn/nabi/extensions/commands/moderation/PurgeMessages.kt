@@ -1,9 +1,8 @@
-package myosyn.nabi.commands.moderation
+package myosyn.nabi.extensions.commands.moderation
 
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
-import com.kotlindiscord.kord.extensions.sentry.BreadcrumbType
 import dev.kord.common.entity.Permission
 import dev.kord.core.behavior.channel.GuildMessageChannelBehavior
 

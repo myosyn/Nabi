@@ -1,4 +1,4 @@
-package myosyn.nabi.commands.moderation
+package myosyn.nabi.extensions.commands.moderation
 
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
@@ -14,8 +14,7 @@ class Ban : Extension() {
     override val name = "ban"
 
     override suspend fun setup() {
-
-        publicSlashCommand(::Ban) {
+        publicSlashCommand(::BanArguments) {
             name = "ban"
             description = "Throws the clowns out of the circus."
             check {
@@ -24,12 +23,8 @@ class Ban : Extension() {
             }
 
             action {
-                val kord = this@Ban.kord
+                val user = arguments.userArguments
 
-                val realTarget = if (arguments.targets.id == kord.selfId)
-                    member
-                else
-                    arguments.target
             }
     }
 
