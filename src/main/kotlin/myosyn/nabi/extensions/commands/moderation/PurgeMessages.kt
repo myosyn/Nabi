@@ -1,6 +1,8 @@
 package myosyn.nabi.extensions.commands.moderation
 
 import com.kotlindiscord.kord.extensions.checks.hasPermission
+import com.kotlindiscord.kord.extensions.commands.Arguments
+import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingInt
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Permission
@@ -13,7 +15,7 @@ class PurgeMessages : Extension() {
 
     override suspend fun setup() {
 
-        publicSlashCommand(::PurgeMessages) {
+        publicSlashCommand(::PurgeMessagesArguments) {
             name = "purge"
             description = "Clears a selected amount of messages that are within the 2 week range."
             check {
@@ -28,8 +30,14 @@ class PurgeMessages : Extension() {
                 val amount = (arguments.amount.toIntorNull() ?: 0)
 
 
-                }
             }
+        }
+    }
+    inner class PurgeMessagesArguments : Arguments() {
+        val count by defaultingInt {
+            name = "count"
+            description = "The amount of messages you want to delete within the range of 1-100."
+
         }
     }
 }

@@ -1,12 +1,12 @@
 package myosyn.nabi.extensions.commands.moderation
 
+import bot.NO_ACTION
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingString
 import com.kotlindiscord.kord.extensions.commands.converters.impl.int
 import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
-import com.kotlindiscord.kord.extensions.extensions.chatCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Permission
 
@@ -25,12 +25,13 @@ class Ban : Extension() {
             }
 
             action {
-                val user = arguments.userArguments
+                val user = arguments.userArguments ?: i18n("bot.words.none")
+
 
             }
     }
 
-    class BanArguments : Arguments() {
+     class BanArguments : Arguments() {
         val userArguments by user("banUser", "Person to ban")
         val message by int("messages", "Messages")
         val reasons by defaultingString("reason", "The reason for this ban", "No reason provided.")

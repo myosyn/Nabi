@@ -7,7 +7,7 @@ import com.kotlindiscord.kord.extensions.modules.extra.phishing.DetectionAction
 import com.kotlindiscord.kord.extensions.modules.extra.phishing.extPhishing
 import com.kotlindiscord.kord.extensions.utils.envOrNull
 import dev.kord.gateway.PrivilegedIntent
-import myosyn.nabi.utils.BOT_TOKEN
+import endeavor.nabi.commands.moderation.utils.DISCORD_TOKEN
 
 /*
 Imports the commands that we require.
@@ -26,7 +26,7 @@ val MODE =  envOrNull("MODE")?.lowercase() ?: "nabi"
 @OptIn(PrivilegedIntent::class)
 @Suppress("BlockingMethodInNonBlockingContext")
 suspend fun main() {
-    val bot = ExtensibleBot(BOT_TOKEN) {
+    val bot = ExtensibleBot(DISCORD_TOKEN) {
         koinLogLevel = Level.DEBUG
 
         applicationCommands {
@@ -43,7 +43,6 @@ suspend fun main() {
             add (::TempBan)
             add (::BotBan)
             add (::RestartBot)
-            add (::SetRPC)
             add (::Shutdown)
             add (::Untimeout)
             add (::BotSay)

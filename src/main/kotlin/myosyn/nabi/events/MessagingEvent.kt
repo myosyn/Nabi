@@ -3,6 +3,7 @@ package myosyn.nabi.events
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.event
 import dev.kord.core.behavior.channel.GuildMessageChannelBehavior
+import dev.kord.core.behavior.getChannelOf
 import dev.kord.core.event.message.MessageDeleteEvent
 
 class MessagingEvent : Extension() {
@@ -15,7 +16,7 @@ class MessagingEvent : Extension() {
             action {
                 if (event.message?.author.id == kord.selfId) return@action
 
-                val actionLog = event.guild?.getChannelOrNull() as GuildMessageChannelBehavior
+                val actionLog = event.guild?.getChannel() as GuildMessageChannelBehavior
             }
         }
     }

@@ -3,6 +3,7 @@
 package myosyn.nabi.extensions.commands.moderation
 
 import com.kotlindiscord.kord.extensions.annotations.ExtensionDSL
+import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.application.slash.PublicSlashCommand
@@ -20,9 +21,11 @@ class Kick : Extension() {
         publicSlashCommand(::Kick) {
             name = "Kick"
             description = "Kicks a specified user from your server"
+            requireBotPermissions(Permission.KickMembers)
+
             check {
+                anyGuild()
                 hasPermission(Permission.KickMembers)
-                requireBotPermissions(Permission.KickMembers)
             }
 
             action {
