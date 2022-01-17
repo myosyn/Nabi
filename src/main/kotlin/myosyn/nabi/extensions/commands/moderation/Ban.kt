@@ -6,20 +6,22 @@ import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingStri
 import com.kotlindiscord.kord.extensions.commands.converters.impl.int
 import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
+import com.kotlindiscord.kord.extensions.extensions.chatCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Permission
 
 @Suppress("DuplicatedCode")
 class Ban : Extension() {
-    override val name = "ban"
+    override val name: String = "ban"
 
     override suspend fun setup() {
         publicSlashCommand(::BanArguments) {
             name = "ban"
             description = "Throws the clowns out of the circus."
+            requireBotPermissions(Permission.BanMembers)
+
             check {
                 hasPermission(Permission.BanMembers)
-                requireBotPermissions(Permission.BanMembers)
             }
 
             action {
@@ -28,7 +30,7 @@ class Ban : Extension() {
             }
     }
 
-    class BanArgs : Arguments() {
+    class BanArguments : Arguments() {
         val userArguments by user("banUser", "Person to ban")
         val message by int("messages", "Messages")
         val reasons by defaultingString("reason", "The reason for this ban", "No reason provided.")

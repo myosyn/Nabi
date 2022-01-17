@@ -1,5 +1,6 @@
 package myosyn.nabi.extensions.commands.developer
 
+import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import dev.kord.common.entity.Snowflake
@@ -9,7 +10,7 @@ class MarkAffiliateServer : Extension() {
     override val name = "markaffiliateserver"
 
     override suspend fun setup() {
-        ephemeralSlashCommand(::GuildSnowflakeArg) {
+        ephemeralSlashCommand(::MarkAffiliateServerArgument) {
             name = "MarkAffiliateServer"
             description = "Marks a server affiliates with Nabi. They can execute more commands if they have the affiliate status."
 
@@ -19,5 +20,9 @@ class MarkAffiliateServer : Extension() {
 
             }
         }
+    }
+
+    inner class MarkAffiliateServerArgument : Arguments() {
+        val
     }
 }

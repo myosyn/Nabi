@@ -1,5 +1,6 @@
 package myosyn.nabi.extensions.commands.developer
 
+import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import dev.kord.common.entity.Snowflake
@@ -9,7 +10,7 @@ class BotBan : Extension() {
     override val name = "botban"
 
     override suspend fun setup() {
-        ephemeralSlashCommand(::BotBan) {
+        ephemeralSlashCommand(::BotBanArguments) {
             name = "BotBan"
             description = "Owner only command. Removes this bot from the server it is in."
 
@@ -17,5 +18,9 @@ class BotBan : Extension() {
 
 
         }
+    }
+
+    inner class BotBanArguments : Arguments() {
+        val
     }
 }

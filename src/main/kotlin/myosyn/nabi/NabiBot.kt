@@ -22,6 +22,9 @@ import org.koin.core.logger.Level
 
 val MODE =  envOrNull("MODE")?.lowercase() ?: "nabi"
 
+
+@OptIn(PrivilegedIntent::class)
+@Suppress("BlockingMethodInNonBlockingContext")
 suspend fun main() {
     val bot = ExtensibleBot(BOT_TOKEN) {
         koinLogLevel = Level.DEBUG
