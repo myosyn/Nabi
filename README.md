@@ -8,3 +8,4 @@ it a music bot as well, but no.
 The main libraries that we used are the [Kord Library](https://github.com/kordlib/kord) and the extension [Kord Extension](https://github.com/Kord-Extensions/kord-extensions) .
 
 
+I just wanted a commit today so I did this
