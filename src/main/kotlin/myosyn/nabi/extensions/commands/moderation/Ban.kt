@@ -1,6 +1,7 @@
 package myosyn.nabi.extensions.commands.moderation
 
 import bot.NO_ACTION
+import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingString
@@ -21,6 +22,7 @@ class Ban : Extension() {
             requireBotPermissions(Permission.BanMembers)
 
             check {
+                anyGuild()
                 hasPermission(Permission.BanMembers)
             }
 

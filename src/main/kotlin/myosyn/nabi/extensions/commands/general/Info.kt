@@ -10,7 +10,7 @@ class Info : Extension() {
     override val name = "info"
 
     override suspend fun setup() {
-        ephemeralSlashCommand(::InfoArguments) {
+        ephemeralSlashCommand {
             name = "Info"
             description = "Displays info about Nabi"
 

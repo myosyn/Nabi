@@ -16,7 +16,9 @@ class BotBan : Extension() {
 
             allowUser(Snowflake(OWNER_ID))
 
+            action {
 
+            }
         }
     }
 

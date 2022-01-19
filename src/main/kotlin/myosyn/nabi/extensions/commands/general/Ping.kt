@@ -4,6 +4,7 @@ import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import com.kotlindiscord.kord.extensions.DISCORD_PINK
+import com.kotlindiscord.kord.extensions.commands.Arguments
 import dev.kord.rest.builder.message.create.embed
 import kotlinx.datetime.Clock
 
@@ -12,6 +13,7 @@ class Ping : Extension() {
     override val name = "ping"
 
     override suspend fun setup() {
+
         ephemeralSlashCommand(::PingArguments) { // ephemeralSlashCommands can only be seen by yourself.
             name = "ping"
             description = "Pings Nabi to test if she is online."
@@ -36,10 +38,9 @@ class Ping : Extension() {
             }
 
         }
+    }
+
+    inner class PingArguments : Arguments() {
 
     }
-}
-
-fun PingArguments(): Any {
-
 }
