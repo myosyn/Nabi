@@ -23,6 +23,5 @@ class MarkAffiliateServer : Extension() {
     }
 
     inner class MarkAffiliateServerArgument : Arguments() {
-        val
     }
 }

@@ -11,13 +11,14 @@ import dev.kord.common.entity.ButtonStyle
 import dev.kord.common.entity.Snowflake
 import dev.kord.rest.builder.message.create.embed
 import endeavor.nabi.commands.moderation.utils.OWNER_ID
+import kotlin.system.exitProcess
 
 class RestartBot : Extension() {
     override val name = "restart"
 
     override suspend fun setup() {
 
-        ephemeralSlashCommand(::RestartBotArguments) {
+        ephemeralSlashCommand {
             name = "restart"
             description = "Restarts the entire bot."
 
@@ -40,6 +41,9 @@ class RestartBot : Extension() {
                             action {
                                 respond {
                                     content = "Got it! I'll go and restart."
+                                    kord.logout()
+                                    kord.shutdown()
+                                    exitProcess(0)
                                 }
                             }
                         }
@@ -47,9 +51,5 @@ class RestartBot : Extension() {
                 }
             }
         }
-    }
-
-    inner class RestartBotArguments : Arguments() {
-        val
     }
 }

@@ -19,11 +19,9 @@ class Info : Extension() {
                     embed {
                         color = DISCORD_WHITE
                         title = "What is Nabi?"
+                        description =
+                            "Nabi is an open source Discord bot built to the ground up with Kotlin. We use the Kord and the Kord-Extension library. You can find the source code at our Github page >>> https://github.com/myosyn/Nabi"
 
-                        field {
-                            name = "Nabi is an open source Discord bot written in Kotlin."
-                            inline = true
-                        }
                     }
                 }
             }
