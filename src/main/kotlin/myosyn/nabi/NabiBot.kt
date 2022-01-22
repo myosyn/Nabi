@@ -17,6 +17,7 @@ like an idiot.
 import myosyn.nabi.extensions.commands.moderation.*
 import myosyn.nabi.extensions.commands.developer.*
 import myosyn.nabi.extensions.commands.general.*
+import myosyn.nabi.extensions.commands.logging.ModLogs
 
 import org.koin.core.logger.Level
 
@@ -34,19 +35,26 @@ suspend fun main() {
         }
 
         extensions {
-            add (::Ping)
-            add (::Ban)
-            add (::PurgeMessages)
-            add (::Warn)
-            add (::Timeout)
-            add (::Kick)
-            add (::TempBan)
-            add (::BotBan)
-            add (::RestartBot)
-            add (::Shutdown)
-            add (::Untimeout)
-            add (::BotSay)
-            add (::Info)
+            add ( ::BotBan )
+            add ( ::BotSay )
+            add ( ::MarkAffiliateServer )
+            add ( ::RestartBot )
+            add ( ::Shutdown )
+            add ( ::Info )
+            add ( ::Ping )
+            add ( ::User )
+            add ( ::ModLogs )
+            add ( ::Ban )
+            add ( ::GiveRole )
+            add ( ::Kick )
+            add ( ::PurgeMessages )
+            add ( ::TakeRole )
+            add ( ::TempBan )
+            add ( ::Timeout )
+            add ( ::Unban )
+            add ( ::Untimeout )
+            add ( ::Warn )
+
 
             extPhishing {
                 appName = "Nabi"
