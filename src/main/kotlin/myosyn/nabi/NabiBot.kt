@@ -37,7 +37,6 @@ suspend fun main() {
         extensions {
             add ( ::BotBan )
             add ( ::BotSay )
-            add ( ::MarkAffiliateServer )
             add ( ::RestartBot )
             add ( ::Shutdown )
             add ( ::Info )

@@ -6,19 +6,19 @@ import com.kotlindiscord.kord.extensions.annotations.ExtensionDSL
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
-import com.kotlindiscord.kord.extensions.commands.application.slash.PublicSlashCommand
 import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingString
 import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
+import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Permission
-import kotlin.reflect.KFunction0
+import kotlin.time.ExperimentalTime
 
 @ExtensionDSL
 class Kick : Extension() {
     override val name = "kick"
 
     override suspend fun setup() {
-        publicSlashCommand(::Kick) {
+        publicSlashCommand(::KickArguments) {
             name = "Kick"
             description = "Kicks a specified user from your server"
             requireBotPermissions(Permission.KickMembers)
@@ -29,19 +29,20 @@ class Kick : Extension() {
             }
 
             action {
+                val user = arguments.userArguments
 
             }
         }
     }
 
-    private fun publicSlashCommand(arguments: KFunction0<Kick>, body: suspend PublicSlashCommand<Kick>.() -> Unit) {
-        TODO("Not yet implemented")
+    inner class KickArguments : Arguments() {
+        val userArguments by user{
+            name = "User"
+            description = "User to kick from the server"
+        }
+        val reason by defaultingString {
+            name = "reason"
+            description = "The reason why the user was kicked from the server"
+        }
     }
-
-    inner class KickArgs : Arguments() {
-        val userArguments by user("kickUser", "Person you'd like to kick")
-        val reason by defaultingString("reason", "The reason why this person is being kicked")
-    }
-
-
 }
