@@ -6,7 +6,7 @@ import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Snowflake
-import endeavor.nabi.commands.moderation.utils.OWNER_ID
+import myosyn.nabi.utils.OWNER_ID
 
 class BotSay : Extension() {
     override val name = "botsay"

@@ -9,7 +9,7 @@ import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.ButtonStyle
 import dev.kord.common.entity.Snowflake
 import dev.kord.rest.builder.message.create.embed
-import endeavor.nabi.commands.moderation.utils.OWNER_ID
+import myosyn.nabi.utils.OWNER_ID
 import kotlin.system.exitProcess
 
 class Shutdown : Extension() {

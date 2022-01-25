@@ -7,7 +7,7 @@ import com.kotlindiscord.kord.extensions.modules.extra.phishing.DetectionAction
 import com.kotlindiscord.kord.extensions.modules.extra.phishing.extPhishing
 import com.kotlindiscord.kord.extensions.utils.envOrNull
 import dev.kord.gateway.PrivilegedIntent
-import endeavor.nabi.commands.moderation.utils.DISCORD_TOKEN
+import myosyn.nabi.utils.DISCORD_TOKEN
 
 /*
 Imports the commands that we require.

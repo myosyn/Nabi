@@ -1,4 +1,4 @@
-package endeavor.nabi.commands.moderation.utils
+package myosyn.nabi.utils
 
 import com.kotlindiscord.kord.extensions.utils.env
 
