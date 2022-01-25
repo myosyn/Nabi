@@ -33,17 +33,18 @@ class User : Extension() {
                         }
                         return@action
                     }
+            }
         }
-    }
 
-    inner class UserArguments : Arguments() {
-        val user by optionalUser {
-            name = "user"
-            description = "A user you want to lookup."
-        }
-        val id by optionalString {
-            name  = "id"
-            description = "A user's ID you'd like to lookup"
+        inner class UserArguments : Arguments() {
+            val user by optionalUser {
+                name = "user"
+                description = "A user you want to lookup."
+            }
+            val id by optionalString {
+                name = "id"
+                description = "A user's ID you'd like to lookup"
+            }
         }
     }
 }
