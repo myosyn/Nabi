@@ -1,7 +1,9 @@
 package myosyn.nabi.extensions.commands.moderation
 
+import com.kotlindiscord.kord.extensions.DiscordRelayedException
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
+import com.kotlindiscord.kord.extensions.checks.memberFor
 import com.kotlindiscord.kord.extensions.commands.Argument
 import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingString
@@ -11,6 +13,7 @@ import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Permission
+import kotlinx.serialization.internal.throwArrayMissingFieldException
 
 @Suppress("DuplicatedCode")
 class Ban : Extension() {
@@ -31,9 +34,7 @@ class Ban : Extension() {
                 val providedReason = arguments.reason ?:
                 val author = user.asUser()
 
-                val dm = ResponseHelper.userDMEmbed(
-                    userArg,
-                    ""
+                val member = member ?: DiscordRelayedException
                 )
 
 

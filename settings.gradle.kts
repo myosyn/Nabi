@@ -9,6 +9,9 @@ pluginManagement {
         id("com.github.jakemarsden.git-hooks") version "0.0.1"
         id("com.github.johnrengelman.shadow") version "7.1.2"
     }
+    repositories {
+        gradlePluginPortal()
+    }
 }
 
 rootProject.name = "Nabi"
@@ -22,3 +25,4 @@ dependencyResolutionManagement {
         }
     }
 }
+
