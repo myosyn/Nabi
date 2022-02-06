@@ -53,13 +53,6 @@ suspend fun main() {
             add ( ::Unban )
             add ( ::Untimeout )
             add ( ::Warn )
-
-
-            extPhishing {
-                appName = "Nabi"
-                detectionAction = DetectionAction.Ban
-                requiredCommandPermission = null
-            }
         }
     }
     bot.start()
