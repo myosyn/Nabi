@@ -27,7 +27,7 @@ class BotSay : Extension() {
     inner class BotSayArguments : Arguments() {
         val message by string{
             name = "message"
-            description = "The bot will say what you typed."
+            description = "The bot will say what you typed in here."
         }
     }
 }

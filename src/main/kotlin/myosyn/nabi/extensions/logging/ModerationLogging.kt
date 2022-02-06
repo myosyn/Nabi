@@ -34,7 +34,7 @@ class ModLogs : Extension() {
     inner class ModLogsArgument : Arguments() {
         val channelArguments by channel {
             name = "channel"
-            description = "The channel you want to send all of your logs to"
+            description = "The channel (id) you want to send all of your logs to."
         }
     }
 }
