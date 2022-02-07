@@ -7,6 +7,7 @@ import com.kotlindiscord.kord.extensions.modules.extra.phishing.DetectionAction
 import com.kotlindiscord.kord.extensions.modules.extra.phishing.extPhishing
 import com.kotlindiscord.kord.extensions.utils.envOrNull
 import dev.kord.gateway.PrivilegedIntent
+import myosyn.nabi.extensions.commands.moderation.*
 import myosyn.nabi.utils.DISCORD_TOKEN
 
 /*
@@ -17,9 +18,10 @@ like an idiot.
 import myosyn.nabi.extensions.moderation.*
 import myosyn.nabi.extensions.developer.*
 import myosyn.nabi.extensions.general.*
-import myosyn.nabi.extensions.logging.ModLogs
+import myosyn.nabi.extensions.logging.*
 
 import org.koin.core.logger.Level
+
 
 val MODE =  envOrNull("MODE")?.lowercase() ?: "nabi"
 
@@ -27,6 +29,7 @@ val MODE =  envOrNull("MODE")?.lowercase() ?: "nabi"
 @OptIn(PrivilegedIntent::class)
 @Suppress("BlockingMethodInNonBlockingContext")
 suspend fun main() {
+
     val bot = ExtensibleBot(DISCORD_TOKEN) {
         koinLogLevel = Level.DEBUG
 
@@ -42,7 +45,7 @@ suspend fun main() {
             add ( ::Info )
             add ( ::Ping )
             add ( ::User )
-            add ( ::ModLogs )
+            add ( ::ModerationLogging )
             add ( ::Ban )
             add ( ::GiveRole )
             add ( ::Kick )
@@ -53,7 +56,14 @@ suspend fun main() {
             add ( ::Unban )
             add ( ::Untimeout )
             add ( ::Warn )
+
+            help {
+                enableBundledExtension = true
+            }
+
+
         }
     }
     bot.start()
 }
+

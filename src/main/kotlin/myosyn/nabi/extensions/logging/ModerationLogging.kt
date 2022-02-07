@@ -6,14 +6,28 @@ import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.converters.impl.channel
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
+import com.kotlindiscord.kord.extensions.extensions.event
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Permission
+import dev.kord.core.event.guild.MemberJoinEvent
 import dev.kord.rest.builder.message.create.embed
 
-class ModLogs : Extension() {
-    override val name = "modlogs"
+class ModerationLogging : Extension() {
+    override val name: String = "ModerationLogging"
 
     override suspend fun setup() {
+        event<MemberJoinEvent> {
+            check {
+                isModuleEnabled(Modules.Logging)
+            }
+
+            action {
+                event.guild.getLogChannel()?.CreateEmbed {
+
+                }
+            }
+        }
+
         ephemeralSlashCommand(::ModLogsArgument) {
             name = "ModLogs"
             description = "Sets the selected channel to display all logs from this Discord bot."
