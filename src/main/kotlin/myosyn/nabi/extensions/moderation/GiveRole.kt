@@ -1,4 +1,4 @@
-package myosyn.nabi.extensions.commands.moderation
+package myosyn.nabi.extensions.moderation
 
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission

@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalTime::class)
 
-package myosyn.nabi.extensions.commands.moderation
+package myosyn.nabi.extensions.moderation
 
 import com.kotlindiscord.kord.extensions.annotations.ExtensionDSL
 import com.kotlindiscord.kord.extensions.checks.anyGuild

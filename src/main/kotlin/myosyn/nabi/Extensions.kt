@@ -1,7 +1,3 @@
-/*
- Borrowed and modified from Kord Boilerplate by Diamondminer88
- */
-
 package myosyn.nabi
 
 import com.kotlindiscord.kord.extensions.commands.CommandContext

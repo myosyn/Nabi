@@ -14,10 +14,10 @@ Imports the commands that we require.
 Because I decided I'd have them in separate files
 like an idiot.
  */
-import myosyn.nabi.extensions.commands.moderation.*
-import myosyn.nabi.extensions.commands.developer.*
-import myosyn.nabi.extensions.commands.general.*
-import myosyn.nabi.extensions.commands.logging.ModLogs
+import myosyn.nabi.extensions.moderation.*
+import myosyn.nabi.extensions.developer.*
+import myosyn.nabi.extensions.general.*
+import myosyn.nabi.extensions.logging.ModLogs
 
 import org.koin.core.logger.Level
 

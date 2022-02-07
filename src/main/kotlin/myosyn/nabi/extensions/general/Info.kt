@@ -1,4 +1,4 @@
-package myosyn.nabi.extensions.commands.general
+package myosyn.nabi.extensions.general
 
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand

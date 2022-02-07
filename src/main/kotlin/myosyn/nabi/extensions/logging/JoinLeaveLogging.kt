@@ -1,4 +1,4 @@
-package myosyn.nabi.extensions.commands.logging
+package myosyn.nabi.extensions.logging
 
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
