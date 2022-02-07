@@ -1,4 +1,4 @@
-package myosyn.nabi.extensions.commands.moderation
+package myosyn.nabi.extensions.moderation
 
 import com.kotlindiscord.kord.extensions.DISCORD_BLURPLE
 import com.kotlindiscord.kord.extensions.DISCORD_RED
