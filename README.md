@@ -5,7 +5,7 @@ the features are completely free, and come straight from the creator's pockets. 
 The main purpose of this bot is to provide modern moderation, phishing detection, and other features that will be introduced later down the line. We could possibly make
 it a music bot as well, but no.
 
-### Features
+#### Features
 Blacklisting from specific channels
 
 The main libraries that we used are the [Kord Library](https://github.com/kordlib/kord) and the extension [Kord Extension](https://github.com/Kord-Extensions/kord-extensions) .
