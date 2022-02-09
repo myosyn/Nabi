@@ -3,11 +3,8 @@
 package myosyn.nabi
 
 import com.kotlindiscord.kord.extensions.ExtensibleBot
-import com.kotlindiscord.kord.extensions.modules.extra.phishing.DetectionAction
-import com.kotlindiscord.kord.extensions.modules.extra.phishing.extPhishing
 import com.kotlindiscord.kord.extensions.utils.envOrNull
 import dev.kord.gateway.PrivilegedIntent
-import myosyn.nabi.extensions.commands.moderation.*
 import myosyn.nabi.utils.DISCORD_TOKEN
 
 /*

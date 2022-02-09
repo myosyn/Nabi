@@ -21,19 +21,13 @@ class User : Extension() {
             action {
                 val target: User?
 
-                if (arguments.user != null)
+
+                if (arguments.user == null)
                     target = arguments.user
-                else if (arguments.id != null)
-                val id = arguments.id!!.toULongOrNull()
-                if (id == null)
-                    respondEphemeral {
-                        embed {
-                            title = "Error"
-                            description = "The user ID you provided was invalid!"
-                        }
-                        return@action
-                    }
-            }
+                else if (arguments.id != null) {
+                    val id = arguments.id!!.toLongOrNull()
+                }
+
         }
 
         inner class UserArguments : Arguments() {

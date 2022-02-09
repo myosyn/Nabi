@@ -11,7 +11,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt")
 }
 
-group = "myosyn.nabi"
+group = "Nabi"
 version = "0.0.1"
 
 repositories {
@@ -30,8 +30,6 @@ repositories {
 }
 
 dependencies {
-    detektPlugins(libs.detekt)
-
     implementation(libs.kord.extensions)
     implementation(libs.kotlin.stdlib)
     implementation(libs.kx.ser)
@@ -46,7 +44,7 @@ dependencies {
 
 application {
     // This is deprecated, but the Shadow plugin requires it
-    mainClassName = "myosyn.nabi.NabiBot.kt"
+    mainClassName = "myosyn.nabi.NabibotKt"
 }
 
 gitHooks {
@@ -65,7 +63,7 @@ tasks.withType<KotlinCompile> {
 tasks.jar {
     manifest {
         attributes(
-            "Main-Class" to "template.AppKt"
+            "Main-Class" to "myosyn.nabi.NabibotKt"
         )
     }
 }
