@@ -28,7 +28,7 @@ class ModerationLogging : Extension() {
             }
         }
 
-        ephemeralSlashCommand(::ModLogsArgument) {
+        ephemeralSlashCommand(::ModerationLoggingArgument) {
             name = "ModLogs"
             description = "Sets the selected channel to display all logs from this Discord bot."
             requireBotPermissions(Permission.Administrator)
@@ -45,8 +45,8 @@ class ModerationLogging : Extension() {
             }
         }
     }
-    inner class ModLogsArgument : Arguments() {
-        val channelArguments by channel {
+    inner class ModerationLoggingArgument : Arguments() {
+        val channel by optionalChannel {
             name = "channel"
             description = "The channel (id) you want to send all of your logs to."
         }

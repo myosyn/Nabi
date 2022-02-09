@@ -23,11 +23,16 @@ class JoinLeaveLogging : Extension() {
                 anyGuild()
                 hasPermission(Permission.Administrator)
             }
+
+            action {
+                
+            }
         }
     }
     inner class JoinLeaveLoggingArguments : Arguments() {
-        val channel by {
-            name = ""
+        val channel by optionalChannel{
+            name = "channel"
+            description = "Sets the channel as a channel that logs the leaving and joining of users. Adding no channel will make the current channel the logging channel.
         }
     }
 }
