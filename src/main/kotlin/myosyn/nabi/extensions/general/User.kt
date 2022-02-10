@@ -6,9 +6,7 @@ import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalUser
 import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
-import com.kotlindiscord.kord.extensions.types.respondEphemeral
 import dev.kord.core.entity.User
-import dev.kord.rest.builder.message.create.embed
 
 class User : Extension() {
     override val name: String = "User"
@@ -27,7 +25,7 @@ class User : Extension() {
                 else if (arguments.id != null) {
                     val id = arguments.id!!.toLongOrNull()
                 }
-
+            }
         }
 
         inner class UserArguments : Arguments() {

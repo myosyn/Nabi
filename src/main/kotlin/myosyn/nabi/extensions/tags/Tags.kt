@@ -11,14 +11,16 @@ class Tags : Extension() {
     override suspend fun setup() {
         publicSlashCommand(::TagsArguments) {
             name = "tags"
-            description = ""
+            description = "Uses a tag"
+
+
 
         }
     }
     inner class TagsArguments : Arguments() {
         val name by string {
             name = "name"
-            description = ""
+            description = "The tag you want to look up"
         }
     }
 }
