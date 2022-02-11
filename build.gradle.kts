@@ -1,80 +1,30 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    application
-
-    kotlin("jvm")
-    kotlin("plugin.serialization")
-
-    id("com.github.jakemarsden.git-hooks")
-    id("com.github.johnrengelman.shadow")
-    id("io.gitlab.arturbosch.detekt")
+    // It needs to be in here to avoid a "Failed to apply plugin class 'org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin'."
+    kotlin("multiplatform") version Dependencies.KOTLIN apply false
+    kotlin("jvm") version Dependencies.KOTLIN apply false
+    kotlin("plugin.serialization") version Dependencies.KOTLIN apply false
 }
 
-group = "Nabi"
-version = "0.0.1"
-
-repositories {
-    google()
-    mavenCentral()
-
-    maven {
-        name = "Sonatype Snapshots"
-        url = uri("https://oss.sonatype.org/content/repositories/snapshots")
+allprojects {
+    // Example:
+    // ":discord:interactions" will be transformed into "discord"
+    // We need to do this because we have the ":discord:common" module and, if you don't change the
+    // group coordinates, Gradle will detect it as a circular reference (but it isn't!)
+    val splittedPath = this.path.split(":")
+    group = if (splittedPath.size >= 3) {
+        // No need for the dot because the first entry in the "splittedPath" is a empty string
+        "net.perfectdreams.loritta.cinnamon${splittedPath.dropLast(1).joinToString(".")}"
+    } else {
+        "net.perfectdreams.loritta.cinnamon"
     }
 
-    maven {
-        name = "Kotlin Discord"
-        url = uri("https://maven.kotlindiscord.com/repository/maven-public/")
+    version = Dependencies.NABI
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+
+        maven("https://oss.sonatype.org/content/repositories/snapshots/")
+        maven("https://repo.perfectdreams.net/")
     }
-}
-
-dependencies {
-    implementation(libs.kord.extensions)
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.kx.ser)
-    implementation(libs.kmongo)
-
-    // Logging dependencies
-    implementation(libs.groovy)
-    implementation(libs.jansi)
-    implementation(libs.logback)
-    implementation(libs.logging)
-}
-
-application {
-    // This is deprecated, but the Shadow plugin requires it
-    mainClassName = "myosyn.nabi.NabibotKt"
-}
-
-gitHooks {
-    setHooks(
-        mapOf("pre-commit" to "detekt")
-    )
-}
-
-tasks.withType<KotlinCompile> {
-    // Current LTS version of Java
-    kotlinOptions.jvmTarget = "17"
-
-    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
-}
-
-tasks.jar {
-    manifest {
-        attributes(
-            "Main-Class" to "myosyn.nabi.NabibotKt"
-        )
-    }
-}
-
-java {
-    // Current LTS version of Java
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
-
-detekt {
-    buildUponDefaultConfig = true
-    config = rootProject.files("detekt.yml")
 }
