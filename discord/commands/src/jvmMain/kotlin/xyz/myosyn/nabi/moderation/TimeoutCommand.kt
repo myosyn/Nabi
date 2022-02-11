@@ -5,7 +5,7 @@ import net.perfectdreams.discordinteraktions.common.commands.ApplicationCommandC
 import net.perfectdreams.discordinteraktions.common.commands.SlashCommandExecutor
 import net.perfectdreams.discordinteraktions.common.commands.options.SlashCommandArguments
 
-class TimeoutUser(val rest: RestClient) : SlashCommandExecutor() {
+class TimeoutCommand(val rest: RestClient) : SlashCommandExecutor() {
     override suspend fun execute(context: ApplicationCommandContext, args: SlashCommandArguments) {
         TODO("Not yet implemented")
     }
