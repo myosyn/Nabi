@@ -7,16 +7,13 @@ import net.perfectdreams.discordinteraktions.common.commands.SlashCommandExecuto
 import net.perfectdreams.discordinteraktions.common.commands.options.ApplicationCommandOptions
 import net.perfectdreams.discordinteraktions.common.commands.options.SlashCommandArguments
 
-// TO-DO: Find a way to replace the string by referencing the user. If only Discord Interaktion had documents....
-
-class BanCommand(val rest: RestClient) : SlashCommandExecutor() {
-    companion object : SlashCommandExecutorDeclaration(BanCommand::class) {
+class RemoveTimeoutCommand(val rest: RestClient) : SlashCommandExecutor() {
+    companion object : SlashCommandExecutorDeclaration(RemoveTimeoutCommand::class) {
         object Options : ApplicationCommandOptions() {
-            val user = string("user", "The user/victim you want to ban from the server. Wait, I shouldn't have said that.")
+            val reason = optionalString("reason", "Why the user was timed out.")
                 .register()
-            val reason = optionalString("reason", "The reason why this user was banned.")
+            val user = string("user", "The user you want to timeout.")
                 .register()
-
         }
 
         override val options = Options
