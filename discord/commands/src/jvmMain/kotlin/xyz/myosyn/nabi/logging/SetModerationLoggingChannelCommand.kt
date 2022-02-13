@@ -18,6 +18,24 @@
 
 package xyz.myosyn.nabi.logging
 
-class SetModerationLoggingChannelCommand (
-    
-)
+import dev.kord.rest.service.RestClient
+import net.perfectdreams.discordinteraktions.common.commands.ApplicationCommandContext
+import net.perfectdreams.discordinteraktions.common.commands.SlashCommandExecutor
+import net.perfectdreams.discordinteraktions.common.commands.SlashCommandExecutorDeclaration
+import net.perfectdreams.discordinteraktions.common.commands.options.ApplicationCommandOptions
+import net.perfectdreams.discordinteraktions.common.commands.options.SlashCommandArguments
+
+class SetModerationLoggingChannelCommand(val rest: RestClient) : SlashCommandExecutor(){
+    companion object : SlashCommandExecutorDeclaration(SetWelcomeChannelCommand::class) {
+        object Options : ApplicationCommandOptions() {
+            val channel = optionalChannel("channel", "The channel you want to set all of the welcomes to.")
+                .register()
+        }
+
+        override val options = Options
+    }
+
+    override suspend fun execute(context: ApplicationCommandContext, args: SlashCommandArguments) {
+        TODO("Not yet implemented")
+    }
+}
