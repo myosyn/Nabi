@@ -7,4 +7,6 @@ it a music bot as well, but no.
 
 The main libraries that we used are the [Kord Library](https://github.com/kordlib/kord) and the extension [Kord Extension](https://github.com/Kord-Extensions/kord-extensions) .
 
-**We're currently getting ready to rewrite Nabi, but we're still using the same Kord library, but we're using Discord Interaktion over the Kord Extension library.**
+Also turn on git-hooks because apparently it breaks if there are any detectable errors, and will completely fail your commit. I almost ripped my hair out trying to solve the problem. I tried downgrading gradle and rewriting everything so it'd work, but no. Git-hooks is dead to me now so.
+
+TODO: Remove githooks and detekt as dependencies, as they're unneeded. You'll also need to add every single moderation command soon. Don't consider chat commands, the API cuts them in about 2 months.

@@ -12,6 +12,10 @@ plugins {
     // Logging
     id("org.apache.logging.log4j") version "2.17.1"
 
+    // Other libs that the bot needs for it to function. 
+    id("org.fusesource.jansi") version "2.4.0"
+    id("")
+
 }
 
 val latestVersion = file("version.txt").readLines().first()
