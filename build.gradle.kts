@@ -29,14 +29,20 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.kord.extensions)
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.kx.ser)
-    implementation(libs.kmongo)
+    // Discord API dependencies
+    implementation("dev.kord:kord-core:0.8.x-SNAPSHOT")
+    implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.5.2-RC1")
+
+    // Kotlin Dependencies
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core") // Serialization
+    implementation("org.jetbrains.kotlin:kotlin-stdlib")
+
+    implementation("org.litote.kmongo:kmongo") // The database we use to separate the configs for each server.
 
     // Logging dependencies
     implementation(libs.groovy)
-    implementation(libs.jansi)
+    implementation("org.fusesource.jansi:jansi")
     implementation(libs.logback)
     implementation(libs.logging)
 }
@@ -44,12 +50,6 @@ dependencies {
 application {
     // This is deprecated, but the Shadow plugin requires it
     mainClassName = "myosyn.nabi.NabibotKt"
-}
-
-gitHooks {
-    setHooks(
-        mapOf("pre-commit" to "detekt")
-    )
 }
 
 tasks.withType<KotlinCompile> {

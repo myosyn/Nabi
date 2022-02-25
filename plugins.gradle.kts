@@ -1,9 +1,9 @@
 plugins {
     // Plugins that are needed (For the latest Java Version)
     kotlin("jvm") version "1.6.10" apply false
-    kotlin("plugins.serialization") version "1.3.2" apply false
-    id("io.gitlab.arturbosch.detekt") version "1.19.0" apply false
-    id("org.codehaus.groovy") version "3.0.8" apply false
+    id("org.jetbrains.kotlinx:kotlinx-coroutines-core") version "1.6.0"
+    id("org.jetbrains.kotlin:kotlin-stdlib:1.6.10") version "1.6.0"
+    id("io.gitlab.arturbosch.detekt") version "1.19.0"
 
     // Plugins for the bot itself
     id("com.kotlindiscord.kord.extensions") version "1.5.2-RC1"
@@ -14,7 +14,6 @@ plugins {
 
     // Other libs that the bot needs for it to function. 
     id("org.fusesource.jansi") version "2.4.0"
-    id("")
 
 }
 
