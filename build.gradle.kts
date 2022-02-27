@@ -39,7 +39,7 @@ dependencies {
     implementation("org.litote.kmongo:kmongo:4.5.0") // The database we use to separate the configs for each server.
 
     // Logging dependencies
-    implementation("org.apache.logging.log4j:log4j-core:2.17.0")
+    implementation("org.slf4j:slf4j-simple:1.7.36")
 
 
 }
