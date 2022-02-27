@@ -1,15 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-plugins {
-    application
-
-    kotlin("jvm")
-    kotlin("plugin.serialization")
-
-    id("com.github.johnrengelman.shadow")
-    id("io.gitlab.arturbosch.detekt")
-}
-
 group = "Nabi"
 version = "0.0.1"
 
