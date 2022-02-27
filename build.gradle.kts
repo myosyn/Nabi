@@ -30,21 +30,28 @@ repositories {
 
 dependencies {
     // Discord API dependencies
+    // We only have Kord here due to the fact that kord-ex hasn't updated to the latest version of Kord.
     implementation("dev.kord:kord-core:0.8.x-SNAPSHOT")
     implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.5.2-RC1")
 
     // Kotlin Dependencies
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core") // Serialization
-    implementation("org.jetbrains.kotlin:kotlin-stdlib")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.2") // Serialization
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
 
-    implementation("org.litote.kmongo:kmongo") // The database we use to separate the configs for each server.
+
+    //idk why I even have these but they're here
+    implementation("org.jetbrains.exposed", "exposed-core", "0.37.3")
+    implementation("org.jetbrains.exposed", "exposed-dao", "0.37.3")
+    implementation("org.jetbrains.exposed", "exposed-jdbc", "0.37.3")
+    implementation("org.fusesource.jansi:jansi:2.4.0")
+
+    // Database so we can isolate each config to their respective server.
+    implementation("org.litote.kmongo:kmongo:4.5.0") // The database we use to separate the configs for each server.
 
     // Logging dependencies
-    implementation(libs.groovy)
-    implementation("org.fusesource.jansi:jansi")
-    implementation(libs.logback)
-    implementation(libs.logging)
+    implementation("org.apache.logging.log4j:log4j-core:2.17.0")
+
+
 }
 
 application {
