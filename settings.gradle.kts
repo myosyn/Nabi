@@ -16,5 +16,5 @@ rootProject.buildFileName = "plugins.gradle.kts"
 
 enableFeaturePreview("VERSION_CATALOGS")
 
-include(:"discord:commands")
-include(:"discord")
+include(":discord:commands")
+include(":discord")
