@@ -19,6 +19,14 @@ repositories {
 }
 
 dependencies {
+    // Discord API
+    implementation("dev.kord:kord-core:0.8.x-SNAPSHOT")
+    implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.5.2-RC1")
+
+    // Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.2") // Serialization
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
+
     //idk why I even have these but they're here
     implementation("org.jetbrains.exposed", "exposed-core", "0.37.3")
     implementation("org.jetbrains.exposed", "exposed-dao", "0.37.3")
