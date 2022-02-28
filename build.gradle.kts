@@ -19,16 +19,6 @@ repositories {
 }
 
 dependencies {
-    // Discord API dependencies
-    // We only have Kord here due to the fact that kord-ex hasn't updated to the latest version of Kord.
-    implementation("dev.kord:kord-core:0.8.x-SNAPSHOT")
-    implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.5.2-RC1")
-
-    // Kotlin Dependencies
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.2") // Serialization
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
-
-
     //idk why I even have these but they're here
     implementation("org.jetbrains.exposed", "exposed-core", "0.37.3")
     implementation("org.jetbrains.exposed", "exposed-dao", "0.37.3")
@@ -41,7 +31,8 @@ dependencies {
     // Logging dependencies
     implementation("org.slf4j:slf4j-simple:1.7.36")
 
-
+    // I forgot why I even had this
+    implementation("io.github.cdimascio:dotenv-kotlin:6.2.2")
 }
 
 application {
