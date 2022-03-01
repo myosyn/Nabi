@@ -1,7 +1,8 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+plugins {
+    java
+}
 
-group = "Nabi"
-version = "0.0.1"
+val implementation by configurations
 
 repositories {
     google()
@@ -31,18 +32,4 @@ dependencies {
 
     // I forgot why I even had this
     implementation("io.github.cdimascio:dotenv-kotlin:6.2.2")
-}
-
-
-tasks.withType<KotlinCompile> {
-    // Current LTS version of Java
-    kotlinOptions.jvmTarget = "17"
-
-    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
-}
-
-java {
-    // Current LTS version of Java
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
 }

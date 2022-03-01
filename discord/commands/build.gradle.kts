@@ -4,6 +4,21 @@ plugins {
 
 val implementation by configurations
 
+repositories {
+    google()
+    mavenCentral()
+
+    maven {
+        name = "Sonatype Snapshots"
+        url = uri("https://oss.sonatype.org/content/repositories/snapshots")
+    }
+
+    maven {
+        name = "Kotlin Discord"
+        url = uri("https://maven.kotlindiscord.com/repository/maven-public/")
+    }
+}
+
 dependencies {
     // Discord API
     implementation("dev.kord:kord-core:0.8.x-SNAPSHOT")
@@ -12,6 +27,8 @@ dependencies {
     // Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.2") // Serialization
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
+
+
 }
 
 repositories {
