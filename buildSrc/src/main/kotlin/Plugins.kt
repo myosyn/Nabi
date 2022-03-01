@@ -4,5 +4,5 @@ object Plugins {
     const val DETEKT = "1.19.0"
 
     // Dependencies that REQUIRE that we add it here
-    const val KOTLINX_SERIALIZATION = ""
+    const val KOTLINX_SERIALIZATION = "1.3.2"
 }

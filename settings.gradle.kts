@@ -22,3 +22,4 @@ include(":discord:moderation")
 
 // Generalization of the paths idk I just need this so it would work
 include(":discord")
+include(":common")
