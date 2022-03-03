@@ -5,4 +5,6 @@ object Plugins {
 
     // Dependencies that REQUIRE that we add it here
     const val KOTLINX_SERIALIZATION = "1.3.2"
+    const val KORD = "0.8.x-SNAPSHOT"
+    const val KORDEXTENSION = "1.5.2-RC1"
 }

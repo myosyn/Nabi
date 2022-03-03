@@ -28,7 +28,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.2") // Serialization
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
 
-    implementation("org.slf4j:slf4j-simple:1.7.32")
+    implementation("org.slf4j:slf4j-simple:1.7.36")
 
     // I forgot why I even had this
     implementation("io.github.cdimascio:dotenv-kotlin:6.2.2")

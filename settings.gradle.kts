@@ -12,9 +12,8 @@ pluginManagement {
     }
 }
 
+// We use this because we're too lazy to write it 15 times for all of the files
 rootProject.buildFileName = "plugins.gradle.kts"
-
-enableFeaturePreview("VERSION_CATALOGS")
 
 include(":discord:commands")
 include(":discord:database")
