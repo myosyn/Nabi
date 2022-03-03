@@ -19,3 +19,7 @@ application {
     // This is deprecated, but the Shadow plugin requires it
     mainClassName = "myosyn.nabi.NabibotKt"
 }
+
+allprojects {
+    val splittedPath = this.path.split(":")
+}
