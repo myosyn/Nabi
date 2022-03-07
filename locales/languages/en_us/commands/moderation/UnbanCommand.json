@@ -1,0 +1,16 @@
+{
+  "string" : {
+    "description.discord.command.unban" : "Unbans the user from your current server.",
+
+    "discord.command.unban.success.embedheader" : "User Unbanned",
+    "discord.command.unban.success.embedbody" : "The user, **${user}**, has been unbanned from **${guild}** for **${reason}.",
+
+    "discord.command.unban.error.embedheader" : "Unban Error",
+    "discord.command.unban.error.unspecifieduser" : "The user that you provided was invalid! Please specify a valid user/ID.",
+    "discord.command.unban.error.problemoccured" : "An error occurred when using this command.",
+    "discord.command.unban.error.ratelimit" : "You're currently on cooldown! You have **${seconds}** left before you can use another command.",
+    "discord.command.unban.error.alreadyunbanned" : "That user has either already been unbanned, or hasn't been banned whatsoever!",
+    "discord.command.unban.error.botmissingrequiredpermission" : "I am missing the `BAN_PERMISSION` permission. Please turn that on so I can unban said person.",
+    "discord.command.unban.error.usermissingrequiredpermission" : "You are missing the `BAN_PERMISSION` permission. Please have the required permission so you can unban that person."
+  }
+}

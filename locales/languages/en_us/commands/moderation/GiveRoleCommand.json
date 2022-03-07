@@ -1,0 +1,16 @@
+{
+  "string" : {
+    "description.discord.command.giverole" : "Gives the specified role to the user.",
+
+    "discord.command.giverole.success.embedheader" : "Role Given",
+    "discord.command.giverole.success.embedbody" : "The user, **${user}**, has been given the role ${}",
+
+    "discord.command.giverole.error.embedheader" : "Unban Error",
+    "discord.command.giverole.error.unspecifieduser" : "The user that you provided was invalid! Please specify a valid user/ID.",
+    "discord.command.giverole.error.problemoccured" : "An error occurred when using this command.",
+    "discord.command.giverole.error.ratelimit" : "You're currently on cooldown! You have **${seconds}** left before you can use another command.",
+    "discord.command.giverole.error.alreadyunbanned" : "That user has either already been unbanned, or hasn't been banned whatsoever!",
+    "discord.command.giverole.error.botmissingrequiredpermission" : "I am missing the `BAN_PERMISSION` permission. Please turn that on so I can unban said person.",
+    "discord.command.giverole.error.usermissingrequiredpermission" : "You are missing the `BAN_PERMISSION` permission. Please have the required permission so you can unban that person."
+  }
+}
