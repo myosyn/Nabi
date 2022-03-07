@@ -3,7 +3,7 @@
     "description.discord.command.timeout" : "Times out a user for a specified amount of time.",
 
     "discord.command.timeout.success.embedheader" : "User Timeout",
-    "discord.command.timeout.success.embedmessage" : "The user, **${user}**, has been successfully timed out from **${guild}** for **${time}**. They were timed out for **${reason}**",
+    "discord.command.timeout.success.embedbody" : "The user, **${user}**, has been successfully timed out from **${guild}** for **${time}**. They were timed out for **${reason}**",
 
     "discord.command.timeout.error.embedheader" : "Timeout error",
 

@@ -9,14 +9,21 @@ class TakeRole : Extension() {
     override val name: String = "takerole"
 
     override suspend fun setup() {
-        publicSlashCommand(::TakeRole) {
+        publicSlashCommand(::RemoveRoleArguments) {
             name = "TakeRole"
             description = "Takes a role away from someone."
             check {
                 hasPermission(Permission.ManageRoles)
                 requireBotPermissions(Permission.ManageRoles)
+            }
 
+            action {
+                val 
             }
         }
+    }
+
+    inner class RemoveRoleArguments : Arguments() {
+        override val 
     }
 }

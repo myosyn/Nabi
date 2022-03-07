@@ -3,9 +3,9 @@
     "description.discord.command.giverole" : "Gives the specified role to the user.",
 
     "discord.command.giverole.success.embedheader" : "Role Given",
-    "discord.command.giverole.success.embedbody" : "The user, **${user}**, has been given the role ${}",
+    "discord.command.giverole.success.embedbody" : "The user, **${user}**, has been given the role ${role}",
 
-    "discord.command.giverole.error.embedheader" : "Unban Error",
+    "discord.command.giverole.error.embedheader" : "Give Role Error",
     "discord.command.giverole.error.unspecifieduser" : "The user that you provided was invalid! Please specify a valid user/ID.",
     "discord.command.giverole.error.problemoccured" : "An error occurred when using this command.",
     "discord.command.giverole.error.ratelimit" : "You're currently on cooldown! You have **${seconds}** left before you can use another command.",
