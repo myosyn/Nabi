@@ -1,4 +1,4 @@
-package myosyn.nabi.extensions.developer
+package myosyn.nabi.commands.developer
 
 import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.extensions.Extension
