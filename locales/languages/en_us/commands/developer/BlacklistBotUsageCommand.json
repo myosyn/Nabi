@@ -9,6 +9,9 @@
         "discord.commands.blacklistbotusage.error.embedheader" : "Blacklist Error",
         "discord.commands.blacklistbotusage.error.unspecifieduser" : "The user that you provided was invalid! Please specify a valid user/ID.",
         "discord.commands.blacklistbotusage.error.problemoccured" : "An error occurred when using this command.",
-        "discord.commands.blacklistbotusage.error.alreadyblacklisted" : "The user you choose to blacklist has already been blacklisted from the bot! Maybe you shouldn't break stuff, and it'll work."
+        "discord.commands.blacklistbotusage.error.alreadyblacklisted" : "The user you choose to blacklist has already been blacklisted from the bot! Maybe you shouldn't break stuff, and it'll work.",
+
+        "discord.commands.blacklistbotusage.dmuser.embedheader" : "Blacklisted from Nabi",
+        "discord.commands.blacklistbotusage.dmuser.embedbody" : "You have been blacklisted from Nabi for **${reason}**. All of the commands you use will cease to function."
     }
 }
