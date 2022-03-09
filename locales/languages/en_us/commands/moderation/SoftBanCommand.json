@@ -1,0 +1,17 @@
+{
+    "string" : {
+      "description.discord.command.softban" : "Bans a person from the server temporarily",
+  
+      "discord.command.softban.success.embedheader" : "Banned User (Temporarily)",
+      "discord.command.softban.success.embedbody" : "The user, **${user}**, has been banned for **${time}**. They have been removed from **${guild}** for **${reason}.",
+  
+      "discord.command.softban.error.embedheader" : "Remove Timeout Error",
+      "discord.command.softban.error.unspecifieduser" : "The user that you provided was invalid! Please specify a valid user/ID.",
+      "discord.command.softban.error.unspecifiedtime" : "The time that you provided was invalid! Please specify a valid time.",
+      "discord.command.softban.error.problemoccured" : "An error occurred when using this command.",
+      "discord.command.softban.error.ratelimit" : "You're currently on cooldown! You have **${seconds}** left before you can use another command.",
+      "discord.command.softban.error.alreadyunbanned" : "That user has already been banned!",
+      "discord.command.softban.error.botmissingrequiredpermission" : "I am missing the `BAN_MEMBER` permission. Please turn that on so I can ban said person.",
+      "discord.command.softban.error.usermissingrequiredpermission" : "You are missing the `TIMEOUT_PERMISSION` permission. Please have the required permission so you can ban said person."
+    }
+  }
