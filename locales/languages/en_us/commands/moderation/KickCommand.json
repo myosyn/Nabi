@@ -1,0 +1,16 @@
+{
+  "string" : {
+    "description.discord.command.kick" : "Kicks the specified user from the corresponding server.",
+
+    "discord.command.kick.success.embedheader" : "Kicked User",
+    "discord.command.kick.success.embedbody" : "The user, **${user}**, has been kicked from **${guild}** for **${reason}**",
+
+    "discord.command.kick.error.embedheader" : "Kick Error",
+    "discord.command.kick.error.unspecifieduser" : "The user that you provided was invalid! Please specify a valid user/ID.",
+    "discord.command.kick.error.problemoccured" : "An error occurred when using this command.",
+    "discord.command.kick.error.ratelimit" : "You're currently on cooldown! You have **${seconds}** left before you can use another command.",
+    "discord.command.kick.error.alreadyunbanned" : "That user has either already been kicked, or wasn't in the server whatsoever!",
+    "discord.command.kick.error.botmissingrequiredpermission" : "I am missing the `KICK_PERMISSION` permission. Please turn that on so I can kick said person.",
+    "discord.command.kick.error.usermissingrequiredpermission" : "You are missing the `KICK_PERMISSION` permission. Please have the required permission so you can kick that person."
+  }
+}

@@ -1,5 +1,16 @@
 {
-  "strings" : {
-    "description.discord.commands.lockchannelcommand" : "Locks the channel"
+  "string" : {
+    "description.discord.command.lockchannel" : "Locks the corresponding channel.",
+
+    "discord.command.lockchannel.success.embedheader" : "Locked Channel",
+    "discord.command.lockchannel.success.embedbody" : "The channel, **${channel}**, has been kicked from **${guild}** for **${reason}**",
+
+    "discord.command.lockchannel.error.embedheader" : "Kick Error",
+    "discord.command.lockchannel.error.unspecifieduser" : "The user that you provided was invalid! Please specify a valid user/ID.",
+    "discord.command.lockchannel.error.problemoccured" : "An error occurred when using this command.",
+    "discord.command.lockchannel.error.ratelimit" : "You're currently on cooldown! You have **${seconds}** left before you can use another command.",
+    "discord.command.lockchannel.error.alreadyunbanned" : "That user has either already been kicked, or wasn't in the server whatsoever!",
+    "discord.command.lockchannel.error.botmissingrequiredpermission" : "I am missing the `MANAGE_CHANNELS` permission. Please turn that on so I can lock said channel.",
+    "discord.command.lockchannel.error.usermissingrequiredpermission" : "You are missing the `MANAGE_CHANNELS` permission. Please have the required permission so you can lock said channel."
   }
 }
