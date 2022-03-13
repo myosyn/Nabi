@@ -1,0 +1,8 @@
+{
+    "strings" : {
+        "description.discord.commands.blacklist" : "Blacklists the user from using the bot on that specific server. It doesn't affect the usage of the bot globally.",
+
+        "discord.command.blacklist.success.embedheader" : "Blacklisted User",
+        "discord.command.blacklist.success.embedbody" : "The user, **${user}** has been successfully blacklisted from Nabi in **${guild}**. They were blacklisted for the reason **${reason}**."
+    }
+}

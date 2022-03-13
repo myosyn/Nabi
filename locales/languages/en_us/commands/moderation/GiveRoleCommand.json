@@ -9,8 +9,8 @@
     "discord.command.giverole.error.unspecifieduser" : "The user that you provided was invalid! Please specify a valid user/ID.",
     "discord.command.giverole.error.problemoccured" : "An error occurred when using this command.",
     "discord.command.giverole.error.ratelimit" : "You're currently on cooldown! You have **${seconds}** left before you can use another command.",
-    "discord.command.giverole.error.alreadyunbanned" : "That user has either already been unbanned, or hasn't been banned whatsoever!",
-    "discord.command.giverole.error.botmissingrequiredpermission" : "I am missing the `BAN_PERMISSION` permission. Please turn that on so I can unban said person.",
-    "discord.command.giverole.error.usermissingrequiredpermission" : "You are missing the `BAN_PERMISSION` permission. Please have the required permission so you can unban that person."
+    "discord.command.giverole.error.alreadyunbanned" : "That user already has that role!",
+    "discord.command.giverole.error.botmissingrequiredpermission" : "I am missing the `MANAGE_MEMBERS` permission. Please turn that on so I can give that role to said person.",
+    "discord.command.giverole.error.usermissingrequiredpermission" : "You are missing the `MANAGE_MEMBERS` permission. Please have the required permission so you can give that role to that person."
   }
 }
