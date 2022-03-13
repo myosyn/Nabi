@@ -21,8 +21,6 @@ application {
 }
 
 allprojects {
-    val splittedPath = this.path.split(":")
-
     group = rootProject.group
     version = rootProject.version
 

@@ -1,23 +1,15 @@
 plugins {
+    kotlin("multiplatform") apply false
+    kotlin("plugin.serialization") apply false
     kotlin("jvm") apply false
     java
 }
 
-repositories {
-    mavenCentral()
-    mavenLocal()
-}
-
-subprojects {
-    apply(plugin = "org.jetbrains.kotlin.jvm")
-
+sourceSets {
     repositories {
-        google()
-        mavenCentral()
-
-        maven ("https://oss.sonatype.org/content/repositories/snapshots")
-        maven("https://maven.kotlindiscord.com/repository/maven-public/")
-        maven("https://maven.kotlindiscord.com/repository/maven-releases/")
+        maven(url = uri("https://maven.kotlindiscord.com/repository/maven-public/"))
+        maven(url = uri("https://jitpack.io"))
+        maven(url = uri("https://oss.sonatype.org/content/repositories/snapshots"))
     }
 
     dependencies {
@@ -26,5 +18,13 @@ subprojects {
 
         implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.2") // Serialization
         implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
+    }
+}
+
+tasks.jar {
+    manifest {
+        attributes(
+            "Main-Class" to "xyz.myosyn.commands.NabiBotKt"
+        )
     }
 }
