@@ -2,6 +2,8 @@ plugins {
     kotlin("multiplatform") apply false
     kotlin("plugin.serialization") apply false
     kotlin("jvm") apply false
+
+    id("com.github.johnrengelman.shadow")
     java
 }
 
