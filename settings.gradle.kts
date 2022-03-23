@@ -4,9 +4,9 @@ pluginManagement {
     repositories {
         mavenLocal()
         gradlePluginPortal()
-        maven("https://maven.kotlindiscord.com/repository/maven-public/")
-        maven("https://jitpack.io")
         maven("https://oss.sonatype.org/content/repositories/snapshots")
+        maven("https://jitpack.io")
+        maven("https://maven.kotlindiscord.com/repository/maven-public/")
     }
 }
 
@@ -26,3 +26,14 @@ include(":common")
 include(":discord:commands")
 include(":discord:database")
 include(":discord:moderation")
+
+gradle.settingsEvaluated{
+    // We have to use Java 11 for this because apparently
+    if(!JavaVersion.current().isJava11Compatible) {
+        throw GradleException("This build requires JDK 17. You're currently using ${getBuildJavaHome()}. Please make sure you're on this version, and try again. ")
+    }
+}
+
+fun getBuildJavaHome(){
+    System.getProperty("java.home")
+}
