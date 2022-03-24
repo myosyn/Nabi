@@ -10,8 +10,6 @@ pluginManagement {
     }
 }
 
-includeBuild("build-logic")
-
 // We use this because we're too lazy to write it 15 times for all of the files
 
 rootProject.name = "Nabi"
@@ -28,9 +26,9 @@ include(":discord:database")
 include(":discord:moderation")
 
 gradle.settingsEvaluated{
-    // We have to use Java 11 for this because apparently
+    // We have to use Java 11 for this because apparently I can't make it default to Java 17
     if(!JavaVersion.current().isJava11Compatible) {
-        throw GradleException("This build requires JDK 17. You're currently using ${getBuildJavaHome()}. Please make sure you're on this version, and try again. ")
+        throw GradleException("This build requires JDK 17. You're currently using ${getBuildJavaHome()}. Please make sure you're on this version, and try again.")
     }
 }
 

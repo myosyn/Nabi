@@ -21,16 +21,14 @@ allprojects {
 
     repositories {
         mavenCentral()
+        mavenLocal()
+        google()
+        maven("https://oss.sonatype.org/content/repositories/snapshots")
+        maven("https://maven.kotlindiscord.com/repository/maven-public/")
+        maven("https://jitpack.io")
     }
 
-    dependencies {
-        api(kotlin("stdlib"))
-    }
-
-    tasks.withType<KotlinCompile> {
-        KotlinOptions {
-            jvmTarget = "17"
-            freeCompilerArgs = freeCompilerArgs + arrayOf("-Xopt-in=kotlin.RequiresOptIn")
-        }
+    applications {
+        mainClassName = "xyz.myosyn.nabi.NabiBotKt"
     }
 }
