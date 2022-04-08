@@ -1,34 +1,56 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
+    kotlin("jvm") version "1.6.20" apply false
+    kotlin("plugin.serialization") version "1.6.20" apply false
+    kotlin("multiplatform") version "1.6.20" apply false
+    id("org.jetbrains.dokka") version "1.6.10"
+    id("com.github.johnrengelman.shadow") version "7.1.2" apply false
+    `maven-publish`
     application
-}
-
-group = "xyz.myosyn"
-version = "0.0.1"
-
-repositories {
-    mavenCentral()
-    mavenLocal()
-}
-
-application {
-    // This is deprecated, but the Shadow plugin requires it
-    mainClassName = "myosyn.nabi.NabibotKt"
+    java
 }
 
 allprojects {
-    group = rootProject.group
-    version = rootProject.version
+    apply {
+        plugin("org.jetbrains.kotlin.jvm")
+        plugin("org.jetbrains.kotlin.plugin.serialization")
+        plugin("com.github.johnrengelman.shadow")
+        plugin("application")
+        plugin("java")
+    }
+
+    group = "dev.myosyn"
+    version = "1.0.0-PRE1" + "SNAPSHOT"
 
     repositories {
         mavenCentral()
         mavenLocal()
-        google()
+        maven("https://jitpack.io")
         maven("https://oss.sonatype.org/content/repositories/snapshots")
         maven("https://maven.kotlindiscord.com/repository/maven-public/")
-        maven("https://jitpack.io")
     }
 
-    applications {
-        mainClassName = "xyz.myosyn.nabi.NabiBotKt"
+    tasks {
+        withType<KotlinCompile> {
+            kotlinOptions {
+                jvmTarget = "18"
+                javaParameters = true
+                freeCompilerArgs =
+                    listOf(
+                        "-Xopt-in=kotlin.RequiresOptIn",
+                        "kotlin.ExperimentalStdlibApi",
+                        "kotlin.time.ExperimentalTime"
+                    )
+            }
+        }
+    }
+
+    application {
+        mainClass.set("dev.myosyn.nabi.NabiCoreKt")
+        java {
+            sourceCompatibility = JavaVersion.VERSION_18
+            targetCompatibility = sourceCompatibility
+        }
     }
 }

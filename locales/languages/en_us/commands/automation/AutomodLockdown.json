@@ -1,9 +1,0 @@
-{
-  "string" : {
-    "description.discord.commands.automodlockdown" : "Automatically locks down a channel if it detects a substantial amount of something.",
-
-    "discord.commands.automodlockdown.embedheader" : "Automoderation Trigger",
-    "discord.commands.automodlockdown.massping" : "This channel has been locked down due to a detection of mass pings. The channel will only be unlocked once a moderator unlocks this channel. **(Note: This feature is a work in progress. This means that this isn't the final product, and there will be false positives.)**",
-    "discord.commands.automodlockdown.algorithmicchange" : "This channel has been locked due to a change within the algorithm. The channel will only be unlocked once a moderator unlocks this channel. **(Note: This feature is a work in progress. This means that this isn't the final product, and there will be false positives.)**"
-  }
-}
