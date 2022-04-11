@@ -4,7 +4,6 @@ plugins {
     kotlin("jvm") version "1.6.20" apply false
     kotlin("plugin.serialization") version "1.6.20" apply false
     kotlin("multiplatform") version "1.6.20" apply false
-    id("org.jetbrains.dokka") version "1.6.10"
     id("com.github.johnrengelman.shadow") version "7.1.2" apply false
     `maven-publish`
     application
@@ -20,7 +19,7 @@ allprojects {
         plugin("java")
     }
 
-    group = "dev.myosyn"
+    group = "dev.myosyn.nabi"
     version = "1.0.0-PRE1" + "SNAPSHOT"
 
     repositories {
@@ -34,11 +33,11 @@ allprojects {
     tasks {
         withType<KotlinCompile> {
             kotlinOptions {
-                jvmTarget = "18"
+                jvmTarget = "17"
                 javaParameters = true
                 freeCompilerArgs =
                     listOf(
-                        "-Xopt-in=kotlin.RequiresOptIn",
+                        "-opt-in=kotlin.RequiresOptIn",
                         "kotlin.ExperimentalStdlibApi",
                         "kotlin.time.ExperimentalTime"
                     )
@@ -49,8 +48,8 @@ allprojects {
     application {
         mainClass.set("dev.myosyn.nabi.NabiCoreKt")
         java {
-            sourceCompatibility = JavaVersion.VERSION_18
-            targetCompatibility = sourceCompatibility
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
         }
     }
 }
