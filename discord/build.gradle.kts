@@ -11,6 +11,7 @@ subprojects {
         implementation(project(":discord:commands"))
         implementation(project(":discord:database"))
         implementation(project(":discord:common"))
+        implementation(project(":discord:phishing"))
 
         // TODO: Overwrite Kord-Extension's bundling of Kord somehow, because it is bundling M9 indirectly. I don't think this can be done though
         // See:
