@@ -1,4 +1,6 @@
 # Nabi
 
 With stability, and free features in mind, no other bot can contest this specific bot. 
-The libraries that we use or create have premium qualities in mind, and are used to 
+
+The reason why we created this bot is still unknown, maybe because of the fact that we wanted 
+to kill some amount of time.

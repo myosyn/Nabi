@@ -20,7 +20,7 @@ allprojects {
     }
 
     group = "dev.myosyn.nabi"
-    version = "1.0.0-PRE1" + "SNAPSHOT"
+    version = "1.0.0-PRE1" + "-SNAPSHOT"
 
     repositories {
         mavenCentral()
@@ -53,3 +53,5 @@ allprojects {
         }
     }
 }
+
+// TODO: Add publication to the project as a whole

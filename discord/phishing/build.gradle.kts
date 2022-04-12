@@ -1,10 +1,15 @@
 plugins {
     kotlin("jvm")
     kotlin("plugin.serialization")
+    kotlin("multiplatform")
     id("com.github.johnrengelman.shadow")
     application
 }
 
-dependencies {
-
+kotlin {
+    subprojects {
+        dependencies {
+            
+        }
+    }
 }
