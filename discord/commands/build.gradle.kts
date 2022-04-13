@@ -3,6 +3,7 @@ plugins {
     kotlin("plugin.serialization")
 }
 
+/*
 kotlin {
     sourceSets {
         dependencies {
@@ -12,3 +13,4 @@ kotlin {
         }
     }
 }
+*/

@@ -3,6 +3,7 @@ plugins {
     kotlin("plugin.serialization")
 }
 
+/*
 subprojects {
     dependencies {
         api("com.kotlindiscord.kord.extensions:kord-extensions:1.5.2-20220318.133517-36")
@@ -10,3 +11,4 @@ subprojects {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.20")
     }
 }
+*/

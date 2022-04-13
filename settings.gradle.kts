@@ -25,8 +25,8 @@ include(":discord:phishing")
 
 gradle.settingsEvaluated{
     // We have to use Java 12 for this because apparently I can't make it default to Java 18
-    if(!JavaVersion.current().isJava12Compatible) {
-        throw GradleException("This build requires JDK 18. You're currently using ${getBuildJavaHome()}. Please make sure you're on this version, and try again.")
+    if(!JavaVersion.current().isJava11Compatible) {
+        throw GradleException("This build requires JDK 17. You're currently using ${getBuildJavaHome()}. Please make sure you're on this version, and try again.")
     }
 }
 

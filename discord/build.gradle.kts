@@ -1,7 +1,10 @@
 plugins {
+    kotlin("jvm")
     `nabi-modules`
 }
 
+// This is broken for some apparent reason (idk why)
+/*
 subprojects {
     dependencies {
         // Nabi's core libraries
@@ -16,3 +19,4 @@ subprojects {
         implementation("org.apache.logging.log4j:log4j-core:2.17.2")
     }
 }
+*/
