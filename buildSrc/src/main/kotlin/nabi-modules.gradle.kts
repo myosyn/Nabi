@@ -1,6 +1,7 @@
 import org.gradle.kotlin.dsl.application
 import org.gradle.kotlin.dsl.dependencies
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import javax.lang.model.SourceVersion
 import kotlin.jvm.internal.Intrinsics.Kotlin
 
 
@@ -25,8 +26,13 @@ tasks {
             jvmTarget = "17"
             freeCompilerArgs =
                 listOf(
-
+                    "kotlin.RequiresOptIn",
+                    "kotlin.time.ExperimentalTime",
                 )
         }
+    }
+    withType<JavaCompile> {
+        sourceCompatibility = JavaVersion.VERSION_17.toString()
+        targetCompatibility = JavaVersion.VERSION_17.toString()
     }
 }

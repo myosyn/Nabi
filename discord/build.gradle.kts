@@ -3,7 +3,6 @@ plugins {
     `nabi-modules`
 }
 
-// This is broken for some apparent reason (idk why)
 /*
 subprojects {
     dependencies {
