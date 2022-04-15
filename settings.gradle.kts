@@ -16,13 +16,15 @@ rootProject.name = "Nabi"
 
 // You need this because this is the core of the library
 include(":discord")
+include(":website")
 
 // These are the submodules of the library which are required in order to make the bot function
 // These are also currently broken for some reason
-// include(":discord:commands")
-// include(":discord:database")
-// include(":discord:common")
-// include(":discord:phishing")
+include(":discord:commands")
+include(":discord:database")
+include(":discord:common")
+include(":discord:phishing")
+include(":discord:core")
 
 gradle.settingsEvaluated{
     // We have to use Java 12 for this because apparently I can't make it default to Java 18
