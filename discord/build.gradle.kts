@@ -1,5 +1,4 @@
 plugins {
-    kotlin("jvm")
     `nabi-modules`
 }
 

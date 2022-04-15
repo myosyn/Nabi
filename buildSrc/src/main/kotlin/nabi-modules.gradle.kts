@@ -7,6 +7,7 @@ import kotlin.jvm.internal.Intrinsics.Kotlin
 
 plugins {
     kotlin("jvm")
+    kotlin("plugin.serialization")
 }
 
 group = "dev.myosyn.nabi"
@@ -24,11 +25,6 @@ tasks {
     withType<KotlinCompile> {
         kotlinOptions {
             jvmTarget = "17"
-            freeCompilerArgs =
-                listOf(
-                    "kotlin.RequiresOptIn",
-                    "kotlin.time.ExperimentalTime",
-                )
         }
     }
     withType<JavaCompile> {
