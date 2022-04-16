@@ -17,8 +17,8 @@ You must state:
 * What it does
 * Why we should add it
 
-Based on this, we will ask the two owners (@euphorxa & @vispin) for their opinions. If they accept, then
-the pull request will be merged into the repository. If not, then it will be closed. 
+Based on this, we will ask the two owners (@euphorxa & @vispin) for their opinions. If they accept,
+the pull request will be merged into the repository. If not, it will be closed. 
 
 Also, if there are any issues that have the label `Feature` on it, these pull requests have higher priority
 over the rest, primarily because we absolutely need these features completed as soon 
