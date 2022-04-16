@@ -9,6 +9,7 @@ import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.converters.impl.string
 import com.kotlindiscord.kord.extensions.extensions.Extension
+import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Snowflake
 
@@ -16,9 +17,22 @@ class EvalCommand : Extension() {
     override val name: String = "eval"
 
     override suspend fun setup() {
-        publicSlashCommand(::EvalCommandArguments) {
-            name = "eval"
+        publicSlashCommand(::EvalArguments) {
+            name = "SilentEval"
             description = "Executes a command from Nabi herself."
+
+            check {
+                allowUser(Snowflake(962256545926746132))
+                anyGuild()
+            }
+
+            action {
+
+            }
+        }
+        ephemeralSlashCommand(::EvalArguments) {
+            name = "SilentEval"
+            description = "Silently executes a command from Nabi herself."
 
             check {
                 allowUser(Snowflake(962256545926746132))
@@ -31,7 +45,7 @@ class EvalCommand : Extension() {
         }
     }
 
-    inner class EvalCommandArguments : Arguments() {
+    inner class EvalArguments : Arguments() {
         val code by string {
             name = "code"
             description = "The code you want to execute."

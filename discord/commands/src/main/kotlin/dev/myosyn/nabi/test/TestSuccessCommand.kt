@@ -1,6 +1,8 @@
 package dev.myosyn.nabi.test
 
+import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.extensions.Extension
+import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.Color
@@ -9,7 +11,6 @@ import kotlinx.datetime.Clock
 
 class TestSuccessCommand : Extension() {
     override val name: String = "testsuccess"
-
     override suspend fun setup() {
         publicSlashCommand {
             name = "TestSuccess"
@@ -19,6 +20,26 @@ class TestSuccessCommand : Extension() {
                 respond {
                     embed {
                         color = Color(134, 255, 134  )
+                        title = "Command Successfully Executed"
+                        description = "You did nothing though >:("
+                        timestamp = Clock.System.now()
+                    }
+                }
+            }
+        }
+
+        ephemeralSlashCommand {
+            name = "SilentTestSuccess"
+            description = "Tests if success will work but sneakily (Which will never happen)"
+
+            check {
+                anyGuild()
+            }
+
+            action {
+                respond {
+                    embed {
+                        color = Color(134, 255, 134)
                         title = "Command Successfully Executed"
                         description = "You did nothing though >:("
                         timestamp = Clock.System.now()

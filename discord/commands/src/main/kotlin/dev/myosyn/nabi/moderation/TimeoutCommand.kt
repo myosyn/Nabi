@@ -3,6 +3,8 @@ package dev.myosyn.nabi.moderation
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
+import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingString
+import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingTimestamp
 import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalString
 import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
@@ -10,30 +12,32 @@ import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Permission
 
-class WarnCommand : Extension() {
-    override val name: String = "warn"
+class TimeoutCommand : Extension() {
+    override val name: String = "Timeout"
 
     override suspend fun setup() {
-        publicSlashCommand(::WarnArguments) {
-            name = "Warn"
-            description = "Warns the user for the crime that they committed."
+        publicSlashCommand(::TimeoutArguments) {
+            name = "Timeout"
+            description = "Times out a user"
 
             check {
                 anyGuild()
                 hasPermission(Permission.ModerateMembers)
+                requireBotPermissions(Permission.ModerateMembers)
             }
 
             action {
 
             }
         }
-        ephemeralSlashCommand(::WarnArguments) {
-            name = "SilentWarn"
-            description = "Silently warns the user for what they've done."
+        ephemeralSlashCommand(::TimeoutArguments) {
+            name = "SilentTimeout"
+            description = "Silently times out a user."
 
             check {
                 anyGuild()
                 hasPermission(Permission.ModerateMembers)
+                requireBotPermissions(Permission.ModerateMembers)
             }
 
             action {
@@ -41,14 +45,20 @@ class WarnCommand : Extension() {
             }
         }
     }
-    inner class WarnArguments : Arguments() {
+
+    inner class TimeoutArguments : Arguments() {
         val user by user {
             name = "user"
-            description = "The user you want to ban."
+            description = "The user you want to timeout"
         }
-        val reason by optionalString {
+        val reason by defaultingString {
             name = "reason"
-            description = "The reason why the user is getting warned."
+            description = "The reason why you want to timeout this person."
+            defaultValue = "No reason provided."
+        }
+        val time by defaultingString {
+            name = "time"
+            description = "The amount of time you want the user to be timed out for."
         }
     }
 }
