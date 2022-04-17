@@ -8,6 +8,7 @@ import kotlin.jvm.internal.Intrinsics.Kotlin
 plugins {
     kotlin("jvm")
     kotlin("plugin.serialization")
+    application
 }
 
 group = "dev.myosyn.nabi"
@@ -33,3 +34,5 @@ tasks {
         targetCompatibility = JavaVersion.VERSION_17.toString()
     }
 }
+
+
