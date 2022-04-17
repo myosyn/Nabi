@@ -1,0 +1,3 @@
+plugins {
+    `nabi-modules`
+}

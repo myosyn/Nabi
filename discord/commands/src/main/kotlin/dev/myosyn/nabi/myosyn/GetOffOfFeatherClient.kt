@@ -5,17 +5,16 @@ import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.Color
-import dev.kord.common.entity.Snowflake
 import dev.kord.rest.builder.message.create.embed
+import kotlinx.datetime.Clock
 
-
-class EuphoriaDownload : Extension() {
-    override val name: String = "EuphoriaDownload"
+class GetOffOfFeatherClient : Extension() {
+    override val name: String = "GetOffOfFeatherClient"
 
     override suspend fun setup() {
         publicSlashCommand {
-            name = "EuphoriaDownload"
-            description = "Shows the download page to Euphoria"
+            name = "GetOffOfFeatherClient"
+            description = "Stop using a client that has a worse reputation than Hunt Down the Refund."
 
             check {
                 anyGuild()
@@ -25,8 +24,9 @@ class EuphoriaDownload : Extension() {
                 respond {
                     embed {
                         color = Color(213, 154, 255)
-                        title = "Euphoria Download Link"
-                        description = "Hey! Euphoria isn't available for download yet. Please understand that we're in active development of the mod. Thanks!"
+                        title = "Feather Client Error"
+                        description = "You're currently using Feather Client, which is unsupported by us. It will break many features in this mod, which is why we went out of our way to deliberately crash the client. Please use either native Fabric, or use Quilt."
+                        timestamp = Clock.System.now()
                     }
                 }
             }
