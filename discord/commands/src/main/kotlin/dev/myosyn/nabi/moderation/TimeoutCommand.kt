@@ -59,6 +59,7 @@ class TimeoutCommand : Extension() {
         val time by defaultingString {
             name = "time"
             description = "The amount of time you want the user to be timed out for."
+            defaultValue = "7d"
         }
     }
 }
