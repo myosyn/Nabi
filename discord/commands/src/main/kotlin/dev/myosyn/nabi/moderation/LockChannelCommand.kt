@@ -24,7 +24,8 @@ class LockChannelCommand : Extension() {
                 requireBotPermissions(Permission.ManageChannels)
             }
             action {
-
+                val channel = arguments.channel
+                val reason = arguments.reason
             }
         }
 

@@ -7,6 +7,8 @@ import dev.kord.common.entity.PresenceStatus
 import dev.myosyn.nabi.developer.*
 import dev.myosyn.nabi.general.*
 import dev.myosyn.nabi.moderation.*
+import dev.myosyn.nabi.myosyn.*
+import dev.myosyn.nabi.setchannels.*
 import dev.myosyn.nabi.test.*
 
 suspend fun main() {
@@ -29,6 +31,7 @@ suspend fun main() {
 
             // Moderation directory
             add(::BanCommand)
+            add(::KickCommand)
             add(::LockChannelCommand)
             add(::RemoveTimeoutCommand)
             add(::TemporaryBanCommand)
@@ -36,6 +39,14 @@ suspend fun main() {
             add(::UnbanCommand)
             add(::UnlockChannelCommand)
             add(::WarnCommand)
+
+            // Myosyn specific commands
+            add(::EuphoriaDownload)
+            add(::GetOffOfFeatherClient)
+
+            // SetChannels directory
+            add(::SetLeaveChannelCommand)
+            add(::SetWelcomeChannelCommand)
 
             // Test directory
             add(::TestEmbed)

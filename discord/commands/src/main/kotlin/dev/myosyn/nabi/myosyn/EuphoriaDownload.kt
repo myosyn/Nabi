@@ -5,9 +5,7 @@ import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.Color
-import dev.kord.common.entity.Snowflake
 import dev.kord.rest.builder.message.create.embed
-
 
 class EuphoriaDownload : Extension() {
     override val name: String = "EuphoriaDownload"
