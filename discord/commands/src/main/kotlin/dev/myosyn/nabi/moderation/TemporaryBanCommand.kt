@@ -31,8 +31,8 @@ class TemporaryBanCommand : Extension() {
             }
         }
         ephemeralSlashCommand(::TemporaryBanArguments) {
-            name = "SilentTemporaryBan"
-            description = "Silently temporarily bans someone."
+            name = "EphemeralTemporaryBan"
+            description = "Ephemerally temporarily bans someone."
 
             check {
                 anyGuild()

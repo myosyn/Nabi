@@ -28,8 +28,8 @@ class WarnCommand : Extension() {
             }
         }
         ephemeralSlashCommand(::WarnArguments) {
-            name = "SilentWarn"
-            description = "Silently warns the user for what they've done."
+            name = "EphemeralWarn"
+            description = "Ephemerally warns the user for what they've done."
 
             check {
                 anyGuild()

@@ -31,8 +31,8 @@ class TimeoutCommand : Extension() {
             }
         }
         ephemeralSlashCommand(::TimeoutArguments) {
-            name = "SilentTimeout"
-            description = "Silently times out a user."
+            name = "EphemeralTimeout"
+            description = "Ephemeral times out a user."
 
             check {
                 anyGuild()

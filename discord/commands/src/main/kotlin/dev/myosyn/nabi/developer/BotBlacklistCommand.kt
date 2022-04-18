@@ -20,7 +20,7 @@ class BotBlacklistCommand : Extension() {
 
             check {
                 anyGuild()
-                allowUser(Snowflake(647675269057871885))
+                allowUser(Snowflake("647675269057871885"))
             }
 
             action {
@@ -29,10 +29,15 @@ class BotBlacklistCommand : Extension() {
         }
 
         ephemeralSlashCommand(::BotBlacklistArguments) {
-            name = "SilentBotBlacklist"
-            description = "Silently Blacklists a user from using Nabi."
+            name = "EphemerallyBotBlacklist"
+            description = "Ephemerally blacklists a user from using Nabi."
 
             check {
+                anyGuild()
+                allowUser(Snowflake("647675269057871885"))
+            }
+
+            action {
 
             }
         }

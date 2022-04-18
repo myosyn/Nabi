@@ -32,7 +32,7 @@ class BanCommand : Extension() {
         }
 
         ephemeralSlashCommand(::BanCommandArguments) {
-            name = "Silent Ban"
+            name = "EphemeralBan"
             description = "Silently bans the specified user from the server."
 
             check {

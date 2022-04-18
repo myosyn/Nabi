@@ -31,8 +31,8 @@ class EvalCommand : Extension() {
             }
         }
         ephemeralSlashCommand(::EvalArguments) {
-            name = "SilentEval"
-            description = "Silently executes a command from Nabi herself."
+            name = "EphemeralEval"
+            description = "Ephemerally executes a command from Nabi herself."
 
             check {
                 allowUser(Snowflake(962256545926746132))

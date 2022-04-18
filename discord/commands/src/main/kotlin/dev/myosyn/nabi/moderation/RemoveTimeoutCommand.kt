@@ -26,8 +26,8 @@ class RemoveTimeoutCommand : Extension() {
             }
         }
         ephemeralSlashCommand(::RemoveTimeoutArguments) {
-            name = "SilentRemoveTimeout"
-            description = "Silently removes the timeout status from a user."
+            name = "EphemeralRemoveTimeout"
+            description = "Ephemerally removes the timeout status from a user."
 
             check {
                 anyGuild()
