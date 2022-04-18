@@ -11,8 +11,12 @@ import dev.myosyn.nabi.test.*
 
 suspend fun main() {
     var bot = ExtensibleBot(env("TOKEN")) {
-        extensions {
 
+        applicationCommands {
+            enabled = true
+        }
+
+        extensions {
             // Yes, I know I could've done this in a better way, but to be honest, I don't care.
 
             // Developer directory

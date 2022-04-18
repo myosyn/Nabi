@@ -3,6 +3,7 @@ package dev.myosyn.nabi.moderation
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
+import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingString
 import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalString
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
@@ -47,6 +48,14 @@ class LockChannelCommand : Extension() {
         val channel by optionalString {
             name = "Channel"
             description = "The channel you want to lock. Defaults to the channel that you are in."
+        }
+        val time by optionalString {
+            name = "Time"
+            description = "The amount of time you want to lock this channel for."
+        }
+        val reason by defaultingString {
+            name = "Reason"
+            description = "The reason why you're locking this channel."
         }
     }
 }
