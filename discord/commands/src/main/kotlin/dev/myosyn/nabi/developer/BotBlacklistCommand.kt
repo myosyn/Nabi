@@ -29,7 +29,7 @@ class BotBlacklistCommand : Extension() {
         }
 
         ephemeralSlashCommand(::BotBlacklistArguments) {
-            name = "EphemerallyBotBlacklist"
+            name = "EphemeralBotBlacklist"
             description = "Ephemerally blacklists a user from using Nabi."
 
             check {

@@ -4,6 +4,7 @@ import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingString
+import com.kotlindiscord.kord.extensions.commands.converters.impl.duration
 import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
@@ -49,10 +50,9 @@ class TemporaryBanCommand : Extension() {
             name = "user"
             description = "Specifies the user that you want to ban."
         }
-        val time by defaultingString {
+        val time by duration {
             name = "time"
             description = "The amount of time you want to ban the user for. The default time is 7d (7 days)."
-            defaultValue = "7d"
         }
         val reason by defaultingString {
             name = "reason"

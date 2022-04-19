@@ -46,6 +46,7 @@ suspend fun main() {
 
             // SetChannels directory
             add(::SetLeaveChannelCommand)
+            add(::SetModerationLoggingChannelCommand)
             add(::SetWelcomeChannelCommand)
 
             // Test directory
@@ -56,7 +57,8 @@ suspend fun main() {
         }
 
         presence {
-            status = PresenceStatus.Online
+            status = PresenceStatus.DoNotDisturb
+            playing("In the moonlight skies")
         }
     }
 }

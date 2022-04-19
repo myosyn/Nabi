@@ -24,6 +24,10 @@ class RemoveTimeoutCommand : Extension() {
                 hasPermission(Permission.ModerateMembers)
                 requireBotPermissions(Permission.ModerateMembers)
             }
+
+            action {
+                arguments.user
+            }
         }
         ephemeralSlashCommand(::RemoveTimeoutArguments) {
             name = "EphemeralRemoveTimeout"

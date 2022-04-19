@@ -55,7 +55,17 @@ class BanCommand : Extension() {
                 requireBotPermissions(Permission.BanMembers)
             }
             action {
+                val target = arguments.target
+                val reason = arguments.reason
 
+                respond {
+                    embed {
+                        color = Color(221,237,255)
+                        title = "Banned User"
+                        description = "The user, $user"
+                        timestamp = Clock.System.now()
+                    }
+                }
             }
         }
     }

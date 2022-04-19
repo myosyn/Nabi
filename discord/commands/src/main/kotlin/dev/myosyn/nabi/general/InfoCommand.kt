@@ -4,6 +4,7 @@ import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
+import dev.kord.common.Color
 import dev.kord.rest.builder.message.create.embed
 import kotlinx.datetime.Clock
 
@@ -22,6 +23,7 @@ class InfoCommand : Extension() {
             action {
                 respond {
                     embed {
+                        color = Color(30, 215, 96)
                         timestamp = Clock.System.now()
                     }
                 }
