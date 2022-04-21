@@ -24,6 +24,7 @@ suspend fun main() {
             // Developer directory
             add(::BotBlacklistCommand)
             add(::EvalCommand)
+            add(::ShutdownCommand)
 
             // General directory
             add(::InfoCommand)

@@ -12,6 +12,7 @@ import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Snowflake
+import dev.myosyn.nabi.BOT_OWNER
 
 class EvalCommand : Extension() {
     override val name: String = "eval"
@@ -22,7 +23,7 @@ class EvalCommand : Extension() {
             description = "Executes a command from Nabi herself."
 
             check {
-                allowUser(Snowflake(962256545926746132))
+                allowUser(Snowflake(BOT_OWNER))
                 anyGuild()
             }
 

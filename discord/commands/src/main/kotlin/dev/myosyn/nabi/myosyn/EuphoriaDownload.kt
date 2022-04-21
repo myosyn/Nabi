@@ -6,6 +6,7 @@ import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.Color
 import dev.kord.rest.builder.message.create.embed
+import kotlinx.datetime.Clock
 
 class EuphoriaDownload : Extension() {
     override val name: String = "EuphoriaDownload"
@@ -25,6 +26,7 @@ class EuphoriaDownload : Extension() {
                         color = Color(213, 154, 255)
                         title = "Euphoria Download Link"
                         description = "Hey! Euphoria isn't available for download yet. Please understand that we're in active development of the mod. Thanks!"
+                        timestamp = Clock.System.now()
                     }
                 }
             }
