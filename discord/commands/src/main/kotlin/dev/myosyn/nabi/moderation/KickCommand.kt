@@ -32,6 +32,7 @@ class KickCommand : Extension() {
                 val user = arguments.reason
                 val reason = arguments.reason
 
+
                 respond {
                     embed {
                         color = Color(221,237,255)

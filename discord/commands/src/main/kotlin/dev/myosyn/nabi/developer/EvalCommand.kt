@@ -11,8 +11,11 @@ import com.kotlindiscord.kord.extensions.commands.converters.impl.string
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
+import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Snowflake
+import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.BOT_OWNER
+import dev.myosyn.nabi.ColorUtils.SUCCESS_COLOR
 
 class EvalCommand : Extension() {
     override val name: String = "eval"
@@ -41,7 +44,12 @@ class EvalCommand : Extension() {
             }
 
             action {
+                respond {
+                    embed {
+                        color = SUCCESS_COLOR
 
+                    }
+                }
             }
         }
     }

@@ -1,5 +1,6 @@
 package dev.myosyn.nabi.moderation
 
+import com.kotlindiscord.kord.extensions.DiscordRelayedException
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
@@ -31,7 +32,7 @@ class BanCommand : Extension() {
             }
 
             action {
-                val target = arguments.target
+                val target = arguments.user
                 val reason = arguments.reason
 
                 respond {
@@ -55,14 +56,24 @@ class BanCommand : Extension() {
                 requireBotPermissions(Permission.BanMembers)
             }
             action {
-                val target = arguments.target
+                val target = arguments.user
                 val reason = arguments.reason
+
+                if (target.id == channel.kord.selfId) {
+                    throw DiscordRelayedException("Stop trying to ban yourself.")
+                }
+
+                if (target.isBot) {
+                    throw DiscordRelayedException("You cannot ban a bot!")
+                }
+
+
 
                 respond {
                     embed {
                         color = Color(221,237,255)
                         title = "Banned User"
-                        description = "The user, $user"
+                        description = "The user, $user has been banned from $guild for $reason"
                         timestamp = Clock.System.now()
                     }
                 }
@@ -70,7 +81,7 @@ class BanCommand : Extension() {
         }
     }
     inner class BanCommandArguments : Arguments() {
-        val target by user {
+        val user by user {
             name = "user"
             description = "The user you want to ban"
         }

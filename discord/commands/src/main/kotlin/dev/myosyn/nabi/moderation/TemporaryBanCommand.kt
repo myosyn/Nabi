@@ -41,7 +41,7 @@ class TemporaryBanCommand : Extension() {
                 requireBotPermissions(Permission.BanMembers)
             }
             action {
-
+                val target = user
             }
         }
     }

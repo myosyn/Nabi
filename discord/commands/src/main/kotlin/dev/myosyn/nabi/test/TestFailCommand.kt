@@ -6,6 +6,7 @@ import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.Color
 import dev.kord.rest.builder.message.create.embed
+import dev.myosyn.nabi.ColorUtils.ERROR_COLOR
 import kotlinx.datetime.Clock
 
 
@@ -20,7 +21,7 @@ class TestFailCommand : Extension() {
             action {
                 respond {
                     embed {
-                        color = Color(255, 134, 134 )
+                        color = ERROR_COLOR
                         title = "Error"
                         description = "Looks like this command was successfully executed. Why did it say error?"
                         timestamp = Clock.System.now()
@@ -36,7 +37,7 @@ class TestFailCommand : Extension() {
             action {
                 respond {
                     embed {
-                        color = Color(255, 134, 134 )
+                        color = ERROR_COLOR
                         title = "Error"
                         description = "Looks like this command was successfully executed. Why did it say error?"
                         timestamp = Clock.System.now()
