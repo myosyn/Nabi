@@ -3,6 +3,7 @@ package dev.myosyn.nabi.setchannels
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
+import com.kotlindiscord.kord.extensions.commands.application.slash.publicSubCommand
 import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalChannel
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
@@ -14,23 +15,29 @@ class SetWelcomeChannelCommand : Extension() {
     override val name: String = "SetWelcomeChannel"
 
     override suspend fun setup() {
-        publicSlashCommand(::SetWelcomeChannelArguments ) {
-            name = "SetWelcomeChannel"
-            description = "Sets the welcome channel."
+        publicSlashCommand {
+            name = "WelcomeChannel"
+            description = "Configures the welcome channel."
 
-            check {
-                anyGuild()
-                hasPermission(Permission.Administrator)
-                requireBotPermissions(Permission.Administrator)
+            publicSubCommand(::SetWelcomeChannelArguments) {
+                name = "set"
+                description = "Sets the specified channel to be the welcome channel."
+
+                check {
+                    anyGuild()
+                    hasPermission(Permission.Administrator)
+                    requireBotPermissions(Permission.Administrator)
+                }
             }
 
-            action {
-                val channel  = arguments.channel
+            publicSubCommand {
+                name = "reset"
+                description = "Resets the welcome channel."
 
-                respond {
-                    embed {
-
-                    }
+                check {
+                    anyGuild()
+                    hasPermission(Permission.Administrator)
+                    requireBotPermissions(Permission.Administrator)
                 }
             }
         }

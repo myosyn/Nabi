@@ -3,6 +3,7 @@ package dev.myosyn.nabi.setchannels
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
+import com.kotlindiscord.kord.extensions.commands.application.slash.publicSubCommand
 import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalChannel
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
@@ -12,18 +13,34 @@ class SetModerationLoggingChannelCommand : Extension() {
     override val name: String = "SetModerationLoggingChannel"
 
     override suspend fun setup() {
-        publicSlashCommand(::SetModerationLoggingChannelArguments){
-            name = "SetModerationLoggingChannel"
-            description = "Sets the specified channel as the moderation logging channel."
+        publicSlashCommand {
+            name = "ModerationLogging"
+            description = "Configures the moderation logging channel."
 
-            check {
-                anyGuild()
-                hasPermission(Permission.Administrator)
-                requireBotPermissions(Permission.Administrator)
+            publicSubCommand(::SetModerationLoggingChannelArguments) {
+                name = "set"
+                description = "Sets the moderation logging channel."
+
+                check {
+                    anyGuild()
+                    hasPermission(Permission.Administrator)
+                    requireBotPermissions(Permission.Administrator)
+                }
+
+                action {
+
+                }
             }
 
-            action {
+            publicSubCommand {
+                name = "reset"
+                description = "Removes the moderation logging channel."
 
+                check {
+                    anyGuild()
+                    hasPermission(Permission.Administrator)
+                    requireBotPermissions(Permission.Administrator)
+                }
             }
         }
     }

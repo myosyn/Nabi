@@ -7,6 +7,8 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":discord:common"))
+
     implementation("io.ktor:ktor-server-core:2.0.0")
     implementation("io.ktor:ktor-server-netty:2.0.0")
     implementation("org.litote.kmongo:kmongo:4.5.1")
