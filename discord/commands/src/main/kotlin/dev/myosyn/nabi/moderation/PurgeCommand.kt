@@ -40,12 +40,13 @@ class PurgeCommand : Extension() {
                     embed {
                         color = SUCCESS_COLOR
                         title = "Cleared Messages"
-                        description = "Cleared a total of $messageAmount in $channel for $reason."
+                        description = "Cleared a total of ${arguments.intmessages} in ${arguments.channel} for $reason."
                         timestamp = Clock.System.now()
                     }
                 }
             }
         }
+
         ephemeralSlashCommand(::PurgeArguments) {
             name = "EphemeralPurge" + "EphemeralClearMessages"
             description = "Ephemerally clears the specified amount of messages from the channel, if the messages are under 2 weeks old."
