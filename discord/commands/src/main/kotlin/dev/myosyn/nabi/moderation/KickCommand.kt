@@ -1,6 +1,5 @@
 package dev.myosyn.nabi.moderation
 
-import com.kotlindiscord.kord.extensions.DiscordRelayedException
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
@@ -15,79 +14,68 @@ import dev.kord.common.entity.Permission
 import dev.kord.rest.builder.message.create.embed
 import kotlinx.datetime.Clock
 
-class BanCommand : Extension() {
 
-    override val name: String = "ban"
+class KickCommand : Extension() {
+    override val name: String = "Kick"
 
     override suspend fun setup() {
-
-        publicSlashCommand(::BanCommandArguments) {
-            name = "Ban"
-            description = "Bans the specified user from the server."
+        publicSlashCommand(::KickArguments) {
+            name = "Kick"
+            description = "Kicks a user from your server."
 
             check {
                 anyGuild()
-                hasPermission(Permission.BanMembers)
-                requireBotPermissions(Permission.BanMembers)
+                hasPermission(Permission.KickMembers)
+                requireBotPermissions(Permission.KickMembers)
             }
-
             action {
-                val target = arguments.user
+                val user = arguments.reason
                 val reason = arguments.reason
+
 
                 respond {
                     embed {
                         color = Color(221,237,255)
-                        title = "Banned User"
-                        description = "The user, $user"
+                        title = "Kicked User"
+                        description = "The user, ${user}, has been kicked for ${reason}."
                         timestamp = Clock.System.now()
                     }
                 }
             }
         }
 
-        ephemeralSlashCommand(::BanCommandArguments) {
-            name = "EphemeralBan"
-            description = "Silently bans the specified user from the server."
+        ephemeralSlashCommand(::KickArguments) {
+            name = "EphemeralKick"
+            description = "Ephemerally kicks a user from your server."
 
             check {
                 anyGuild()
-                hasPermission(Permission.BanMembers)
-                requireBotPermissions(Permission.BanMembers)
+                hasPermission(Permission.KickMembers)
+                requireBotPermissions(Permission.KickMembers)
             }
             action {
-                val target = arguments.user
+                val user = arguments.user
                 val reason = arguments.reason
-
-                if (target.id == channel.kord.selfId) {
-                    throw DiscordRelayedException("Stop trying to ban yourself.")
-                }
-
-                if (target.isBot) {
-                    throw DiscordRelayedException("You cannot ban a bot!")
-                }
-
-
 
                 respond {
                     embed {
                         color = Color(221,237,255)
-                        title = "Banned User"
-                        description = "The user, $user has been banned from $guild for $reason"
+                        title = "Kicked User"
+                        description = "The user, ${user}, has been kicked for ${reason}."
                         timestamp = Clock.System.now()
                     }
                 }
             }
         }
     }
-    inner class BanCommandArguments : Arguments() {
+    inner class KickArguments : Arguments() {
         val user by user {
             name = "user"
-            description = "The user you want to ban"
+            description = "The user you want to kick"
         }
         val reason by defaultingString {
             name = "reason"
-            description = "The reason why you want to ban the specified user."
+            description = "The reason why you want to kick the user"
             defaultValue = "No reason provided"
         }
     }

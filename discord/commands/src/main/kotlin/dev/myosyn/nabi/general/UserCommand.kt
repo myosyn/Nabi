@@ -24,8 +24,8 @@ class UserCommand : Extension() {
             }
         }
         ephemeralSlashCommand(::UserArguments) {
-            name = "SilentUser"
-            description = "Looks up a user, but you can only see it."
+            name = "EphemeralUser"
+            description = "Ephemerally looks up a user."
 
             check {
                 anyGuild()

@@ -2,12 +2,18 @@ plugins {
     `nabi-modules`
 }
 
-/*
-subprojects {
-    dependencies {
-        api("com.kotlindiscord.kord.extensions:kord-extensions:1.5.2-20220318.133517-36")
-        api("dev.kord:kord-core:0.8.0-M12")
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.20")
-    }
+repositories {
+    maven("https://maven.pkg.jetbrains.space/public/p/ktor/eap")
 }
-*/
+
+dependencies {
+    implementation(project(":discord:common"))
+
+    implementation("io.ktor:ktor-server-core:2.0.1")
+    implementation("io.ktor:ktor-server-netty:2.0.1")
+    implementation("org.litote.kmongo:kmongo:4.5.1")
+
+    // I need this so I can snowflake stuff yk yk
+    implementation("dev.kord:kord-core:0.8.x-SNAPSHOT")
+    implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.5.3-SNAPSHOT")
+}

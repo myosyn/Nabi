@@ -1,0 +1,9 @@
+package dev.myosyn.nabi.enums
+
+enum class LinkThreatType {
+    THREAT_TYPE_UNSPECIFIED,
+    MALWARE,
+    SOCIAL_ENGINEERING,
+    UNWANTED_SOFTWARE,
+    POTENTIALLY_HARMFUL_APPLICATION
+}

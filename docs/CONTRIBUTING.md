@@ -3,12 +3,15 @@ If you are contributing, you better know what you're doing.
 
 Nabi will remain a community driven bot for the foreseeable future, being completely free for usage, as
 well as most parts remaining open source for the foreseeable future. However, some parts are required
-to stay closed source, most likely because of the fact that people can abuse said features, and make 
+to stay closed source, most likely because of the fact that people can abuse said features, and make
 work arounds for that feature. Therefore, we cannot risk letting those features out in the wild.
 
-Since Nabi is a community maintained bot, we are very restrictive of the stuff that gets through and 
-the things that don't. We really only want quality features that aren't useless, and if they prove to 
-be useless, then we will have it removed, or we'll close the pull request outright. 
+Since Nabi is a community maintained bot, we are very restrictive of the stuff that gets through and
+the things that don't. We really only want quality features that aren't useless, and if they prove to
+be useless, then we will have it removed, or we'll close the pull request outright.
+
+Again, this is not to shame you. We just want a highly community driven bot that has the most modern features,
+but at the same time, we also have to appear professional when doing this.
 
 Again, this is not to shame you. We just want a highly community driven bot that has the most modern features,
 but at the same time, we also have to appear professional when doing this. 

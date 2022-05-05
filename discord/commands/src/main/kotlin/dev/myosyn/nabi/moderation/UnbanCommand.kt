@@ -30,8 +30,8 @@ class UnbanCommand : Extension() {
         }
 
         ephemeralSlashCommand(::UnbanArguments) {
-            name = "SilentUnban"
-            description = "Silently unbans a user from the server."
+            name = "EphemeralUnban"
+            description = "Ephemeral unbans a user from the server."
 
             check {
                 anyGuild()

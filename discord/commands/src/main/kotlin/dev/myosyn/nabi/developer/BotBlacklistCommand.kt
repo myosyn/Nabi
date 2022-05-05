@@ -9,6 +9,7 @@ import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Snowflake
+import dev.myosyn.nabi.BOT_OWNER
 
 class BotBlacklistCommand : Extension() {
     override val name: String = "BotBlacklist"
@@ -20,19 +21,24 @@ class BotBlacklistCommand : Extension() {
 
             check {
                 anyGuild()
-                allowUser(Snowflake(647675269057871885))
+                allowUser(Snowflake(BOT_OWNER))
             }
 
             action {
-
+                
             }
         }
 
         ephemeralSlashCommand(::BotBlacklistArguments) {
-            name = "SilentBotBlacklist"
-            description = "Silently Blacklists a user from using Nabi."
+            name = "EphemeralBotBlacklist"
+            description = "Ephemerally blacklists a user from using Nabi."
 
             check {
+                anyGuild()
+                allowUser(Snowflake(BOT_OWNER))
+            }
+
+            action {
 
             }
         }

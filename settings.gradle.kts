@@ -12,23 +12,23 @@ pluginManagement {
 
 rootProject.name = "Nabi"
 
-// Generalization of the paths idk I just need this so it would work
-
 // You need this because this is the core of the library
 include(":discord")
 include(":website")
 
 // These are the submodules of the library which are required in order to make the bot function
-// These are also currently broken for some reason
 include(":discord:commands")
 include(":discord:database")
 include(":discord:common")
 include(":discord:phishing")
 include(":discord:core")
+include(":discord:events")
 
+// TODO: Improve this because right now, it only detects uup to Java 12
+/*
 gradle.settingsEvaluated{
     // We have to use Java 12 for this because apparently I can't make it default to Java 18
-    if(!JavaVersion.current().isJava11Compatible) {
+    if(!JavaVersion.current().isJava12Compatible) {
         throw GradleException("This build requires JDK 17. You're currently using ${getBuildJavaHome()}. Please make sure you're on this version, and try again.")
     }
 }
@@ -36,3 +36,4 @@ gradle.settingsEvaluated{
 fun getBuildJavaHome(){
     System.getProperty("java.home")
 }
+ */

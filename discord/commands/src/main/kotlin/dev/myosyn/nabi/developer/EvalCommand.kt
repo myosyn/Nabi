@@ -11,18 +11,22 @@ import com.kotlindiscord.kord.extensions.commands.converters.impl.string
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
+import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Snowflake
+import dev.kord.rest.builder.message.create.embed
+import dev.myosyn.nabi.BOT_OWNER
+import dev.myosyn.nabi.ColorUtils.SUCCESS_COLOR
 
 class EvalCommand : Extension() {
     override val name: String = "eval"
 
     override suspend fun setup() {
         publicSlashCommand(::EvalArguments) {
-            name = "SilentEval"
+            name = "Eval"
             description = "Executes a command from Nabi herself."
 
             check {
-                allowUser(Snowflake(962256545926746132))
+                allowUser(Snowflake(BOT_OWNER))
                 anyGuild()
             }
 
@@ -31,8 +35,8 @@ class EvalCommand : Extension() {
             }
         }
         ephemeralSlashCommand(::EvalArguments) {
-            name = "SilentEval"
-            description = "Silently executes a command from Nabi herself."
+            name = "EphemeralEval"
+            description = "Ephemerally executes a command from Nabi herself."
 
             check {
                 allowUser(Snowflake(962256545926746132))
@@ -40,7 +44,12 @@ class EvalCommand : Extension() {
             }
 
             action {
+                respond {
+                    embed {
+                        color = SUCCESS_COLOR
 
+                    }
+                }
             }
         }
     }
