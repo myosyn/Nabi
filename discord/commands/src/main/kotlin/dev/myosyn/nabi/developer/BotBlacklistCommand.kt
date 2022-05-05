@@ -25,7 +25,7 @@ class BotBlacklistCommand : Extension() {
             }
 
             action {
-
+                
             }
         }
 
