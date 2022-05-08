@@ -8,6 +8,7 @@ import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
+import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Snowflake
 import dev.myosyn.nabi.BOT_OWNER
 
@@ -25,7 +26,11 @@ class BotBlacklistCommand : Extension() {
             }
 
             action {
-                
+                val target = arguments.user
+
+                respond  {
+
+                }
             }
         }
 

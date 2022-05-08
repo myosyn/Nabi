@@ -1,21 +1,20 @@
-package dev.myosyn.nabi.myosyn
+package dev.myosyn.nabi.general
 
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
-import dev.kord.common.Color
 import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.ColorUtils.DEFAULT_COLOR
 import kotlinx.datetime.Clock
 
-class EuphoriaDownload : Extension() {
-    override val name: String = "EuphoriaDownload"
+class BotInfoCommand : Extension() {
+    override val name: String = "info"
 
     override suspend fun setup() {
         publicSlashCommand {
-            name = "EuphoriaDownload"
-            description = "Shows the download page to Euphoria"
+            name = "Info"
+            description = "Shows the info of the bot."
 
             check {
                 anyGuild()
@@ -25,10 +24,6 @@ class EuphoriaDownload : Extension() {
                 respond {
                     embed {
                         color = DEFAULT_COLOR
-                        title = "Euphoria Download Link"
-                        description = "Hey! Euphoria isn't available for download yet." +
-                                "We'll keep you informed when the mod releases" +
-                                "Thank you!"
                         timestamp = Clock.System.now()
                     }
                 }

@@ -6,6 +6,8 @@ import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalString
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
+import com.kotlindiscord.kord.extensions.types.respond
+import dev.kord.rest.builder.message.create.embed
 
 class UserCommand : Extension() {
     override val name: String = "User"
@@ -20,24 +22,18 @@ class UserCommand : Extension() {
             }
 
             action {
+                val target = arguments.userArgs
 
-            }
-        }
-        ephemeralSlashCommand(::UserArguments) {
-            name = "EphemeralUser"
-            description = "Ephemerally looks up a user."
+                respond {
+                    embed {
 
-            check {
-                anyGuild()
-            }
-
-            action {
-
+                    }
+                }
             }
         }
     }
     inner class UserArguments : Arguments() {
-        val user by optionalString {
+        val userArgs by optionalString {
             name = "User"
             description = "Searches up a user. If left blank, then it f"
         }

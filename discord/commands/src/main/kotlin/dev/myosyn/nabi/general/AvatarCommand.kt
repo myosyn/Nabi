@@ -1,26 +1,32 @@
 package dev.myosyn.nabi.general
 
 import com.kotlindiscord.kord.extensions.checks.anyGuild
+import com.kotlindiscord.kord.extensions.commands.Arguments
+import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalUser
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
+import dev.kord.common.annotation.KordExperimental
 import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.ColorUtils.DEFAULT_COLOR
 import kotlinx.datetime.Clock
 
-class InfoCommand : Extension() {
-    override val name: String = "info"
+@KordExperimental
+class AvatarCommand : Extension() {
+    override val name: String = "Avatar"
 
     override suspend fun setup() {
-        publicSlashCommand {
-            name = "Info"
-            description = "Shows the info of the bot."
+        publicSlashCommand(::AvatarArguments) {
+            name = "avatar"
+            description = "Displays the specified user's avatar. If left blank, it defaults to you."
 
             check {
                 anyGuild()
             }
 
             action {
+                val target = arguments.userArguments
+
                 respond {
                     embed {
                         color = DEFAULT_COLOR
@@ -28,6 +34,12 @@ class InfoCommand : Extension() {
                     }
                 }
             }
+        }
+    }
+    inner class AvatarArguments : Arguments() {
+        val userArguments by optionalUser {
+            name = "user"
+            description = "The user you want to look up."
         }
     }
 }

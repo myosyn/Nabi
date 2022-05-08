@@ -27,7 +27,7 @@ suspend fun main() {
             add(::ShutdownCommand)
 
             // General directory
-            add(::InfoCommand)
+            add(::BotInfoCommand)
             add(::UserCommand)
 
             // Moderation directory
