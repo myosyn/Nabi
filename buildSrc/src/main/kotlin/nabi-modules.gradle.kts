@@ -26,12 +26,12 @@ repositories {
 tasks {
     withType<KotlinCompile> {
         kotlinOptions {
-            jvmTarget = "17"
+            jvmTarget = "18"
         }
     }
     withType<JavaCompile> {
-        sourceCompatibility = JavaVersion.VERSION_17.toString()
-        targetCompatibility = JavaVersion.VERSION_17.toString()
+        sourceCompatibility = JavaVersion.VERSION_18.toString()
+        targetCompatibility = JavaVersion.VERSION_18.toString()
     }
 }
 

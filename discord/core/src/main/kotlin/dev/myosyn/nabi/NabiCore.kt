@@ -2,6 +2,7 @@ package dev.myosyn.nabi
 
 import com.kotlindiscord.kord.extensions.ExtensibleBot
 import com.kotlindiscord.kord.extensions.utils.env
+import dev.kord.common.annotation.KordExperimental
 import dev.kord.common.entity.PresenceStatus
 
 import dev.myosyn.nabi.developer.*
@@ -11,6 +12,7 @@ import dev.myosyn.nabi.myosyn.*
 import dev.myosyn.nabi.setchannels.*
 import dev.myosyn.nabi.test.*
 
+@OptIn(KordExperimental::class)
 suspend fun main() {
     var bot = ExtensibleBot(env("TOKEN")) {
 
@@ -27,13 +29,22 @@ suspend fun main() {
             add(::ShutdownCommand)
 
             // General directory
+            add(::AvatarCommand)
             add(::BotInfoCommand)
+            add(::GuildInfoCommand)
+            add(::RoleInfoCommand)
+            add(::ServerCommand)
             add(::UserCommand)
+
+            // Github directory
 
             // Moderation directory
             add(::BanCommand)
+            add(::GrantRoleCommand)
             add(::KickCommand)
             add(::LockChannelCommand)
+            add(::PurgeCommand)
+            add(::RemoveSlowModeCommand)
             add(::RemoveTimeoutCommand)
             add(::TemporaryBanCommand)
             add(::TimeoutCommand)

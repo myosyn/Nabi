@@ -12,11 +12,13 @@ import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
+import dev.kord.common.annotation.KordPreview
 import dev.kord.common.entity.Snowflake
 import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.BOT_OWNER
 import dev.myosyn.nabi.ColorUtils.SUCCESS_COLOR
 
+@KordPreview
 class EvalCommand : Extension() {
     override val name: String = "eval"
 
@@ -31,25 +33,6 @@ class EvalCommand : Extension() {
             }
 
             action {
-
-            }
-        }
-        ephemeralSlashCommand(::EvalArguments) {
-            name = "EphemeralEval"
-            description = "Ephemerally executes a command from Nabi herself."
-
-            check {
-                allowUser(Snowflake(962256545926746132))
-                anyGuild()
-            }
-
-            action {
-                respond {
-                    embed {
-                        color = SUCCESS_COLOR
-
-                    }
-                }
             }
         }
     }
