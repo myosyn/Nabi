@@ -27,19 +27,6 @@ class WarnCommand : Extension() {
 
             }
         }
-        ephemeralSlashCommand(::WarnArguments) {
-            name = "EphemeralWarn"
-            description = "Ephemerally warns the user for what they've done."
-
-            check {
-                anyGuild()
-                hasPermission(Permission.ModerateMembers)
-            }
-
-            action {
-
-            }
-        }
     }
     inner class WarnArguments : Arguments() {
         val user by user {

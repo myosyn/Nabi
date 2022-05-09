@@ -10,6 +10,13 @@ import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Permission
 import dev.kord.core.behavior.channel.GuildChannelBehavior
+import dev.kord.core.behavior.channel.GuildMessageChannelBehavior
+import dev.kord.core.behavior.channel.edit
+import dev.kord.core.entity.channel.GuildChannel
+import dev.kord.core.entity.channel.GuildMessageChannel
+import dev.kord.core.entity.channel.TextChannel
+import org.koin.core.component.getScopeId
+import kotlin.time.Duration
 
 class LockChannelCommand : Extension() {
     override val name: String = "LockChannel"
@@ -24,22 +31,6 @@ class LockChannelCommand : Extension() {
                 hasPermission(Permission.ManageChannels)
                 requireBotPermissions(Permission.ManageChannels)
             }
-            action {
-                val channel = arguments.channel as GuildChannelBehavior
-                val reason = arguments.reason
-            }
-        }
-
-        ephemeralSlashCommand(::LockchannelArguments) {
-            name = "EphemeralLockChannel"
-            description = "Ephemerally locks the specified channel. Defaults to the channel you're currently in."
-
-            check {
-                anyGuild()
-                hasPermission(Permission.ManageChannels)
-                requireBotPermissions(Permission.ManageChannels)
-            }
-
             action {
 
             }

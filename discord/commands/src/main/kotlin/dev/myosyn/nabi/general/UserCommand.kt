@@ -8,8 +8,8 @@ import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.core.supplier.EntitySupplyStrategy
 import dev.kord.rest.builder.message.create.embed
-import dev.myosyn.nabi.userAvatarFormatting
-import dev.myosyn.nabi.userBannerFormatting
+import dev.myosyn.nabi.user.userAvatarFormatting
+import dev.myosyn.nabi.user.userBannerFormatting
 
 class UserCommand : Extension() {
     override val name: String = "User"

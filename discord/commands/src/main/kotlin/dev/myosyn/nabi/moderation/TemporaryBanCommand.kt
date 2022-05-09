@@ -31,19 +31,6 @@ class TemporaryBanCommand : Extension() {
 
             }
         }
-        ephemeralSlashCommand(::TemporaryBanArguments) {
-            name = "EphemeralTemporaryBan"
-            description = "Ephemerally temporarily bans someone."
-
-            check {
-                anyGuild()
-                Permissions(Permission.BanMembers)
-                requireBotPermissions(Permission.BanMembers)
-            }
-            action {
-                val target = user
-            }
-        }
     }
     inner class TemporaryBanArguments : Arguments() {
         val user by user {

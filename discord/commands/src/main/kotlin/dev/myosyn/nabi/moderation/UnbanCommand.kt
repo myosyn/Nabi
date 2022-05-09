@@ -28,17 +28,6 @@ class UnbanCommand : Extension() {
 
             }
         }
-
-        ephemeralSlashCommand(::UnbanArguments) {
-            name = "EphemeralUnban"
-            description = "Ephemeral unbans a user from the server."
-
-            check {
-                anyGuild()
-                hasPermission(Permission.BanMembers)
-                requireBotPermissions(Permission.BanMembers)
-            }
-        }
     }
     inner class UnbanArguments : Arguments() {
         val id by string {

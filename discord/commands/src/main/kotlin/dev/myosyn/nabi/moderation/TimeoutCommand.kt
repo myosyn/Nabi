@@ -27,20 +27,6 @@ class TimeoutCommand : Extension() {
                 val target = arguments.user
             }
         }
-        ephemeralSlashCommand(::TimeoutArguments) {
-            name = "EphemeralTimeout"
-            description = "Ephemeral times out a user."
-
-            check {
-                anyGuild()
-                hasPermission(Permission.ModerateMembers)
-                requireBotPermissions(Permission.ModerateMembers)
-            }
-
-            action {
-
-            }
-        }
     }
 
     inner class TimeoutArguments : Arguments() {

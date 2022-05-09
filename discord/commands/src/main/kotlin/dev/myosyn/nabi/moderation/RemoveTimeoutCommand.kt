@@ -28,16 +28,6 @@ class RemoveTimeoutCommand : Extension() {
                 arguments.user
             }
         }
-        ephemeralSlashCommand(::RemoveTimeoutArguments) {
-            name = "EphemeralRemoveTimeout"
-            description = "Ephemerally removes the timeout status from a user."
-
-            check {
-                anyGuild()
-                hasPermission(Permission.ModerateMembers)
-                requireBotPermissions(Permission.ModerateMembers)
-            }
-        }
     }
 
     inner class RemoveTimeoutArguments : Arguments() {

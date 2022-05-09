@@ -35,21 +35,6 @@ class UnlockChannelCommand : Extension() {
 
             }
         }
-
-        ephemeralSlashCommand(::UnlockChannelArguments) {
-            name = "EphemeralUnlockChannel"
-            description = "Ephemerally unlocks the specified channel."
-
-            check {
-                anyGuild()
-                hasPermission(Permission.ManageChannels)
-                requireBotPermissions(Permission.ManageChannels)
-            }
-
-            action {
-
-            }
-        }
     }
 
     inner class UnlockChannelArguments : Arguments() {
