@@ -9,6 +9,7 @@ import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Permission
+import dev.kord.core.behavior.channel.GuildChannelBehavior
 
 class LockChannelCommand : Extension() {
     override val name: String = "LockChannel"
@@ -24,7 +25,7 @@ class LockChannelCommand : Extension() {
                 requireBotPermissions(Permission.ManageChannels)
             }
             action {
-                val channel = arguments.channel
+                val channel = arguments.channel as GuildChannelBehavior
                 val reason = arguments.reason
             }
         }

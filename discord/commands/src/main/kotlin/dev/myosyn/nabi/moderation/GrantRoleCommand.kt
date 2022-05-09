@@ -50,7 +50,7 @@ class GrantRoleCommand : Extension() {
                     val role = arguments.providedRole
                     val reason = arguments.grantRoleReason
 
-                    member
+                    
 
                     respond {
                         embed {

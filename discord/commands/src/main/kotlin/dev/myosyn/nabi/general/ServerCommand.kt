@@ -7,6 +7,7 @@ import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.core.supplier.EntitySupplyStrategy
 import dev.kord.rest.Image
 import dev.kord.rest.builder.message.create.embed
+import kotlinx.coroutines.flow.toList
 
 class ServerCommand : Extension() {
     override val name: String = "Server"
@@ -27,7 +28,7 @@ class ServerCommand : Extension() {
                 val memberCount = guild?.withStrategy(EntitySupplyStrategy.rest)?.fetchGuild()?.memberCount
                 val whoisOwner = guild?.withStrategy(EntitySupplyStrategy.rest)?.fetchGuild()?.owner
                 val fetchAllRoles = guild?.withStrategy(EntitySupplyStrategy.rest)?.fetchGuild()?.roles
-                val fetchRoleAmount = guild?.withStrategy(EntitySupplyStrategy.rest)?.fetchGuild()?.data
+                val fetchRoleAmount = guild?.withStrategy(EntitySupplyStrategy.rest)?.fetchGuild()?.roleIds
                 val vanityUrl = guild?.getVanityUrl()
                 val premiumTier = guild?.withStrategy(EntitySupplyStrategy.rest)?.fetchGuild()?.premiumTier
 
@@ -38,8 +39,19 @@ class ServerCommand : Extension() {
                             value = whoisOwner.toString()
                         }
                         field {
-                            name = "**>> Roles [${fetchAllRoles}] **"
+                            name = "**>> About**"
+                            value = whoisOwner.toString()
+                            name = "**>> Member Count: [${memberCount}] **"
+                            name = "**>> Nitro Boost Level: [${premiumTier}]**"
+                            name = "**>> NSFW Level: [${nsfwLevel}]**"
+                            inline = true
+                            name = "**>> Roles: [] **"
                             value = fetchAllRoles.toString()
+                            inline = true
+                            name = "****"
+                        }
+                        field {
+
                         }
                         thumbnail {
 

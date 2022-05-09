@@ -8,7 +8,9 @@ import com.kotlindiscord.kord.extensions.commands.converters.impl.duration
 import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalChannel
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
+import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Permission
+import dev.kord.core.entity.channel.TextChannel
 
 class SlowModeCommand : Extension() {
     override val name: String = "SlowMode"
@@ -24,14 +26,30 @@ class SlowModeCommand : Extension() {
                 requireBotPermissions(Permission.ManageChannels)
             }
 
-            publicSubCommand {
+            publicSubCommand(::SlowModeArguments) {
                 name = "reset"
                 description = "Resets slowmode back to 0 seconds."
+
+                check {
+                    anyGuild()
+                    hasPermission(Permission.ManageChannels)
+                    requireBotPermissions(Permission.ManageChannels)
+                }
+
+                action {
+                    val slowmodeReset = arguments.slowmodeChannel ?: this.channel.asChannel() as TextChannel
+
+                    channel
+
+                    respond {
+                        content = "Slowmode has been reset to 0 seconds."
+                    }
+                }
             }
         }
     }
     inner class SlowModeArguments : Arguments() {
-        val channel by optionalChannel {
+        val slowmodeChannel by optionalChannel {
             name = "Channel"
             description = "The channel which you want to enable slow mode on."
         }

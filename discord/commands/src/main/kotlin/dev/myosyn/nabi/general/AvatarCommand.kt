@@ -7,8 +7,12 @@ import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.annotation.KordExperimental
+import dev.kord.core.supplier.EntitySupplyStrategy
 import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.ColorUtils.DEFAULT_COLOR
+import dev.myosyn.nabi.guild.guildAvatarData
+import dev.myosyn.nabi.guild.guildBannerData
+import dev.myosyn.nabi.guild.guildSplashData
 import kotlinx.datetime.Clock
 
 @KordExperimental
@@ -25,11 +29,13 @@ class AvatarCommand : Extension() {
             }
 
             action {
-                val target = arguments.userArguments
+                val target = arguments.userArguments ?: this.user.asUser()
+                val iconImage = guild?.withStrategy(EntitySupplyStrategy.rest)?.fetchGuild()?.guildAvatarData()
+                val bannerImage = guild?.withStrategy(EntitySupplyStrategy.rest)?.fetchGuild()?.guildBannerData()
+                val splashImage = guild?.withStrategy(EntitySupplyStrategy.rest)?.fetchGuild()?.guildSplashData()
 
                 respond {
                     embed {
-
                         color = DEFAULT_COLOR
                         timestamp = Clock.System.now()
                     }

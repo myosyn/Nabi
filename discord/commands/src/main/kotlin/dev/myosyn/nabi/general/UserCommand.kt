@@ -7,8 +7,9 @@ import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.core.supplier.EntitySupplyStrategy
-import dev.kord.rest.Image
 import dev.kord.rest.builder.message.create.embed
+import dev.myosyn.nabi.userAvatarFormatting
+import dev.myosyn.nabi.userBannerFormatting
 
 class UserCommand : Extension() {
     override val name: String = "User"
@@ -24,18 +25,22 @@ class UserCommand : Extension() {
 
             action {
                 val target = arguments.userArgs ?: this.user.asUser()
-                val userBanner = user.withStrategy(EntitySupplyStrategy.rest).fetchUser().getBannerUrl(Image.Format.JPEG)
+                val userAvatar = user.withStrategy(EntitySupplyStrategy.rest).fetchUser().userAvatarFormatting()
+                val userBanner = user.withStrategy(EntitySupplyStrategy.rest).fetchUser().userBannerFormatting()
                 val userProfilePicture = user.withStrategy(EntitySupplyStrategy.rest).fetchUser().defaultAvatar
-                val discordNitro =
+                val userJoinDate = user.withStrategy(EntitySupplyStrategy.rest).fetchUser().defaultAvatar
 
                 respond {
                     embed {
-
+                        field {
+                            name = "**>> User : [$target]**"
+                        }
                     }
                 }
             }
         }
     }
+
     inner class UserArguments : Arguments() {
         val userArgs by optionalUser {
             name = "User"
@@ -43,3 +48,4 @@ class UserCommand : Extension() {
         }
     }
 }
+

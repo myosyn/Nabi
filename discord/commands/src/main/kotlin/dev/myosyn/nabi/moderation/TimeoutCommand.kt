@@ -24,7 +24,7 @@ class TimeoutCommand : Extension() {
             }
 
             action {
-
+                val target = arguments.user
             }
         }
         ephemeralSlashCommand(::TimeoutArguments) {

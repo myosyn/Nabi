@@ -25,7 +25,6 @@ class BotInfoCommand : Extension() {
                 val javaVersion = System.getProperty("java.version")
                 val osName = System.getProperty("os.name")
                 val osRevision = System.getProperty("os.version")
-                val kotlinVersion =
 
                 respond {
                     embed {

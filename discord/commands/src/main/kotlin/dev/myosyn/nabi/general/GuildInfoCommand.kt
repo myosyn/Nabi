@@ -24,6 +24,8 @@ class GuildInfoCommand : Extension() {
             }
 
             action {
+                val channel = arguments.guildArg ?: this.guild?.asGuild()
+
                 respond {
                     embed {
                         title = "Guild Information"

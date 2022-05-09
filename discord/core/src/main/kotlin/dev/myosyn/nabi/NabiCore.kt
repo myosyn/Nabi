@@ -4,6 +4,8 @@ import com.kotlindiscord.kord.extensions.ExtensibleBot
 import com.kotlindiscord.kord.extensions.utils.env
 import dev.kord.common.annotation.KordExperimental
 import dev.kord.common.entity.PresenceStatus
+import dev.kord.gateway.Intent
+import dev.kord.gateway.PrivilegedIntent
 
 import dev.myosyn.nabi.developer.*
 import dev.myosyn.nabi.general.*
@@ -12,12 +14,26 @@ import dev.myosyn.nabi.myosyn.*
 import dev.myosyn.nabi.setchannels.*
 import dev.myosyn.nabi.test.*
 
-@OptIn(KordExperimental::class)
+@OptIn(KordExperimental::class, PrivilegedIntent::class)
 suspend fun main() {
     var bot = ExtensibleBot(env("TOKEN")) {
 
         applicationCommands {
             enabled = true
+        }
+
+        intents {
+            +Intent.DirectMessages
+            +Intent.DirectMessageTyping
+            +Intent.Guilds
+            +Intent.GuildMembers
+            +Intent.GuildMessages
+            +Intent.GuildEmojis
+            +Intent.GuildBans
+            +Intent.GuildMessageReactions
+            +Intent.GuildInvites
+            +Intent.GuildPresences
+            +Intent.GuildWebhooks
         }
 
         extensions {
