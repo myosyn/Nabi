@@ -14,7 +14,6 @@ rootProject.name = "Nabi"
 
 // You need this because this is the core of the library
 include(":discord")
-include(":website")
 
 // These are the submodules of the library which are required in order to make the bot function
 include(":discord:commands")

@@ -36,6 +36,9 @@ class AvatarCommand : Extension() {
 
                 respond {
                     embed {
+                        field {
+                            name = "**User** >>> $target"
+                        }
                         color = DEFAULT_COLOR
                         timestamp = Clock.System.now()
                     }

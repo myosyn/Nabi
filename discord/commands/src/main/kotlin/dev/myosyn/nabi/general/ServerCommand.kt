@@ -50,9 +50,6 @@ class ServerCommand : Extension() {
                             inline = true
                             name = "****"
                         }
-                        field {
-
-                        }
                         thumbnail {
 
                         }
