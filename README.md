@@ -12,3 +12,8 @@ phishing bot, so you don't have to deal with those pesky robots telling you that
 ## Is there an ETA for updates?
 No. Currently, there is one active developer, and one semi-active developer. However, we believe that this is a 
 community maintained bot, so updates will scale based off of that. 
+
+# Libraries and modules
+* [Kordlib's Kord]
+* [KotlinDiscord's Kord-Extensions]
+* [Myosyn's Nexus]
