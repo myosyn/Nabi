@@ -1,6 +1,5 @@
 package dev.myosyn.nabi.moderation
 
-import com.kotlindiscord.kord.extensions.DiscordRelayedException
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
@@ -13,6 +12,8 @@ import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.Color
 import dev.kord.common.entity.Permission
 import dev.kord.rest.builder.message.create.embed
+import dev.myosyn.nabi.ColorUtils.DEFAULT_COLOR
+import dev.myosyn.nabi.user.UserDm.dmUser
 import kotlinx.datetime.Clock
 
 class BanCommand : Extension() {
@@ -39,7 +40,7 @@ class BanCommand : Extension() {
                     embed {
                         color = Color(221,237,255)
                         title = "Banned User"
-                        description = "The user, $user"
+                        description = "The user, $user, has been banned for $reason"
                         timestamp = Clock.System.now()
                     }
                 }
@@ -59,15 +60,12 @@ class BanCommand : Extension() {
                 val target = arguments.user
                 val reason = arguments.reason
 
-                if (target.id == channel.kord.selfId) {
-                    throw DiscordRelayedException("Stop trying to ban yourself.")
-                }
-
-                if (target.isBot) {
-                    throw DiscordRelayedException("You cannot ban a bot!")
-                }
-
-
+                val userDm = dmUser (
+                    target,
+                    "You've been banned from ${guild?.fetchGuild()?.name}",
+                    "",
+                    DEFAULT_COLOR
+                )
 
                 respond {
                     embed {
@@ -80,6 +78,7 @@ class BanCommand : Extension() {
             }
         }
     }
+
     inner class BanCommandArguments : Arguments() {
         val user by user {
             name = "user"

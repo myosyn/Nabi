@@ -33,6 +33,7 @@ class EvalCommand : Extension() {
             }
 
             action {
+                val code = arguments.code
             }
         }
     }

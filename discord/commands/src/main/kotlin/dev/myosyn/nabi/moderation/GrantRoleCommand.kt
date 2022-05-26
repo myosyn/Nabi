@@ -11,6 +11,9 @@ import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
+import com.kotlindiscord.kord.extensions.utils.canInteract
+import com.kotlindiscord.kord.extensions.utils.selfMember
+import com.kotlindiscord.kord.extensions.utils.users
 import dev.kord.common.entity.Permission
 import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.ColorUtils.SUCCESS_COLOR
@@ -50,7 +53,7 @@ class GrantRoleCommand : Extension() {
                     val role = arguments.providedRole
                     val reason = arguments.grantRoleReason
 
-                    
+
 
                     respond {
                         embed {
