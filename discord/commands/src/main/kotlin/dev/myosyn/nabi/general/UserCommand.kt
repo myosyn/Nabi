@@ -6,10 +6,12 @@ import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalUser
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
+import com.kotlindiscord.kord.extensions.utils.createdAt
 import dev.kord.core.supplier.EntitySupplyStrategy
 import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.user.userAvatarFormatting
 import dev.myosyn.nabi.user.userBannerFormatting
+import kotlinx.datetime.Clock
 
 class UserCommand : Extension() {
     override val name: String = "User"
@@ -27,14 +29,18 @@ class UserCommand : Extension() {
                 val target = arguments.userArgs ?: this.user.asUser()
                 val userAvatar = user.withStrategy(EntitySupplyStrategy.rest).fetchUser().userAvatarFormatting()
                 val userBanner = user.withStrategy(EntitySupplyStrategy.rest).fetchUser().userBannerFormatting()
-                val userProfilePicture = user.withStrategy(EntitySupplyStrategy.rest).fetchUser().defaultAvatar
-                val userJoinDate = user.withStrategy(EntitySupplyStrategy.rest).fetchUser().defaultAvatar
+                val userJoinDate = user.asUser().createdAt
 
                 respond {
                     embed {
                         field {
                             name = "**>> User : [$target]**"
+                            name = "**>> Join Date : [$userJoinDate]"
                         }
+                        field {
+
+                        }
+                        timestamp = Clock.System.now()
                     }
                 }
             }

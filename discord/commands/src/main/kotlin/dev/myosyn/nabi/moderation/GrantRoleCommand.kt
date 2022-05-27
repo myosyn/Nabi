@@ -37,6 +37,12 @@ class GrantRoleCommand : Extension() {
                     hasPermission(Permission.ManageRoles)
                     requireBotPermissions(Permission.ManageRoles)
                 }
+
+                action {
+                    val publicMember = arguments.providedUser
+
+
+                }
             }
             ephemeralSubCommand(::GiveRoleArguments) {
                 name = "ephemeral"

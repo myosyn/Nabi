@@ -32,6 +32,8 @@ class LockChannelCommand : Extension() {
                 requireBotPermissions(Permission.ManageChannels)
             }
             action {
+                val targetChannel = arguments.channel ?: this.channel.asChannel() as TextChannel
+                val providedReason = arguments.reason
 
             }
         }

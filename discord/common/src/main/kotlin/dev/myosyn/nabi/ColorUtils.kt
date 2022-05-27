@@ -11,4 +11,6 @@ object ColorUtils {
     val ERROR_COLOR : Color = Color(255, 137, 137)
     val SUCCESS_COLOR : Color = Color(166, 255, 166)
     val DEFAULT_COLOR : Color = Color(231, 156, 255)
+
+    val PUNISHMENT_COLOR : Color = Color(255, 103, 103)
 }
