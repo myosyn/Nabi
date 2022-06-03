@@ -1,22 +1,16 @@
 package dev.myosyn.nabi
 
-import dev.kord.common.entity.optional.OptionalInt
-import dev.kord.common.serialization.DurationInDays
-import dev.kord.common.serialization.DurationInSeconds
+import kotlin.time.Duration
 
-/*
-data class DurationAttributes(
-    val days: Int,
-    val hours: Int,
-    val minutes: Int,
-    val seconds: Int
-) {
-    enum class
-}
+object DurationAttributes {
+    fun Duration.formatElapsed() {
+        val seconds = inWholeSeconds % 60
+        val minutes = inWholeMinutes % 60
+        val hours = inWholeHours % 24
+        val days = inWholeDays % 365
 
-fun HoursTimeSet(string: OptionalInt.Value) {
-    return when (string) {
-        OptionalInt.Value.
+        return when {
+            else -> throw Exception("Could not determine the ")
+        }
     }
 }
- */

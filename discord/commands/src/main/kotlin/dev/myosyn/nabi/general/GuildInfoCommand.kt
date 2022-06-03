@@ -31,10 +31,6 @@ class GuildInfoCommand : Extension() {
                         title = "Guild Information"
                         field {
                             name = "Guild statistics"
-
-                        }
-                        field {
-
                         }
                         color = DEFAULT_COLOR
                         timestamp = Clock.System.now()

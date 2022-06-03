@@ -30,23 +30,16 @@ class BotInfoCommand : Extension() {
                     embed {
                         title = "Nabi"
                         field {
-                            name = "Java Version"
-                            value = javaVersion
+                            name = "**Java Version** >>> **[$javaVersion]**"
+                            name = "**Operating System** >>> **[$osName]**"
+                            name = "**OS Revision Version** >>> **[$osRevision]**"
                             inline = true
                         }
-                        field {
-                            name = "Operating System"
-                            value = osName
-                            inline = true
-                        }
-                        field {
-                            name = "OS Revision Version"
-                            value = osRevision
-                            inline = true
-                        }
+
                         footer {
                             text = "Made by Myosyn. Licensed under the CC-BY-NC-SA-4.0 license."
                         }
+
                         color = DEFAULT_COLOR
                         timestamp = Clock.System.now()
                     }

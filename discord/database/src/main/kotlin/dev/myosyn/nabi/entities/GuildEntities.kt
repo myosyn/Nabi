@@ -1,9 +1,10 @@
 package dev.myosyn.nabi.entities
 
 import dev.kord.common.entity.Snowflake
-import dev.kord.core.entity.User
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class GuildEntities(
-    val GuildId: MutableMap<Snowflake, User>,
-    val GuildOwner: MutableMap<Snowflake, User>
+    val GuildId: Snowflake,
+    val GuildOwner: Snowflake
 )

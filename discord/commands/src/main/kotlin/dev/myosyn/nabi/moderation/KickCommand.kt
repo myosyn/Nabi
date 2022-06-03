@@ -32,7 +32,7 @@ class KickCommand : Extension() {
                 val user = arguments.reason
                 val reason = arguments.reason
 
-
+                user
 
                 respond {
                     embed {
