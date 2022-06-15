@@ -5,9 +5,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class GuildConstants(
-    val GuildOwner: Snowflake?,
-    val GuildId: Snowflake?,
-    val ModerationLogging: Snowflake? = null,
-    val WelcomeLogging: Snowflake? = null,
-    val LeavingLogging: Snowflake? = null,
+    val GuildOwner: Snowflake,
+    val guildId: Snowflake,
+    val moderationLogging: Snowflake?,
+    val messageChangeLog: Snowflake?,
+    val WelcomeLogging: Snowflake?,
+    val memberLeaveChannel: Snowflake?,
 )

@@ -28,6 +28,12 @@ class SetWelcomeChannelCommand : Extension() {
                     hasPermission(Permission.Administrator)
                     requireBotPermissions(Permission.Administrator)
                 }
+
+                action {
+                    val target = arguments.channel ?: this.channel.asChannel()
+
+
+                }
             }
 
             publicSubCommand {
