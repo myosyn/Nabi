@@ -27,6 +27,7 @@ tasks {
     withType<KotlinCompile> {
         kotlinOptions {
             jvmTarget = "18"
+
         }
     }
     withType<JavaCompile> {

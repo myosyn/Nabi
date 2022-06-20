@@ -23,7 +23,7 @@ class BanCommand : Extension() {
     override suspend fun setup() {
 
         publicSlashCommand(::BanCommandArguments) {
-            name = "Ban"
+            name = "ban"
             description = "Bans the specified user from the server."
 
             check {

@@ -22,7 +22,6 @@ class BotBlacklistCommand : Extension() {
 
             check {
                 anyGuild()
-                allowUser(Snowflake(System.getenv("BOT_OWNER")))
             }
 
             action {
@@ -40,7 +39,6 @@ class BotBlacklistCommand : Extension() {
 
             check {
                 anyGuild()
-                allowUser(Snowflake(System.getenv("BOT_OWNER")))
             }
 
             action {

@@ -20,7 +20,7 @@ class KickCommand : Extension() {
 
     override suspend fun setup() {
         publicSlashCommand(::KickArguments) {
-            name = "Kick"
+            name = "kick"
             description = "Kicks a user from your server."
 
             check {

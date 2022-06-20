@@ -3,6 +3,7 @@ package dev.myosyn.nabi
 import com.kotlindiscord.kord.extensions.ExtensibleBot
 import com.kotlindiscord.kord.extensions.utils.env
 import dev.kord.common.annotation.KordExperimental
+import dev.kord.common.annotation.KordPreview
 import dev.kord.common.entity.PresenceStatus
 import dev.kord.gateway.Intent
 import dev.kord.gateway.PrivilegedIntent
@@ -14,9 +15,9 @@ import dev.myosyn.nabi.myosyn.*
 import dev.myosyn.nabi.setchannels.*
 import dev.myosyn.nabi.test.*
 
-@OptIn(KordExperimental::class, PrivilegedIntent::class)
+@OptIn(KordExperimental::class, PrivilegedIntent::class, KordPreview::class)
 suspend fun main() {
-    var bot = ExtensibleBot(env("TOKEN")) {
+    val bot = ExtensibleBot(env("TOKEN")) {
 
         applicationCommands {
             enabled = true
@@ -89,4 +90,5 @@ suspend fun main() {
             playing("In the moonlight skies")
         }
     }
+    bot.start()
 }

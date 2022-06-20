@@ -28,7 +28,6 @@ class EvalCommand : Extension() {
             description = "Executes a command from Nabi herself."
 
             check {
-                allowUser(Snowflake(BOT_OWNER))
                 anyGuild()
             }
 

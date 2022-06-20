@@ -21,7 +21,6 @@ class ShutdownCommand : Extension() {
 
             check {
                 anyGuild()
-                allowUser(Snowflake(System.getenv("BOT_OWNER")))
             }
 
             action {
