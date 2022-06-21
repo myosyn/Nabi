@@ -9,11 +9,17 @@ repositories {
 dependencies {
     implementation(project(":discord:common"))
 
-    implementation("io.ktor:ktor-server-core:2.0.1")
-    implementation("io.ktor:ktor-server-netty:2.0.1")
-    implementation("org.litote.kmongo:kmongo:4.5.1")
+    implementation("io.ktor:ktor-server-core:2.0.2")
+    implementation("io.ktor:ktor-server-netty:2.0.2")
+
+    // Mongo apparently gets rejected because of Discord's hatred of it so I had to go prostgres
+    implementation("org.postgresql:postgresql:42.3.6")
+
+    implementation("org.jetbrains.exposed:exposed-core:0.38.2")
+    implementation("org.jetbrains.exposed:exposed-kotlin-datetime:0.38.2")
+    implementation("org.jetbrains.exposed:exposed-spring-boot-starter:0.38.2")
 
     // I need this so I can snowflake stuff yk yk
     implementation("dev.kord:kord-core:0.8.x-SNAPSHOT")
-    implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.5.3-SNAPSHOT")
+    implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.5.4-SNAPSHOT")
 }
