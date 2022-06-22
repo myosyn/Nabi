@@ -17,8 +17,7 @@ dependencies {
 
     implementation("org.jetbrains.exposed:exposed-core:0.38.2")
     implementation("org.jetbrains.exposed:exposed-kotlin-datetime:0.38.2")
-    implementation("org.jetbrains.exposed:exposed-dao:0.38.2")
-    implementation("org.jetbrains.exposed:exposed-jdbc:0.38.2")
+    implementation("org.jetbrains.exposed:exposed-spring-boot-starter:0.38.2")
 
     // I need this so I can snowflake stuff yk yk
     implementation("dev.kord:kord-core:0.8.x-SNAPSHOT")

@@ -6,10 +6,14 @@ import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.converters.impl.*
 import com.kotlindiscord.kord.extensions.extensions.Extension
+import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
+import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
+import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Permission
-import dev.kord.core.behavior.channel.edit
-import dev.kord.core.entity.channel.TextChannel
-import io.github.qbosst.kordex.commands.hybrid.publicHybridCommand
+import dev.kord.core.behavior.channel.GuildMessageChannelBehavior
+import dev.kord.rest.builder.message.create.embed
+import dev.myosyn.nabi.ColorUtils.SUCCESS_COLOR
+import kotlinx.datetime.Clock
 
 // TODO: Make it so all of the messages will direct to a hastebin after being deleted
 
@@ -17,33 +21,67 @@ class PurgeCommand : Extension() {
     override val name: String = "PurgeCommand"
 
     override suspend fun setup() {
-        publicHybridCommand(::PurgeCommandArguments) {
-            name = "purge"
-            description = "Deletes a select amount of messages and uploads all of the deleted messages to hastebin"
+        publicSlashCommand(::PurgeArguments) {
+            name = "Purge" + "ClearMessages"
+            description = "Clears the specified amount of messages from the channel, if the messages are under 2 weeks old."
 
             check {
                 anyGuild()
                 hasPermission(Permission.ManageMessages)
-                requirePermissions(Permission.ManageMessages)
+                requireBotPermissions(Permission.ManageMessages)
             }
 
             action {
-                val amtmessages = arguments.intmessages
-                val channel = (arguments.channel?.asChannel() ?: this.channel.asChannel()) as TextChannel
+                val messageAmount = arguments.intmessages
+                val channel = channel as GuildMessageChannelBehavior
+                val reason = arguments.reason
 
-                channel.edit {
+                respond {
+                    embed {
+                        color = SUCCESS_COLOR
+                        title = "Cleared Messages"
+                        description = "Cleared a total of ${arguments.intmessages} in ${arguments.channel} for $reason."
+                        timestamp = Clock.System.now()
+                    }
+                }
+            }
+        }
 
+        ephemeralSlashCommand(::PurgeArguments) {
+            name = "EphemeralPurge" + "EphemeralClearMessages"
+            description = "Ephemerally clears the specified amount of messages from the channel, if the messages are under 2 weeks old."
+
+            check {
+                anyGuild()
+                hasPermission(Permission.ManageMessages)
+                requireBotPermissions(Permission.ManageMessages)
+            }
+
+            action {
+                val messageAmount = arguments.intmessages
+                val channel = channel as GuildMessageChannelBehavior
+                val reason = arguments.reason
+
+                respond {
+                    embed {
+                        color = SUCCESS_COLOR
+                        title = "Cleared Messages"
+                        description = "Cleared a total of $messageAmount in $channel for $reason."
+                        timestamp = Clock.System.now()
+                    }
                 }
             }
         }
     }
 
-    inner class PurgeCommandArguments : Arguments() {
+    inner class PurgeArguments : Arguments() {
         val channel by optionalChannel {
             name = "Channel"
             description = "The channel you want to clear messages from. Defaults to the channel you're in."
             validate {
+                if(null == true) {
 
+                }
             }
         }
         val intmessages by defaultingInt {
