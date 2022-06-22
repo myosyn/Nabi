@@ -57,7 +57,7 @@ suspend fun main() {
 
             // Moderation directory
             add(::BanCommand)
-            add(::GrantRoleCommand)
+            add(::RoleCommand)
             add(::KickCommand)
             add(::LockChannelCommand)
             add(::PurgeCommand)

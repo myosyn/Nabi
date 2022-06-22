@@ -11,7 +11,11 @@ import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.Color
 import dev.kord.common.entity.Permission
+import dev.kord.rest.builder.message.EmbedBuilder
 import dev.kord.rest.builder.message.create.embed
+import dev.myosyn.nabi.ColorUtils.PUNISHMENT_COLOR
+import dev.myosyn.nabi.user.UserDm.dmUser
+import io.github.qbosst.kordex.commands.hybrid.publicHybridCommand
 import kotlinx.datetime.Clock
 
 
@@ -19,52 +23,32 @@ class KickCommand : Extension() {
     override val name: String = "Kick"
 
     override suspend fun setup() {
-        publicSlashCommand(::KickArguments) {
+        publicHybridCommand(::KickArguments) {
             name = "kick"
-            description = "Kicks a user from your server."
+            description = "Kicks a member from the guild"
 
             check {
                 anyGuild()
                 hasPermission(Permission.KickMembers)
-                requireBotPermissions(Permission.KickMembers)
+                requirePermissions(Permission.KickMembers)
             }
-            action {
-                val user = arguments.reason
-                val reason = arguments.reason
 
-                user
+            action {
+                val target = arguments.user.asUser()
+                val targetReason = arguments.reason
+
+                guild?.kick(target.id)
+
+                val dmUser = dmUser (
+                    target,
+                    "You've Been Banned",
+                    "You have been banned from ",
+                    PUNISHMENT_COLOR
+                )
+
 
                 respond {
-                    embed {
-                        color = Color(221,237,255)
-                        title = "Kicked User"
-                        description = "The user, ${user}, has been kicked for ${reason}."
-                        timestamp = Clock.System.now()
-                    }
-                }
-            }
-        }
 
-        ephemeralSlashCommand(::KickArguments) {
-            name = "EphemeralKick"
-            description = "Ephemerally kicks a user from your server."
-
-            check {
-                anyGuild()
-                hasPermission(Permission.KickMembers)
-                requireBotPermissions(Permission.KickMembers)
-            }
-            action {
-                val user = arguments.user
-                val reason = arguments.reason
-
-                respond {
-                    embed {
-                        color = Color(221,237,255)
-                        title = "Kicked User"
-                        description = "The user, ${user}, has been kicked for ${reason}."
-                        timestamp = Clock.System.now()
-                    }
                 }
             }
         }
