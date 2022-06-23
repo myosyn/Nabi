@@ -11,7 +11,7 @@ import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Permission
 import dev.myosyn.nabi.ColorUtils.PUNISHMENT_COLOR
 import dev.myosyn.nabi.user.UserDm.dmUser
-import io.github.qbosst.kordex.commands.hybrid.publicHybridCommand
+
 
 
 class KickCommand : Extension() {
