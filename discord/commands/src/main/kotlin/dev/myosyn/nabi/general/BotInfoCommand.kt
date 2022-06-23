@@ -7,7 +7,6 @@ import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.ColorUtils.DEFAULT_COLOR
 import kotlinx.datetime.Clock
-import java.util.*
 
 class BotInfoCommand : Extension() {
     override val name: String = "info"

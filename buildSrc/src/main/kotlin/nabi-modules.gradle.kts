@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "dev.myosyn.nabi"
-version = "1.0.0-PRE1" + "-SNAPSHOT"
+version = "1.0.0-PRE1"
 
 repositories {
     mavenCentral()
@@ -24,15 +24,15 @@ repositories {
 }
 
 tasks {
-    withType<KotlinCompile> {
+    "compileKotlin"(KotlinCompile::class) {
         kotlinOptions {
-            jvmTarget = "18"
-
+            jvmTarget = "17"
+            freeCompilerArgs = listOf("-opt-in=kotlin.RequiresOptIn")
         }
     }
-    withType<JavaCompile> {
-        sourceCompatibility = JavaVersion.VERSION_18.toString()
-        targetCompatibility = JavaVersion.VERSION_18.toString()
+    "compileJava"(JavaCompile::class) {
+        sourceCompatibility = JavaVersion.VERSION_17.toString()
+        targetCompatibility = JavaVersion.VERSION_17.toString()
     }
 }
 

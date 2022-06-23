@@ -1,30 +1,27 @@
 package dev.myosyn.nabi.moderation
 
+import com.kotlindiscord.kord.extensions.DiscordRelayedException
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
+import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingInt
 import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingString
 import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
-import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
-import dev.kord.common.Color
 import dev.kord.common.entity.Permission
+import dev.kord.core.behavior.ban
 import dev.kord.rest.builder.message.create.embed
-import dev.myosyn.nabi.ColorUtils.PUNISHMENT_COLOR
-import dev.myosyn.nabi.user.UserDm.dmUser
-import kotlinx.datetime.Clock
+import dev.myosyn.nabi.ColorUtils.DEFAULT_COLOR
 
 class BanCommand : Extension() {
-
     override val name: String = "ban"
 
     override suspend fun setup() {
-
         publicSlashCommand(::BanCommandArguments) {
             name = "ban"
-            description = "Bans the specified user from the server."
+            description = "Bans a user from the guild"
 
             check {
                 anyGuild()
@@ -33,53 +30,27 @@ class BanCommand : Extension() {
             }
 
             action {
-                val publicBanTarget = arguments.user
-                val publicBanReason = arguments.reason
+                val target = arguments.user.asUser()
+                val providedReasons = arguments.reason
 
-                val userDm = dmUser(
-                    publicBanTarget,
-                    "You've been banned",
-                    "You've been banned from ${guild?.fetchGuild()?.name} for $publicBanReason",
-                    PUNISHMENT_COLOR
-                )
-
-                respond {
-                    embed {
-                        color = Color(221,237,255)
-                        title = "Banned User"
-                        description = "The user, $user, has been banned for $publicBanReason"
-                        timestamp = Clock.System.now()
-                    }
+                guild?.ban(target.id) {
+                    reason = providedReasons
+                    deleteMessagesDays = arguments.deleteMessage
                 }
-            }
-        }
-
-        ephemeralSlashCommand(::BanCommandArguments) {
-            name = "EphemeralBan"
-            description = "Silently bans the specified user from the server."
-
-            check {
-                anyGuild()
-                hasPermission(Permission.BanMembers)
-                requireBotPermissions(Permission.BanMembers)
-            }
-            action {
-                val privateBanTarget = arguments.user
-                val privateBanReason = arguments.reason
-
-                val userDm = dmUser (
-                    privateBanTarget,
-                    "You've been banned",
-                    "You've been banned from ${guild?.fetchGuild()?.name} for $privateBanReason",
-                    PUNISHMENT_COLOR
-                )
 
                 respond {
                     embed {
-                        color = Color(221,237,255)
                         title = "Banned User"
-                        description = "The user, $user has been banned from $guild for $privateBanReason"
-                        timestamp = Clock.System.now()
+                        description = "The user was successfully banned."
+                        field {
+                            name = "User Banned"
+                            value = "$target"
+                        }
+                        field {
+                            name = "Provided Reason"
+                            value = providedReasons
+                        }
+                        color = DEFAULT_COLOR
                     }
                 }
             }
@@ -95,6 +66,19 @@ class BanCommand : Extension() {
             name = "reason"
             description = "The reason why you want to ban the specified user."
             defaultValue = "No reason provided"
+        }
+        val deleteMessage by defaultingInt {
+            name = "int"
+            description = "The number of days of messages you want to delete"
+            defaultValue = 0
+            validate {
+                if (value < 0) {
+                    throw DiscordRelayedException("")
+                }
+                if (value > 7) {
+                    throw DiscordRelayedException("")
+                }
+            }
         }
     }
 }

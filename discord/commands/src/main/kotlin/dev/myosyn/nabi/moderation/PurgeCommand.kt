@@ -6,10 +6,10 @@ import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.converters.impl.*
 import com.kotlindiscord.kord.extensions.extensions.Extension
+import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Permission
 import dev.kord.core.behavior.channel.edit
 import dev.kord.core.entity.channel.TextChannel
-import io.github.qbosst.kordex.commands.hybrid.publicHybridCommand
 
 // TODO: Make it so all of the messages will direct to a hastebin after being deleted
 
@@ -17,18 +17,18 @@ class PurgeCommand : Extension() {
     override val name: String = "PurgeCommand"
 
     override suspend fun setup() {
-        publicHybridCommand(::PurgeCommandArguments) {
+        publicSlashCommand(::PurgeCommandArguments) {
             name = "purge"
             description = "Deletes a select amount of messages and uploads all of the deleted messages to hastebin"
 
             check {
                 anyGuild()
                 hasPermission(Permission.ManageMessages)
-                requirePermissions(Permission.ManageMessages)
+                requireBotPermissions(Permission.ManageMessages)
             }
 
             action {
-                val amtmessages = arguments.intmessages
+                val intmessages = arguments.intmessages
                 val channel = (arguments.channel?.asChannel() ?: this.channel.asChannel()) as TextChannel
 
                 channel.edit {
@@ -42,18 +42,15 @@ class PurgeCommand : Extension() {
         val channel by optionalChannel {
             name = "Channel"
             description = "The channel you want to clear messages from. Defaults to the channel you're in."
-            validate {
-
-            }
         }
         val intmessages by defaultingInt {
             name = "Messages"
             description = "The number of messages you want to delete."
             defaultValue = 5
             validate {
-                if(value == 0) {
-                    throw DiscordRelayedException("You cannot clear nothing. Imagine dividing zero by zero. See how that works.")
-                }
+                 if (value < 0) {
+                     throw DiscordRelayedException("You cannot delete nothing. That is like dividing by zero. Input a value and try again you idiot.")
+                 }
             }
         }
         val reason by defaultingString {

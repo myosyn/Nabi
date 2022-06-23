@@ -3,12 +3,16 @@ package dev.myosyn.nabi.moderation
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
+import com.kotlindiscord.kord.extensions.commands.application.slash.publicSubCommand
 import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingString
 import com.kotlindiscord.kord.extensions.commands.converters.impl.role
 import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
+import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
+import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Permission
 import dev.kord.rest.builder.message.EmbedBuilder
+import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.ColorUtils.DEFAULT_COLOR
 import dev.myosyn.nabi.ColorUtils.SUCCESS_COLOR
 import io.github.qbosst.kordex.commands.hybrid.publicHybridCommand
@@ -20,7 +24,7 @@ class RoleCommand : Extension() {
     override val name: String = "GiveRole"
 
     override suspend fun setup() {
-        publicHybridCommand {
+        publicSlashCommand {
             name = "role"
             description = "Category for all of the role commands"
 
@@ -49,7 +53,7 @@ class RoleCommand : Extension() {
                 check {
                     anyGuild()
                     hasPermission(Permission.ManageRoles)
-                    requirePermissions(Permission.ManageRoles)
+                    requireBotPermissions(Permission.ManageRoles)
                 }
 
                 action {
@@ -61,10 +65,9 @@ class RoleCommand : Extension() {
 
                     val embed = EmbedBuilder()
                     respond {
-                        embed.title = "Granted Role"
-                        embed.description = "The role, $userTarget, got the role $roleTarget for $reason."
-                        embed.color = SUCCESS_COLOR
-                        embed.timestamp = Clock.System.now()
+                        embed {
+
+                        }
                     }
                 }
             }
@@ -76,7 +79,7 @@ class RoleCommand : Extension() {
                 check {
                     anyGuild()
                     hasPermission(Permission.ManageRoles)
-                    requirePermissions(Permission.ManageRoles)
+                    requireBotPermissions(Permission.ManageRoles)
                 }
 
                 action {
@@ -86,12 +89,10 @@ class RoleCommand : Extension() {
 
                     userTarget?.removeRole(roleTarget.id)
 
-                    val embed = EmbedBuilder()
                     respond {
-                        embed.title = "Granted Role"
-                        embed.description = "The role, $roleTarget, was removed from $userTarget for $reason."
-                        embed.color = SUCCESS_COLOR
-                        embed.timestamp = Clock.System.now()
+                        embed {
+                            title = "Role removed"
+                        }
                     }
                 }
             }

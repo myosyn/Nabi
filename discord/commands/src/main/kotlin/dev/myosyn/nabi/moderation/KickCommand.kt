@@ -6,31 +6,26 @@ import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingString
 import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
-import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
-import dev.kord.common.Color
 import dev.kord.common.entity.Permission
-import dev.kord.rest.builder.message.EmbedBuilder
-import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.ColorUtils.PUNISHMENT_COLOR
 import dev.myosyn.nabi.user.UserDm.dmUser
 import io.github.qbosst.kordex.commands.hybrid.publicHybridCommand
-import kotlinx.datetime.Clock
 
 
 class KickCommand : Extension() {
     override val name: String = "Kick"
 
     override suspend fun setup() {
-        publicHybridCommand(::KickArguments) {
+        publicSlashCommand(::KickArguments) {
             name = "kick"
             description = "Kicks a member from the guild"
 
             check {
                 anyGuild()
                 hasPermission(Permission.KickMembers)
-                requirePermissions(Permission.KickMembers)
+                requireBotPermissions(Permission.KickMembers)
             }
 
             action {

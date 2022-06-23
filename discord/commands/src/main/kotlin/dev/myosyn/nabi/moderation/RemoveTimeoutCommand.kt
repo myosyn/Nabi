@@ -9,6 +9,7 @@ import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Permission
+import dev.kord.core.entity.User
 
 class RemoveTimeoutCommand : Extension() {
     override val name: String = "RemoveTimeoutCommand"
@@ -25,13 +26,14 @@ class RemoveTimeoutCommand : Extension() {
             }
 
             action {
-                arguments.user
+                val target = arguments.removeTimeoutUser.asUser()
+
             }
         }
     }
 
     inner class RemoveTimeoutArguments : Arguments() {
-        val user by user {
+        val removeTimeoutUser by user {
             name = "user"
             description = "The user you want to remove the timeout status from."
         }

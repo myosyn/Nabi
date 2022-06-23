@@ -2,7 +2,6 @@ package dev.myosyn.nabi.general
 
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.commands.Arguments
-import com.kotlindiscord.kord.extensions.commands.converters.impl.guild
 import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalSnowflake
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand

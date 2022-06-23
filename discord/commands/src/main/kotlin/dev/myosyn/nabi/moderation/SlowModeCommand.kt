@@ -3,20 +3,20 @@ package dev.myosyn.nabi.moderation
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
+import com.kotlindiscord.kord.extensions.commands.application.slash.publicSubCommand
 import com.kotlindiscord.kord.extensions.commands.converters.impl.duration
 import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalChannel
 import com.kotlindiscord.kord.extensions.extensions.Extension
+import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Permission
 import dev.kord.core.behavior.channel.edit
 import dev.kord.core.entity.channel.TextChannel
-import io.github.qbosst.kordex.commands.hybrid.publicHybridCommand
-import io.github.qbosst.kordex.commands.hybrid.publicSubCommand
 
 class SlowModeCommand : Extension() {
     override val name: String = "SlowMode"
 
     override suspend fun setup() {
-        publicHybridCommand(::SlowModeArguments) {
+        publicSlashCommand(::SlowModeArguments) {
             name = "SlowMode"
             description = "Makes it so members can only chat after a period of time"
 
@@ -27,16 +27,16 @@ class SlowModeCommand : Extension() {
                 check {
                     anyGuild()
                     hasPermission(Permission.ManageChannels)
-                    requirePermissions(Permission.ManageChannels)
+                    requireBotPermissions(Permission.ManageChannels)
                 }
 
                 action {
-                    val channel = this.channel.asChannel() as TextChannel
+                    val channel = (arguments.slowmodeChannel ?: this.channel.asChannel()) as TextChannel
+
 
                     channel.edit {
 
                     }
-
                 }
             }
         }
