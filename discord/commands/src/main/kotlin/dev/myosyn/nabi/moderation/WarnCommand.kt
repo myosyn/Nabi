@@ -23,6 +23,7 @@ class WarnCommand : Extension() {
             }
 
             action {
+
             }
         }
     }
