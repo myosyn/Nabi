@@ -19,7 +19,7 @@ include(":discord")
 include(":discord:commands")
 include(":discord:database")
 include(":discord:common")
-include(":discord:phishing")
+// include(":discord:phishing")
 include(":discord:core")
 include(":discord:events")
 

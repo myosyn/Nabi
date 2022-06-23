@@ -5,7 +5,6 @@ plugins {
 dependencies {
     implementation(project(":discord:commands"))
     implementation(project(":discord:database"))
-    implementation(project(":discord:phishing"))
     implementation(project(":discord:events"))
     implementation(project(":discord:common"))
 
