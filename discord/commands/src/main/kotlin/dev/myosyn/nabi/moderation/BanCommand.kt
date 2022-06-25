@@ -73,10 +73,10 @@ class BanCommand : Extension() {
             defaultValue = 0
             validate {
                 if (value < 0) {
-                    throw DiscordRelayedException("")
+                    throw DiscordRelayedException("You cannot delete less than 0 days worth of messages!")
                 }
                 if (value > 7) {
-                    throw DiscordRelayedException("")
+                    throw DiscordRelayedException("You cannot delete more than 7 days worth of messages!")
                 }
             }
         }

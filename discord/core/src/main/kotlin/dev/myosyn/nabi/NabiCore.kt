@@ -13,6 +13,7 @@ import dev.myosyn.nabi.general.*
 import dev.myosyn.nabi.moderation.*
 import dev.myosyn.nabi.myosyn.*
 import dev.myosyn.nabi.setchannels.*
+import dev.myosyn.nabi.suggestion.*
 import dev.myosyn.nabi.test.*
 
 @OptIn(KordExperimental::class, PrivilegedIntent::class, KordPreview::class)
@@ -49,7 +50,6 @@ suspend fun main() {
             add(::AvatarCommand)
             add(::BotInfoCommand)
             add(::GuildInfoCommand)
-            add(::RoleInfoCommand)
             add(::ServerCommand)
             add(::UserCommand)
 
@@ -57,12 +57,12 @@ suspend fun main() {
 
             // Moderation directory
             add(::BanCommand)
-            add(::GrantRoleCommand)
             add(::KickCommand)
             add(::LockChannelCommand)
             add(::PurgeCommand)
-            add(::RemoveSlowModeCommand)
             add(::RemoveTimeoutCommand)
+            add(::RoleCommand)
+            add(::SlowModeCommand)
             add(::TemporaryBanCommand)
             add(::TimeoutCommand)
             add(::UnbanCommand)
@@ -76,7 +76,11 @@ suspend fun main() {
             // SetChannels directory
             add(::SetLeaveChannelCommand)
             add(::SetModerationLoggingChannelCommand)
+            add(::SetSuggestionChannelCommand)
             add(::SetWelcomeChannelCommand)
+
+            // Suggestions
+            add(::SuggestionCommand)
 
             // Test directory
             add(::TestEmbed)

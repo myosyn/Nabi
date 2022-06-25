@@ -7,7 +7,10 @@ import com.kotlindiscord.kord.extensions.commands.application.slash.publicSubCom
 import com.kotlindiscord.kord.extensions.commands.converters.impl.string
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
+import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Permission
+import dev.kord.rest.builder.message.create.embed
+import kotlinx.datetime.Clock
 
 class SuggestionCommand : Extension() {
     override val name: String = "Suggestions"
@@ -18,23 +21,9 @@ class SuggestionCommand : Extension() {
             name = "suggestion"
             description = "Make some stupid suggestion with this command (Because people only make stupid useless suggestions)"
 
-            action {
-
-            }
-
             publicSubCommand(::SuggestionArguments) {
-                name = "accept"
-                description = "Wow, a good suggestion! Finally, for god sakes."
-
-                check {
-                    anyGuild()
-                    hasPermission(Permission.ModerateMembers)
-                }
-            }
-
-            publicSubCommand(::SuggestionArguments) {
-                name = "deny"
-                description = "Denies a suggestion because it was terrible and you hated it."
+                name = "accept" + "approve"
+                description = "Wow, a good suggestion! Barely anyone can make a good suggestion, so that's wild."
 
                 check {
                     anyGuild()
@@ -45,6 +34,71 @@ class SuggestionCommand : Extension() {
 
                 }
             }
+
+            publicSubCommand(::SuggestionArguments) {
+                name = "deny"
+                description = "99% of suggestions will need to use this command"
+
+                check {
+                    anyGuild()
+                    hasPermission(Permission.ModerateMembers)
+                }
+
+                action {
+
+                }
+            }
+
+            publicSubCommand(::SuggestionLookupArguments) {
+                name = "lookup" + "info" + "information" + "search"
+                description = "Looks up a suggestion."
+
+                check {
+                    anyGuild()
+                }
+
+                action {
+                    val id = arguments.suggestionId
+
+                    respond {
+                        embed {
+                            timestamp = Clock.System.now()
+                        }
+                    }
+                }
+            }
+
+            publicSubCommand(::SuggestionCommentArguments) {
+                name = "comment"
+                description = "Leaves a comment under the suggestion."
+
+                check {
+                    anyGuild()
+                    hasPermission(Permission.ModerateMembers)
+                }
+
+                action {
+                    val targetSuggestion = arguments.suggestionId
+                    val suggestionComment = arguments.comment
+
+                    respond {
+                        embed {
+                            timestamp = Clock.System.now()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    inner class SuggestionCommentArguments: Arguments() {
+        val suggestionId by string {
+            name = "id"
+            description = "The suggestion's id (which you are going to comment on)"
+        }
+        val comment by string {
+            name = "comment"
+            description = "The comment you have on the suggestion."
         }
     }
 
@@ -55,7 +109,7 @@ class SuggestionCommand : Extension() {
         }
     }
 
-    inner class SuggestionArguments : Arguments() {
+    inner class SuggestionArguments: Arguments() {
         val id by string {
             name = "id"
             description = "The suggestion that you want"

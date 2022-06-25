@@ -14,6 +14,7 @@ import dev.kord.common.entity.Permission
 import dev.kord.rest.builder.message.EmbedBuilder
 import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.ColorUtils.DEFAULT_COLOR
+import kotlinx.datetime.Clock
 
 
 class RoleCommand : Extension() {
@@ -35,9 +36,10 @@ class RoleCommand : Extension() {
                 action {
                     val target = arguments.targetRole.asRole()
 
-                    val embed = EmbedBuilder()
                     respond {
-                        embed.color = DEFAULT_COLOR
+                        embed {
+
+                        }
                     }
                 }
             }
@@ -59,10 +61,12 @@ class RoleCommand : Extension() {
 
                     userTarget?.addRole(roleTarget.id)
 
-                    val embed = EmbedBuilder()
                     respond {
                         embed {
-
+                            title = "Role Given"
+                            description = "The role, $roleTarget, was given to $userTarget for **$reason**"
+                            color = DEFAULT_COLOR
+                            timestamp = Clock.System.now()
                         }
                     }
                 }
@@ -88,26 +92,26 @@ class RoleCommand : Extension() {
                     respond {
                         embed {
                             title = "Role removed"
+                            description = "The role, $roleTarget was taken away from $userTarget for $reason."
+                            color = DEFAULT_COLOR
+                            timestamp = Clock.System.now()
                         }
                     }
                 }
             }
         }
     }
-    inner class RoleLookupArguments : Arguments() {
+    inner class RoleLookupArguments: Arguments() {
         val targetRole by role {
             name = "role"
             description = "The role you want to lookup"
         }
     }
 
-    inner class GiveTakeRoleArguments : Arguments() {
+    inner class GiveTakeRoleArguments: Arguments() {
         val targetUser by user {
             name = "user"
             description = "The user you want to give the role to."
-            validate {
-
-            }
         }
         val targetRole by role {
             name = "role"

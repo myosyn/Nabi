@@ -13,7 +13,7 @@ class LatencyCommand : Extension() {
 
     override suspend fun setup() {
         publicSlashCommand {
-            name = "Latency"
+            name = "latency"
             description = "Shows the latency between you and Nabi."
 
             check {

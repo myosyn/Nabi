@@ -11,7 +11,7 @@ class TestMessaging : Extension() {
 
     override suspend fun setup() {
         publicSlashCommand {
-            name = "Testmessaging"
+            name = "testMessaging"
             description = "Tests the function of the messaging in Nabi."
 
             check {
@@ -26,7 +26,7 @@ class TestMessaging : Extension() {
         }
 
         ephemeralSlashCommand {
-            name = "SilentTestMessaging"
+            name = "silentTestMessaging"
             description = "Tests the function of the messaging in Nabi but you can only see it."
 
             check {

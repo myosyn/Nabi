@@ -9,12 +9,13 @@ import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Permission
+import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.ColorUtils.PUNISHMENT_COLOR
 import dev.myosyn.nabi.user.UserDm.dmUser
+import kotlinx.datetime.Clock
 
 
-
-class KickCommand : Extension() {
+class KickCommand: Extension() {
     override val name: String = "Kick"
 
     override suspend fun setup() {
@@ -36,19 +37,23 @@ class KickCommand : Extension() {
 
                 val dmUser = dmUser (
                     target,
-                    "You've Been Banned",
-                    "You have been banned from ",
+                    "Kicked from Server",
+                    "You have been kicked from $guild for $targetReason. You may join back if you pleased.",
                     PUNISHMENT_COLOR
                 )
 
-
                 respond {
-
+                    embed {
+                        title = "Kicked User"
+                        description = "The user, $target, was kicked from $guild for $targetReason."
+                        color = PUNISHMENT_COLOR
+                        timestamp = Clock.System.now()
+                    }
                 }
             }
         }
     }
-    inner class KickArguments : Arguments() {
+    inner class KickArguments: Arguments() {
         val user by user {
             name = "user"
             description = "The user you want to kick"
