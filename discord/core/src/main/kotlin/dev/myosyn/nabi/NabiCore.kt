@@ -14,6 +14,7 @@ import dev.myosyn.nabi.moderation.*
 import dev.myosyn.nabi.myosyn.*
 import dev.myosyn.nabi.setchannels.*
 import dev.myosyn.nabi.suggestion.*
+import dev.myosyn.nabi.tags.*
 import dev.myosyn.nabi.test.*
 
 @OptIn(KordExperimental::class, PrivilegedIntent::class, KordPreview::class)
@@ -81,6 +82,8 @@ suspend fun main() {
 
             // Suggestions
             add(::SuggestionCommand)
+
+            add(::TagsCommand)
 
             // Test directory
             add(::TestEmbed)

@@ -7,14 +7,19 @@ import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingStri
 import com.kotlindiscord.kord.extensions.commands.converters.impl.string
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
+import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Permission
+import dev.kord.common.entity.Snowflake
+import dev.kord.rest.builder.message.create.embed
+import dev.myosyn.nabi.user.UserDm.dmUser
+import kotlinx.datetime.Clock
 
 class UnbanCommand : Extension() {
     override val name: String = "unban"
 
     override suspend fun setup() {
         publicSlashCommand(::UnbanArguments) {
-            name = "Unban"
+            name = "unban"
             description = "Unbans a user from the server."
 
             check {
@@ -24,7 +29,16 @@ class UnbanCommand : Extension() {
             }
 
             action {
+                val target = arguments.id
+                val targetReason = arguments.reason
 
+                guild?.unban(Snowflake(target), targetReason)
+
+                respond {
+                    embed {
+                        timestamp = Clock.System.now()
+                    }
+                }
             }
         }
     }

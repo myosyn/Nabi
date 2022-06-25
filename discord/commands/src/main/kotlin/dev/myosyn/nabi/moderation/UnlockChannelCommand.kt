@@ -14,8 +14,8 @@ class UnlockChannelCommand : Extension() {
 
     override suspend fun setup() {
         publicSlashCommand(::UnlockChannelArguments) {
-            name = "UnlockChannel"
-            description = "Unlocks the locked channel."
+            name = "channel"
+            description = "Displays the options for "
 
             check {
                 anyGuild()

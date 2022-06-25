@@ -14,7 +14,6 @@ import dev.myosyn.nabi.ColorUtils.PUNISHMENT_COLOR
 import dev.myosyn.nabi.user.UserDm.dmUser
 import kotlinx.datetime.Clock
 
-
 class KickCommand: Extension() {
     override val name: String = "Kick"
 

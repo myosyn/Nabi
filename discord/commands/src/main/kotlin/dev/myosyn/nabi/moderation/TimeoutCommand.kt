@@ -3,7 +3,9 @@ package dev.myosyn.nabi.moderation
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
-import com.kotlindiscord.kord.extensions.commands.converters.impl.*
+import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingString
+import com.kotlindiscord.kord.extensions.commands.converters.impl.duration
+import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Permission
@@ -23,7 +25,8 @@ class TimeoutCommand : Extension() {
             }
 
             action {
-                val target = arguments.user
+                val target = arguments.user.asUser()
+
             }
         }
     }

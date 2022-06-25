@@ -2,7 +2,6 @@ package dev.myosyn.nabi.tags
 
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
-import com.kotlindiscord.kord.extensions.checks.interactionFor
 import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.application.slash.publicSubCommand
 import com.kotlindiscord.kord.extensions.commands.converters.impl.string
@@ -19,7 +18,8 @@ class TagsCommand : Extension() {
 
     override suspend fun setup() {
         publicSlashCommand {
-            name = "Tags"
+            name = "tags"
+            description = ""
 
             check {
                 anyGuild()

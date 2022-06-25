@@ -7,7 +7,6 @@ import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.core.supplier.EntitySupplyStrategy
 import dev.kord.rest.Image
 import dev.kord.rest.builder.message.create.embed
-import kotlinx.coroutines.flow.toList
 
 class ServerCommand : Extension() {
     override val name: String = "Server"
