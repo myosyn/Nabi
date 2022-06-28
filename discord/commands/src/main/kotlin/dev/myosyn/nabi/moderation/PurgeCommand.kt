@@ -12,6 +12,10 @@ import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Permission
 import dev.kord.core.behavior.channel.edit
 import dev.kord.core.entity.channel.TextChannel
+import io.ktor.http.*
+import kotlinx.coroutines.CoroutineName
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 // TODO: Make it so all of the messages will direct to a hastebin after being deleted
 
@@ -20,7 +24,7 @@ class PurgeCommand : Extension() {
 
     override suspend fun setup() {
         publicSlashCommand(::PurgeCommandArguments) {
-            name = "purge"
+            name = "purge" + "clear"
             description = "Deletes a select amount of messages and uploads all of the deleted messages to hastebin"
 
             check {
@@ -33,9 +37,9 @@ class PurgeCommand : Extension() {
                 val intmessages = arguments.intmessages
                 val channel = (arguments.channel?.asChannel() ?: this.channel.asChannel()) as TextChannel
 
-                channel.edit {
 
-                }
+
+                // uploadMessages() // This is so the messages can be uploaded to hastebin, cannot be disabled yet.
             }
         }
     }
@@ -62,3 +66,12 @@ class PurgeCommand : Extension() {
         }
     }
 }
+
+// Got a little too ambitious
+/*
+suspend fun uploadMessages() {
+    return withContext(Dispatchers.IO + CoroutineName("uploadToHasteBin")) {
+        val connection = Url("https://hst.sh/")
+    }
+}
+ */

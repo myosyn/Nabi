@@ -44,6 +44,7 @@ class SlowModeCommand : Extension() {
                     respond {
                         embed {
                             title = "Slowmode Set"
+                            description = "The slowmode has been set to $channel"
                             color = SUCCESS_COLOR
                             timestamp = Clock.System.now()
                         }
@@ -79,6 +80,8 @@ class SlowModeCommand : Extension() {
         }
         val DateTimePeriod by duration {
             name = "duration"
+            description = "The channel's slowmode time"
+
         }
     }
 }

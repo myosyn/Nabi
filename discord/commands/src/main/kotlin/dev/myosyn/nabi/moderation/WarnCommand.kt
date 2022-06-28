@@ -3,6 +3,7 @@ package dev.myosyn.nabi.moderation
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
+import com.kotlindiscord.kord.extensions.commands.application.slash.publicSubCommand
 import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalString
 import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
@@ -14,7 +15,7 @@ class WarnCommand : Extension() {
 
     override suspend fun setup() {
         publicSlashCommand(::WarnArguments) {
-            name = "Warn"
+            name = "warn"
             description = "Warns the user for the crime that they committed."
 
             check {
@@ -22,8 +23,8 @@ class WarnCommand : Extension() {
                 hasPermission(Permission.ModerateMembers)
             }
 
-            action {
-
+            publicSubCommand {
+                name = ""
             }
         }
     }

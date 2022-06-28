@@ -37,7 +37,8 @@ class RoleCommand : Extension() {
 
                     respond {
                         embed {
-
+                            title = ""
+                            timestamp = Clock.System.now()
                         }
                     }
                 }
