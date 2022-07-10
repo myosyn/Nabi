@@ -9,7 +9,7 @@ dependencies {
     implementation(project(":discord:common"))
 
     implementation("dev.kord:kord-core:0.8.x-SNAPSHOT")
-    implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.5.4-SNAPSHOT")
+    implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.5.5-SNAPSHOT")
 
     // Used for Logback
     implementation("org.codehaus.groovy:groovy:3.0.11")

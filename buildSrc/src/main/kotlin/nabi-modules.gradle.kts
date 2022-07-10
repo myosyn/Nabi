@@ -1,8 +1,6 @@
 import org.gradle.kotlin.dsl.application
 import org.gradle.kotlin.dsl.dependencies
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import javax.lang.model.SourceVersion
-import kotlin.jvm.internal.Intrinsics.Kotlin
 
 
 plugins {
