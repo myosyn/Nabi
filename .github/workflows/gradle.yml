@@ -22,7 +22,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build --stacktrace
 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       name: Upload Nabi
       with:
        name: Nabi
