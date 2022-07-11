@@ -14,6 +14,6 @@ dependencies {
     implementation("org.litote.kmongo:kmongo:4.5.1")
 
     // I need this so I can snowflake stuff yk yk
-    implementation("dev.kord:kord-core:0.8.x-SNAPSHOT")
+    implementation("dev.kord:kord-core:0.8.0-M15")
     implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.5.3-SNAPSHOT")
 }
