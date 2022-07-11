@@ -4,10 +4,8 @@ import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
-import dev.kord.common.Color
-import dev.kord.common.entity.ComponentType
 import dev.kord.rest.builder.message.create.embed
-import dev.myosyn.nabi.ColorUtils.DEFAULT_COLOR
+import dev.myosyn.nabi.embeds.ColorUtils.DEFAULT_COLOR
 import kotlinx.datetime.Clock
 
 class GetOffOfFeatherClient : Extension() {

@@ -9,7 +9,7 @@ import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.annotation.KordExperimental
 import dev.kord.core.supplier.EntitySupplyStrategy
 import dev.kord.rest.builder.message.create.embed
-import dev.myosyn.nabi.ColorUtils.DEFAULT_COLOR
+import dev.myosyn.nabi.embeds.ColorUtils.DEFAULT_COLOR
 import dev.myosyn.nabi.guild.guildAvatarData
 import dev.myosyn.nabi.guild.guildBannerData
 import dev.myosyn.nabi.guild.guildSplashData

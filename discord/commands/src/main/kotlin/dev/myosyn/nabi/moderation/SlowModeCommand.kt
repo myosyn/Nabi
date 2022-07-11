@@ -13,7 +13,7 @@ import dev.kord.common.entity.Permission
 import dev.kord.core.behavior.channel.edit
 import dev.kord.core.entity.channel.TextChannel
 import dev.kord.rest.builder.message.create.embed
-import dev.myosyn.nabi.ColorUtils.SUCCESS_COLOR
+import dev.myosyn.nabi.embeds.ColorUtils.SUCCESS_COLOR
 import kotlinx.datetime.Clock
 
 class SlowModeCommand : Extension() {

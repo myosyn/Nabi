@@ -7,19 +7,27 @@ import dev.kord.common.annotation.KordPreview
 import dev.kord.common.entity.PresenceStatus
 import dev.kord.gateway.Intent
 import dev.kord.gateway.PrivilegedIntent
-
-import dev.myosyn.nabi.developer.*
+import dev.myosyn.nabi.developer.BotBlacklistCommand
+import dev.myosyn.nabi.developer.EvalCommand
+import dev.myosyn.nabi.developer.ShutdownCommand
 import dev.myosyn.nabi.general.*
 import dev.myosyn.nabi.moderation.*
-import dev.myosyn.nabi.myosyn.*
-import dev.myosyn.nabi.setchannels.*
-import dev.myosyn.nabi.suggestion.*
-import dev.myosyn.nabi.tags.*
-import dev.myosyn.nabi.test.*
+import dev.myosyn.nabi.myosyn.EuphoriaDownload
+import dev.myosyn.nabi.myosyn.GetOffOfFeatherClient
+import dev.myosyn.nabi.setchannels.SetLeaveChannelCommand
+import dev.myosyn.nabi.setchannels.SetModerationLoggingChannelCommand
+import dev.myosyn.nabi.setchannels.SetSuggestionChannelCommand
+import dev.myosyn.nabi.setchannels.SetWelcomeChannelCommand
+import dev.myosyn.nabi.suggestion.SuggestionCommand
+import dev.myosyn.nabi.tags.TagsCommand
+import dev.myosyn.nabi.test.TestEmbed
+import dev.myosyn.nabi.test.TestFailCommand
+import dev.myosyn.nabi.test.TestMessaging
+import dev.myosyn.nabi.test.TestSuccessCommand
 
 @OptIn(KordExperimental::class, PrivilegedIntent::class, KordPreview::class)
 suspend fun main() {
-    val bot = ExtensibleBot(env("TOKEN")) {
+    val bot = ExtensibleBot(env(NABI_TOKEN)) {
 
         applicationCommands {
             enabled = true

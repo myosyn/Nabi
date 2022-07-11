@@ -5,7 +5,7 @@ import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.rest.builder.message.create.embed
-import dev.myosyn.nabi.ColorUtils.ERROR_COLOR
+import dev.myosyn.nabi.embeds.ColorUtils.ERROR_COLOR
 import kotlinx.datetime.Clock
 
 

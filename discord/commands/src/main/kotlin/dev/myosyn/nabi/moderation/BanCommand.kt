@@ -13,7 +13,7 @@ import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Permission
 import dev.kord.core.behavior.ban
 import dev.kord.rest.builder.message.create.embed
-import dev.myosyn.nabi.ColorUtils.DEFAULT_COLOR
+import dev.myosyn.nabi.embeds.ColorUtils.DEFAULT_COLOR
 import dev.myosyn.nabi.user.UserDm.dmUser
 
 class BanCommand : Extension() {
@@ -45,8 +45,6 @@ class BanCommand : Extension() {
                     "You've been banned from $guild for $providedReasons",
                     DEFAULT_COLOR,
                 )
-
-
 
                 respond {
                     embed {

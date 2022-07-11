@@ -10,7 +10,7 @@ import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Permission
 import dev.kord.rest.builder.message.create.embed
-import dev.myosyn.nabi.ColorUtils.PUNISHMENT_COLOR
+import dev.myosyn.nabi.embeds.ColorUtils.PUNISHMENT_COLOR
 import dev.myosyn.nabi.user.UserDm.dmUser
 import kotlinx.datetime.Clock
 

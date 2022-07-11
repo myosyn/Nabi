@@ -1,4 +1,4 @@
-package dev.myosyn.nabi
+package dev.myosyn.nabi.embeds
 
 import dev.kord.common.Color
 

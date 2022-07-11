@@ -1,4 +1,4 @@
-package dev.myosyn.nabi
+package dev.myosyn.nabi.user
 
 import dev.kord.common.entity.UserFlag
 
