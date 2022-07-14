@@ -9,7 +9,7 @@ repositories {
 dependencies {
     implementation(project(":discord:common"))
 
-    implementation("io.ktor:ktor-server-core:2.0.1")
+    implementation("io.ktor:ktor-server-core:2.1.0-eap-443")
     implementation("io.ktor:ktor-server-netty:2.0.1")
     implementation("org.litote.kmongo:kmongo:4.5.1")
 
