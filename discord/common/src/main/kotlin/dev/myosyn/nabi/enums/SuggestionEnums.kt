@@ -7,8 +7,6 @@ import com.kotlindiscord.kord.extensions.commands.application.slash.converters.C
 import dev.kord.common.Color
 
 enum class SuggestionEnums(override val readableName: String, val color: Color) : ChoiceEnum {
-
-
     Denied("Denied", DISCORD_RED),
     Accepted("Accepted", DISCORD_GREEN),
 

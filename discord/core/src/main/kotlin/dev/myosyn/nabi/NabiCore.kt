@@ -7,6 +7,7 @@ import dev.kord.common.annotation.KordPreview
 import dev.kord.common.entity.PresenceStatus
 import dev.kord.gateway.Intent
 import dev.kord.gateway.PrivilegedIntent
+import dev.myosyn.nabi.Constants.NABI_TOKEN
 import dev.myosyn.nabi.developer.BotBlacklistCommand
 import dev.myosyn.nabi.developer.EvalCommand
 import dev.myosyn.nabi.developer.ShutdownCommand
@@ -14,10 +15,7 @@ import dev.myosyn.nabi.general.*
 import dev.myosyn.nabi.moderation.*
 import dev.myosyn.nabi.myosyn.EuphoriaDownload
 import dev.myosyn.nabi.myosyn.GetOffOfFeatherClient
-import dev.myosyn.nabi.setchannels.SetLeaveChannelCommand
-import dev.myosyn.nabi.setchannels.SetModerationLoggingChannelCommand
-import dev.myosyn.nabi.setchannels.SetSuggestionChannelCommand
-import dev.myosyn.nabi.setchannels.SetWelcomeChannelCommand
+import dev.myosyn.nabi.setchannels.SetChannelCommand
 import dev.myosyn.nabi.suggestion.SuggestionCommand
 import dev.myosyn.nabi.tags.TagsCommand
 import dev.myosyn.nabi.test.TestEmbed
@@ -83,10 +81,7 @@ suspend fun main() {
             add(::GetOffOfFeatherClient)
 
             // SetChannels directory
-            add(::SetLeaveChannelCommand)
-            add(::SetModerationLoggingChannelCommand)
-            add(::SetSuggestionChannelCommand)
-            add(::SetWelcomeChannelCommand)
+            add(::SetChannelCommand)
 
             // Suggestions
             add(::SuggestionCommand)

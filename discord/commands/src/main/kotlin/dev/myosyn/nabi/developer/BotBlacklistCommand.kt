@@ -5,7 +5,6 @@ import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingString
 import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
-import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 
@@ -27,19 +26,6 @@ class BotBlacklistCommand : Extension() {
                 respond  {
 
                 }
-            }
-        }
-
-        ephemeralSlashCommand(::BotBlacklistArguments) {
-            name = "EphemeralBotBlacklist"
-            description = "Ephemerally blacklists a user from using Nabi."
-
-            check {
-                anyGuild()
-            }
-
-            action {
-
             }
         }
     }
