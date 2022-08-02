@@ -60,8 +60,6 @@ suspend fun main() {
             add(::ServerCommand)
             add(::UserCommand)
 
-            // Github directory
-
             // Moderation directory
             add(::BanCommand)
             add(::KickCommand)

@@ -10,12 +10,11 @@ import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalChanne
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Permission
-import dev.kord.core.behavior.channel.edit
 import dev.kord.core.entity.channel.TextChannel
-import io.ktor.http.*
-import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.net.HttpURLConnection
+import java.net.URL
 
 // TODO: Make it so all of the messages will direct to a hastebin after being deleted
 
@@ -37,9 +36,7 @@ class PurgeCommand : Extension() {
                 val intmessages = arguments.intmessages
                 val channel = (arguments.channel?.asChannel() ?: this.channel.asChannel()) as TextChannel
 
-
-
-                // uploadMessages() // This is so the messages can be uploaded to hastebin, cannot be disabled yet.
+                uploadMessages()
             }
         }
     }
@@ -67,11 +64,21 @@ class PurgeCommand : Extension() {
     }
 }
 
-// Got a little too ambitious
-/*
+
+/**
+ * Uploads all deleted messages to Hastebin.
+ */
 suspend fun uploadMessages() {
-    return withContext(Dispatchers.IO + CoroutineName("uploadToHasteBin")) {
-        val connection = Url("https://hst.sh/")
+    return withContext(Dispatchers.IO) {
+        val connection = URL("https://hst.sh/").openConnection() as HttpURLConnection
+        connection.doOutput = true
+        connection.doOutput = true
+        connection.requestMethod = "POST"
+        connection.setRequestProperty("authority", "hastebin.com")
+
+
+        if (connection.responseCode != 200) {
+            throw DiscordRelayedException("Failed to upload messages to HasteBin, HasteBin responded with ${connection.responseCode}")
+        }
     }
 }
- */

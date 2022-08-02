@@ -9,6 +9,7 @@ import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Permission
+import dev.kord.core.supplier.EntitySupplyStrategy
 import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.embeds.ColorUtils.PUNISHMENT_COLOR
 import dev.myosyn.nabi.user.UserDm.dmUser
@@ -32,7 +33,7 @@ class KickCommand: Extension() {
                 val target = arguments.user.asUser()
                 val targetReason = arguments.reason
 
-                guild?.kick(target.id)
+                guild?.withStrategy(EntitySupplyStrategy.rest)?.kick(target.id, targetReason)
 
                 val dmUser = dmUser (
                     target,

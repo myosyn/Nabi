@@ -18,7 +18,7 @@ class EvalCommand : Extension() {
 
     override suspend fun setup() {
         publicSlashCommand(::EvalArguments) {
-            name = "Eval"
+            name = "eval"
             description = "Executes a command from Nabi herself."
 
             check {

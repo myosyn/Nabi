@@ -14,7 +14,7 @@ class ShutdownCommand : Extension() {
 
     override suspend fun setup() {
         ephemeralSlashCommand {
-            name = "Shutdown"
+            name = "shutdown"
             description = "Shuts down the bot."
 
             check {

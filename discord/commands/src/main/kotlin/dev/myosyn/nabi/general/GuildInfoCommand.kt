@@ -6,6 +6,7 @@ import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalSnowfl
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
+import dev.kord.core.supplier.EntitySupplyStrategy
 import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.embeds.ColorUtils.DEFAULT_COLOR
 import kotlinx.datetime.Clock
@@ -24,6 +25,10 @@ class GuildInfoCommand : Extension() {
 
             action {
                 val channel = arguments.guildArg ?: this.guild?.asGuild()
+                val guildMemberAmount = guild?.withStrategy(EntitySupplyStrategy.rest)?.fetchGuild()?.memberCount
+                val guildBoostLevel = guild?.withStrategy(EntitySupplyStrategy.rest)?.fetchGuild()?.premiumSubscriptionCount
+                val guildOwner = guild?.withStrategy(EntitySupplyStrategy.rest)?.fetchGuild()?.getOwner()
+                val guild = guild?.withStrategy(EntitySupplyStrategy.rest)?.fetchGuild() //FIXME: This will not syntax highlight wtf
 
                 respond {
                     embed {
@@ -43,7 +48,6 @@ class GuildInfoCommand : Extension() {
             name = "guild"
             description = "The guild that you want to look up"
             validate {
-
             }
         }
     }

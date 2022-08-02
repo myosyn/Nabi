@@ -12,6 +12,7 @@ import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Permission
 import dev.kord.core.behavior.ban
+import dev.kord.core.supplier.EntitySupplyStrategy
 import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.embeds.ColorUtils.DEFAULT_COLOR
 import dev.myosyn.nabi.user.UserDm.dmUser
@@ -34,7 +35,7 @@ class BanCommand : Extension() {
                 val target = arguments.user.asUser()
                 val providedReasons = arguments.reason
 
-                guild?.ban(target.id) {
+                guild?.withStrategy(EntitySupplyStrategy.rest)?.ban(target.id) {
                     reason = providedReasons
                     deleteMessagesDays = arguments.deleteMessage
                 }
