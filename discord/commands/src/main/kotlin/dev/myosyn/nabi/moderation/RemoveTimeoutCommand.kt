@@ -6,7 +6,6 @@ import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalString
 import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
-import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Permission
 
@@ -25,23 +24,14 @@ class RemoveTimeoutCommand : Extension() {
             }
 
             action {
-                arguments.user
-            }
-        }
-        ephemeralSlashCommand(::RemoveTimeoutArguments) {
-            name = "EphemeralRemoveTimeout"
-            description = "Ephemerally removes the timeout status from a user."
+                val target = arguments.removeTimeoutUser.asUser()
 
-            check {
-                anyGuild()
-                hasPermission(Permission.ModerateMembers)
-                requireBotPermissions(Permission.ModerateMembers)
             }
         }
     }
 
     inner class RemoveTimeoutArguments : Arguments() {
-        val user by user {
+        val removeTimeoutUser by user {
             name = "user"
             description = "The user you want to remove the timeout status from."
         }

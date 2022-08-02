@@ -5,14 +5,14 @@ plugins {
 dependencies {
     implementation(project(":discord:commands"))
     implementation(project(":discord:database"))
-    implementation(project(":discord:phishing"))
     implementation(project(":discord:events"))
     implementation(project(":discord:common"))
+    implementation(project(":discord:phishing"))
 
     implementation("dev.kord:kord-core:0.8.x-SNAPSHOT")
-    implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.5.3-SNAPSHOT")
+    implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.5.5-SNAPSHOT")
 
     // Used for Logback
-    implementation("org.codehaus.groovy:groovy:3.0.10")
+    implementation("org.codehaus.groovy:groovy:3.0.11")
     implementation("ch.qos.logback:logback-classic:1.2.11")
 }

@@ -1,13 +1,7 @@
 package dev.myosyn.nabi
 
-import dev.kord.common.entity.Snowflake
-import kotlinx.serialization.Serializable
+import org.jetbrains.exposed.sql.Table
 
-@Serializable
-data class GuildConstants(
-    val GuildOwner: Snowflake?,
-    val GuildId: Snowflake?,
-    val ModerationLogging: Snowflake? = null,
-    val WelcomeLogging: Snowflake? = null,
-    val LeavingLogging: Snowflake? = null,
-)
+object GuildConstants : Table("guildConstants") {
+    val guildOwner = uuid("id")
+}

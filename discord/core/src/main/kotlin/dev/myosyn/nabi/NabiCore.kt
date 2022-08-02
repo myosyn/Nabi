@@ -2,20 +2,47 @@ package dev.myosyn.nabi
 
 import com.kotlindiscord.kord.extensions.ExtensibleBot
 import com.kotlindiscord.kord.extensions.utils.env
+import dev.kord.common.annotation.KordExperimental
+import dev.kord.common.annotation.KordPreview
 import dev.kord.common.entity.PresenceStatus
-
-import dev.myosyn.nabi.developer.*
+import dev.kord.gateway.Intent
+import dev.kord.gateway.PrivilegedIntent
+import dev.myosyn.nabi.Constants.NABI_TOKEN
+import dev.myosyn.nabi.developer.BotBlacklistCommand
+import dev.myosyn.nabi.developer.EvalCommand
+import dev.myosyn.nabi.developer.ShutdownCommand
 import dev.myosyn.nabi.general.*
 import dev.myosyn.nabi.moderation.*
-import dev.myosyn.nabi.myosyn.*
-import dev.myosyn.nabi.setchannels.*
-import dev.myosyn.nabi.test.*
+import dev.myosyn.nabi.myosyn.EuphoriaDownload
+import dev.myosyn.nabi.myosyn.GetOffOfFeatherClient
+import dev.myosyn.nabi.setchannels.SetChannelCommand
+import dev.myosyn.nabi.suggestion.SuggestionCommand
+import dev.myosyn.nabi.tags.TagsCommand
+import dev.myosyn.nabi.test.TestEmbed
+import dev.myosyn.nabi.test.TestFailCommand
+import dev.myosyn.nabi.test.TestMessaging
+import dev.myosyn.nabi.test.TestSuccessCommand
 
+@OptIn(KordExperimental::class, PrivilegedIntent::class, KordPreview::class)
 suspend fun main() {
-    var bot = ExtensibleBot(env("TOKEN")) {
+    val bot = ExtensibleBot(env(NABI_TOKEN)) {
 
         applicationCommands {
             enabled = true
+        }
+
+        intents {
+            +Intent.DirectMessages
+            +Intent.DirectMessageTyping
+            +Intent.Guilds
+            +Intent.GuildMembers
+            +Intent.GuildMessages
+            +Intent.GuildEmojis
+            +Intent.GuildBans
+            +Intent.GuildMessageReactions
+            +Intent.GuildInvites
+            +Intent.GuildPresences
+            +Intent.GuildWebhooks
         }
 
         extensions {
@@ -27,14 +54,20 @@ suspend fun main() {
             add(::ShutdownCommand)
 
             // General directory
-            add(::InfoCommand)
+            add(::AvatarCommand)
+            add(::BotInfoCommand)
+            add(::GuildInfoCommand)
+            add(::ServerCommand)
             add(::UserCommand)
 
             // Moderation directory
             add(::BanCommand)
             add(::KickCommand)
             add(::LockChannelCommand)
+            add(::PurgeCommand)
             add(::RemoveTimeoutCommand)
+            add(::RoleCommand)
+            add(::SlowModeCommand)
             add(::TemporaryBanCommand)
             add(::TimeoutCommand)
             add(::UnbanCommand)
@@ -46,9 +79,12 @@ suspend fun main() {
             add(::GetOffOfFeatherClient)
 
             // SetChannels directory
-            add(::SetLeaveChannelCommand)
-            add(::SetModerationLoggingChannelCommand)
-            add(::SetWelcomeChannelCommand)
+            add(::SetChannelCommand)
+
+            // Suggestions
+            add(::SuggestionCommand)
+
+            add(::TagsCommand)
 
             // Test directory
             add(::TestEmbed)
@@ -62,4 +98,5 @@ suspend fun main() {
             playing("In the moonlight skies")
         }
     }
+    bot.start()
 }

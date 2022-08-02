@@ -9,47 +9,24 @@ import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.converters.impl.string
 import com.kotlindiscord.kord.extensions.extensions.Extension
-import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
-import com.kotlindiscord.kord.extensions.types.respond
-import dev.kord.common.entity.Snowflake
-import dev.kord.rest.builder.message.create.embed
-import dev.myosyn.nabi.BOT_OWNER
-import dev.myosyn.nabi.ColorUtils.SUCCESS_COLOR
+import dev.kord.common.annotation.KordPreview
 
+@KordPreview
 class EvalCommand : Extension() {
     override val name: String = "eval"
 
     override suspend fun setup() {
         publicSlashCommand(::EvalArguments) {
-            name = "Eval"
+            name = "eval"
             description = "Executes a command from Nabi herself."
 
             check {
-                allowUser(Snowflake(BOT_OWNER))
                 anyGuild()
             }
 
             action {
-
-            }
-        }
-        ephemeralSlashCommand(::EvalArguments) {
-            name = "EphemeralEval"
-            description = "Ephemerally executes a command from Nabi herself."
-
-            check {
-                allowUser(Snowflake(962256545926746132))
-                anyGuild()
-            }
-
-            action {
-                respond {
-                    embed {
-                        color = SUCCESS_COLOR
-
-                    }
-                }
+                val code = arguments.code
             }
         }
     }

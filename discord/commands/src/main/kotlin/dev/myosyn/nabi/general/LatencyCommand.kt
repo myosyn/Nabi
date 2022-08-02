@@ -5,24 +5,28 @@ import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.rest.builder.message.create.embed
-import dev.myosyn.nabi.ColorUtils.DEFAULT_COLOR
+import dev.myosyn.nabi.embeds.ColorUtils.DEFAULT_COLOR
 import kotlinx.datetime.Clock
 
-class InfoCommand : Extension() {
-    override val name: String = "info"
+class LatencyCommand : Extension() {
+    override val name: String = "Latency"
 
     override suspend fun setup() {
         publicSlashCommand {
-            name = "Info"
-            description = "Shows the info of the bot."
+            name = "latency"
+            description = "Shows the latency between you and Nabi."
 
             check {
                 anyGuild()
             }
 
             action {
+                val latency = this@LatencyCommand.kord.gateway.averagePing
+
                 respond {
                     embed {
+                        title = "Latency"
+                        description = "Your latency with Nabi is **$latency**"
                         color = DEFAULT_COLOR
                         timestamp = Clock.System.now()
                     }

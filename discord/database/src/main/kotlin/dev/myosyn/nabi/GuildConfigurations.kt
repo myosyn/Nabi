@@ -1,11 +1,16 @@
 package dev.myosyn.nabi
 
-import dev.kord.common.entity.Snowflake
-/*
-object GuildConfigurations {
-    suspend fun getConfig(inputGuildConstants: Snowflake): GuildConstants? {
-        val collection = database.getCollection<GuildConstants>()
-    }
-}
+import org.jetbrains.exposed.sql.Column
+import org.jetbrains.exposed.sql.Table
 
- */
+@OptIn(ExperimentalUnsignedTypes::class)
+object GuildConfigurations : Table("guildConfigurations") {
+    val guildId: Column<Long> = long("guild_id")
+
+    val moderationChannelId = ulong("moderationChannelId")
+    val suggestionChannelId = ulong("suggestionChannelId")
+    val welcomeChannelId = ulong("welcomeChannelId")
+    val leaveChannelId = ulong("leaveChannelId")
+
+    override val primaryKey: PrimaryKey = PrimaryKey(guildId)
+}

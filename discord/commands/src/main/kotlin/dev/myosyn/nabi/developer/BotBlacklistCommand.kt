@@ -3,13 +3,10 @@ package dev.myosyn.nabi.developer
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingString
-import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalString
 import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
-import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
-import dev.kord.common.entity.Snowflake
-import dev.myosyn.nabi.BOT_OWNER
+import com.kotlindiscord.kord.extensions.types.respond
 
 class BotBlacklistCommand : Extension() {
     override val name: String = "BotBlacklist"
@@ -21,25 +18,14 @@ class BotBlacklistCommand : Extension() {
 
             check {
                 anyGuild()
-                allowUser(Snowflake(BOT_OWNER))
             }
 
             action {
-                
-            }
-        }
+                val target = arguments.user
 
-        ephemeralSlashCommand(::BotBlacklistArguments) {
-            name = "EphemeralBotBlacklist"
-            description = "Ephemerally blacklists a user from using Nabi."
+                respond  {
 
-            check {
-                anyGuild()
-                allowUser(Snowflake(BOT_OWNER))
-            }
-
-            action {
-
+                }
             }
         }
     }

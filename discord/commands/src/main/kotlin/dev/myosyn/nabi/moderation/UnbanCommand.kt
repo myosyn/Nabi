@@ -6,16 +6,20 @@ import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingString
 import com.kotlindiscord.kord.extensions.commands.converters.impl.string
 import com.kotlindiscord.kord.extensions.extensions.Extension
-import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
+import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Permission
+import dev.kord.common.entity.Snowflake
+import dev.kord.rest.builder.message.create.embed
+import dev.myosyn.nabi.embeds.ColorUtils.SUCCESS_COLOR
+import kotlinx.datetime.Clock
 
 class UnbanCommand : Extension() {
     override val name: String = "unban"
 
     override suspend fun setup() {
         publicSlashCommand(::UnbanArguments) {
-            name = "Unban"
+            name = "unban"
             description = "Unbans a user from the server."
 
             check {
@@ -25,18 +29,19 @@ class UnbanCommand : Extension() {
             }
 
             action {
+                val target = arguments.id
+                val targetReason = arguments.reason
 
-            }
-        }
+                guild?.unban(Snowflake(target), targetReason)
 
-        ephemeralSlashCommand(::UnbanArguments) {
-            name = "EphemeralUnban"
-            description = "Ephemeral unbans a user from the server."
-
-            check {
-                anyGuild()
-                hasPermission(Permission.BanMembers)
-                requireBotPermissions(Permission.BanMembers)
+                respond {
+                    embed {
+                        title = "Unbanned User"
+                        description = "The user, $target, has been unbanned from $guild for $targetReason"
+                        color = SUCCESS_COLOR
+                        timestamp = Clock.System.now()
+                    }
+                }
             }
         }
     }

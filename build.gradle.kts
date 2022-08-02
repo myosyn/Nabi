@@ -1,8 +1,5 @@
 plugins {
     `nabi-modules`
-    // kotlin("jvm") version "1.6.20"
-    // kotlin("plugin.serialization") version "1.6.20"
-    // id("com.github.johnrengelman.shadow") version "7.1.2"
     `maven-publish`
     java
 }
@@ -27,8 +24,3 @@ allprojects {
         maven("https://maven.kotlindiscord.com/repository/maven-public/")
     }
 }
-
-
-
-// TODO: Add publication to the project as a whole
-

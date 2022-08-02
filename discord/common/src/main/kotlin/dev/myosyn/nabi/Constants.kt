@@ -2,6 +2,8 @@ package dev.myosyn.nabi
 
 import com.kotlindiscord.kord.extensions.utils.env
 
-val NABI_TOKEN = env("TOKEN")
-val MONGO_URI = env("MONGO_URI")
-val BOT_OWNER = env("BOT_OWNER")
+object Constants {
+    val NABI_TOKEN = env("TOKEN") // Required to make the bot come online.
+    val DATABASE_URI = env("POSTGRES_URI") // Required for database
+    val BOT_OWNER = env("BOT_OWNER")  // Required in developer directory
+}

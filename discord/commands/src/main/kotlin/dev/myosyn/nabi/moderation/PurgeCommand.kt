@@ -4,16 +4,17 @@ import com.kotlindiscord.kord.extensions.DiscordRelayedException
 import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
-import com.kotlindiscord.kord.extensions.commands.converters.impl.*
+import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingInt
+import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingString
+import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalChannel
 import com.kotlindiscord.kord.extensions.extensions.Extension
-import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
-import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Permission
-import dev.kord.core.behavior.channel.GuildMessageChannelBehavior
-import dev.kord.rest.builder.message.create.embed
-import dev.myosyn.nabi.ColorUtils.SUCCESS_COLOR
-import kotlinx.datetime.Clock
+import dev.kord.core.entity.channel.TextChannel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.net.HttpURLConnection
+import java.net.URL
 
 // TODO: Make it so all of the messages will direct to a hastebin after being deleted
 
@@ -21,9 +22,9 @@ class PurgeCommand : Extension() {
     override val name: String = "PurgeCommand"
 
     override suspend fun setup() {
-        publicSlashCommand(::PurgeArguments) {
-            name = "Purge" + "ClearMessages"
-            description = "Clears the specified amount of messages from the channel, if the messages are under 2 weeks old."
+        publicSlashCommand(::PurgeCommandArguments) {
+            name = "purge" + "clear"
+            description = "Deletes a select amount of messages and uploads all of the deleted messages to hastebin"
 
             check {
                 anyGuild()
@@ -32,72 +33,52 @@ class PurgeCommand : Extension() {
             }
 
             action {
-                val messageAmount = arguments.intmessages
-                val channel = channel as GuildMessageChannelBehavior
-                val reason = arguments.reason
+                val intmessages = arguments.intmessages
+                val channel = (arguments.channel?.asChannel() ?: this.channel.asChannel()) as TextChannel
 
-                respond {
-                    embed {
-                        color = SUCCESS_COLOR
-                        title = "Cleared Messages"
-                        description = "Cleared a total of ${arguments.intmessages} in ${arguments.channel} for $reason."
-                        timestamp = Clock.System.now()
-                    }
-                }
-            }
-        }
-
-        ephemeralSlashCommand(::PurgeArguments) {
-            name = "EphemeralPurge" + "EphemeralClearMessages"
-            description = "Ephemerally clears the specified amount of messages from the channel, if the messages are under 2 weeks old."
-
-            check {
-                anyGuild()
-                hasPermission(Permission.ManageMessages)
-                requireBotPermissions(Permission.ManageMessages)
-            }
-
-            action {
-                val messageAmount = arguments.intmessages
-                val channel = channel as GuildMessageChannelBehavior
-                val reason = arguments.reason
-
-                respond {
-                    embed {
-                        color = SUCCESS_COLOR
-                        title = "Cleared Messages"
-                        description = "Cleared a total of $messageAmount in $channel for $reason."
-                        timestamp = Clock.System.now()
-                    }
-                }
+                uploadMessages()
             }
         }
     }
 
-    inner class PurgeArguments : Arguments() {
+    inner class PurgeCommandArguments : Arguments() {
         val channel by optionalChannel {
             name = "Channel"
             description = "The channel you want to clear messages from. Defaults to the channel you're in."
-            validate {
-                if(null == true) {
-
-                }
-            }
         }
         val intmessages by defaultingInt {
             name = "Messages"
             description = "The number of messages you want to delete."
             defaultValue = 5
             validate {
-                if(value == 0) {
-                    throw DiscordRelayedException("You cannot clear nothing. Imagine dividing zero by zero. See how that works.")
-                }
+                 if (value < 0) {
+                     throw DiscordRelayedException("You cannot delete nothing. That is like dividing by zero. Input a value and try again you idiot.")
+                 }
             }
         }
         val reason by defaultingString {
             name = "reason"
             description = "The reason why you purged the messages."
             defaultValue = "No reason provided."
+        }
+    }
+}
+
+
+/**
+ * Uploads all deleted messages to Hastebin.
+ */
+suspend fun uploadMessages() {
+    return withContext(Dispatchers.IO) {
+        val connection = URL("https://hst.sh/").openConnection() as HttpURLConnection
+        connection.doOutput = true
+        connection.doOutput = true
+        connection.requestMethod = "POST"
+        connection.setRequestProperty("authority", "hastebin.com")
+
+
+        if (connection.responseCode != 200) {
+            throw DiscordRelayedException("Failed to upload messages to HasteBin, HasteBin responded with ${connection.responseCode}")
         }
     }
 }
