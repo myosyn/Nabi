@@ -11,14 +11,14 @@ import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Permission
+import dev.kord.core.supplier.EntitySupplyStrategy
 import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.embeds.ColorUtils.DEFAULT_COLOR
 import kotlinx.datetime.Clock
 
 
 class RoleCommand : Extension() {
-    override val name: String = "GiveRole"
-
+    override val name: String = "role"
     override suspend fun setup() {
         publicSlashCommand {
             name = "role"
@@ -59,7 +59,7 @@ class RoleCommand : Extension() {
                     val roleTarget = arguments.targetRole.asRole()
                     val reason = arguments.targetReason
 
-                    userTarget?.addRole(roleTarget.id)
+                    userTarget?.withStrategy(EntitySupplyStrategy.rest)?.addRole(roleTarget.id)
 
                     respond {
                         embed {
@@ -87,7 +87,7 @@ class RoleCommand : Extension() {
                     val roleTarget = arguments.targetRole.asRole()
                     val reason = arguments.targetReason
 
-                    userTarget?.removeRole(roleTarget.id)
+                    userTarget?.withStrategy(EntitySupplyStrategy.rest)?.removeRole(roleTarget.id)
 
                     respond {
                         embed {

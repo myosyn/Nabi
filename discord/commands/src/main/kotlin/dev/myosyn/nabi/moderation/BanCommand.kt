@@ -15,7 +15,6 @@ import dev.kord.core.behavior.ban
 import dev.kord.core.supplier.EntitySupplyStrategy
 import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.embeds.ColorUtils.DEFAULT_COLOR
-import dev.myosyn.nabi.user.UserDm.dmUser
 
 class BanCommand : Extension() {
     override val name: String = "ban"
@@ -39,13 +38,6 @@ class BanCommand : Extension() {
                     reason = providedReasons
                     deleteMessagesDays = arguments.deleteMessage
                 }
-
-                val dmTarget = dmUser (
-                    target,
-                    "You've Been Banned",
-                    "You've been banned from $guild for $providedReasons",
-                    DEFAULT_COLOR,
-                )
 
                 respond {
                     embed {

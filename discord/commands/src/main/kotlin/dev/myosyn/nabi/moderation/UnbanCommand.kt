@@ -4,12 +4,12 @@ import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.hasPermission
 import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.converters.impl.defaultingString
-import com.kotlindiscord.kord.extensions.commands.converters.impl.string
+import com.kotlindiscord.kord.extensions.commands.converters.impl.snowflake
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
 import dev.kord.common.entity.Permission
-import dev.kord.common.entity.Snowflake
+import dev.kord.core.supplier.EntitySupplyStrategy
 import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.embeds.ColorUtils.SUCCESS_COLOR
 import kotlinx.datetime.Clock
@@ -32,7 +32,7 @@ class UnbanCommand : Extension() {
                 val target = arguments.id
                 val targetReason = arguments.reason
 
-                guild?.unban(Snowflake(target), targetReason)
+                guild?.withStrategy(EntitySupplyStrategy.rest)?.unban(target, targetReason)
 
                 respond {
                     embed {
@@ -46,7 +46,7 @@ class UnbanCommand : Extension() {
         }
     }
     inner class UnbanArguments : Arguments() {
-        val id by string {
+        val id by snowflake {
             name = "User ID"
             description = "The User's ID you want to unban."
         }

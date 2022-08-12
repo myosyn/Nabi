@@ -1,7 +1,4 @@
-/*
-~~Stolen~~ Taken and modified (I forgot from where, but I owe them credit for it, please let me know!)
-I think it was Moire but that person scares me a bit (This is a joke)
- */
+
 
 package dev.myosyn.nabi.developer
 

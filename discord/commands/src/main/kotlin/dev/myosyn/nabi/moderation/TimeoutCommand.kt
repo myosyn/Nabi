@@ -8,14 +8,17 @@ import com.kotlindiscord.kord.extensions.commands.converters.impl.duration
 import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
+import com.kotlindiscord.kord.extensions.utils.timeoutUntil
 import dev.kord.common.entity.Permission
+import dev.kord.core.behavior.edit
+import dev.kord.core.supplier.EntitySupplyStrategy
 
 class TimeoutCommand : Extension() {
     override val name: String = "Timeout"
 
     override suspend fun setup() {
         publicSlashCommand(::TimeoutArguments) {
-            name = "Timeout"
+            name = "timeout"
             description = "Times out a user"
 
             check {
@@ -26,7 +29,11 @@ class TimeoutCommand : Extension() {
 
             action {
                 val target = arguments.user.asUser()
+                val duration = arguments.time
 
+                guild?.withStrategy(EntitySupplyStrategy.rest)?.getMember(target.id)?.edit {
+                    timeoutUntil
+                }
             }
         }
     }

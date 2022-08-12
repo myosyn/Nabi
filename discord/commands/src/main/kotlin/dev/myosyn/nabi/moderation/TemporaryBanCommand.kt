@@ -15,7 +15,7 @@ class TemporaryBanCommand : Extension() {
 
     override suspend fun setup() {
         publicSlashCommand(::TemporaryBanArguments) {
-            name = "TemporaryBan"
+            name = "tempban"
             description = "Temporarily bans someone."
 
             check {

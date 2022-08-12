@@ -12,7 +12,6 @@ import dev.kord.common.entity.Permission
 import dev.kord.core.supplier.EntitySupplyStrategy
 import dev.kord.rest.builder.message.create.embed
 import dev.myosyn.nabi.embeds.ColorUtils.PUNISHMENT_COLOR
-import dev.myosyn.nabi.user.UserDm.dmUser
 import kotlinx.datetime.Clock
 
 class KickCommand: Extension() {
@@ -34,14 +33,6 @@ class KickCommand: Extension() {
                 val targetReason = arguments.reason
 
                 guild?.withStrategy(EntitySupplyStrategy.rest)?.kick(target.id, targetReason)
-
-                val dmUser = dmUser (
-                    target,
-                    "Kicked from Server",
-                    "You have been kicked from $guild for $targetReason. You may join back if you pleased.",
-                    PUNISHMENT_COLOR
-                )
-
                 respond {
                     embed {
                         title = "Kicked User"
