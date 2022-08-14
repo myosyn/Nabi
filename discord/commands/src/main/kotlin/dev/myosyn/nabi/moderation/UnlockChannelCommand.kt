@@ -10,7 +10,7 @@ import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import dev.kord.common.entity.Permission
 
 class UnlockChannelCommand : Extension() {
-    override val name: String = "UnlockChannel"
+    override val name: String = "unlockchannel"
 
     override suspend fun setup() {
         publicSlashCommand(::UnlockChannelArguments) {
