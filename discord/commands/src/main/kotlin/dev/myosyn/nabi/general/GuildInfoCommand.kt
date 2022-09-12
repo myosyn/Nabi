@@ -28,7 +28,6 @@ class GuildInfoCommand : Extension() {
                 val guildMemberAmount = guild?.withStrategy(EntitySupplyStrategy.rest)?.fetchGuild()?.memberCount
                 val guildBoostLevel = guild?.withStrategy(EntitySupplyStrategy.rest)?.fetchGuild()?.premiumSubscriptionCount
                 val guildOwner = guild?.withStrategy(EntitySupplyStrategy.rest)?.fetchGuild()?.getOwner()
-                val guild = guild?.withStrategy(EntitySupplyStrategy.rest)?.fetchGuild() //FIXME: This will not syntax highlight wtf
 
                 respond {
                     embed {

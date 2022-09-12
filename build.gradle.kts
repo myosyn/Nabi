@@ -14,7 +14,7 @@ repositories {
 
 allprojects {
     group = "dev.myosyn.nabi"
-    version = "1.0.0-PRE1" + "-SNAPSHOT"
+    version = "1.0.0-PRE1"
 
     repositories {
         mavenCentral()

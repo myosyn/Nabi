@@ -13,7 +13,7 @@ class BotBlacklistCommand : Extension() {
 
     override suspend fun setup() {
         publicSlashCommand(::BotBlacklistArguments) {
-            name = "blacklistfrombot"
+            name = "botblacklist"
             description = "Blacklists a user from using Nabi. This is an Owner only command"
 
             check {

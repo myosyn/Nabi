@@ -1,5 +1,3 @@
-
-
 package dev.myosyn.nabi.developer
 
 import com.kotlindiscord.kord.extensions.checks.anyGuild

@@ -9,17 +9,14 @@ repositories {
 dependencies {
     implementation(project(":discord:common"))
 
-    implementation("io.ktor:ktor-server-core:2.0.3")
-    implementation("io.ktor:ktor-server-netty:2.0.3")
+    implementation(libs.bundles.kotlinLibs.bundle)
+    implementation(libs.bundles.ktor.bundle)
+    implementation(libs.bundles.kordLibs.bundle)
 
     // Mongo apparently gets rejected because of Discord's hatred of it so I had to go prostgres
-    implementation("org.postgresql:postgresql:42.3.6")
+    implementation("org.postgresql:postgresql:42.5.0")
 
-    implementation("org.jetbrains.exposed:exposed-core:0.38.2")
-    implementation("org.jetbrains.exposed:exposed-kotlin-datetime:0.38.2")
-    implementation("org.jetbrains.exposed:exposed-spring-boot-starter:0.38.2")
-
-    // I need this so I can snowflake stuff yk yk
-    implementation("dev.kord:kord-core:0.8.x-SNAPSHOT")
-    implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.5.5-SNAPSHOT")
+    implementation("org.jetbrains.exposed:exposed-core:0.39.2")
+    implementation("org.jetbrains.exposed:exposed-kotlin-datetime:0.39.2")
+    implementation("org.jetbrains.exposed:exposed-spring-boot-starter:0.39.2")
 }

@@ -9,10 +9,11 @@ dependencies {
     implementation(project(":discord:common"))
     implementation(project(":discord:phishing"))
 
-    implementation("dev.kord:kord-core:0.8.x-SNAPSHOT")
-    implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.5.5-SNAPSHOT")
+    implementation(libs.bundles.kotlinLibs.bundle)
+    implementation(libs.bundles.ktor.bundle)
+    implementation(libs.bundles.kordLibs.bundle)
 
     // Used for Logback
-    implementation("org.codehaus.groovy:groovy:3.0.11")
-    implementation("ch.qos.logback:logback-classic:1.2.11")
+    implementation("org.codehaus.groovy:groovy:3.0.12")
+    implementation("ch.qos.logback:logback-classic:1.4.0")
 }
