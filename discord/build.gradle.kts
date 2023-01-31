@@ -9,6 +9,7 @@ plugins {
 dependencies {
     implementation(libs.bundles.kord)
     implementation(libs.bundles.database)
+    implementation(libs.logback)
 }
 
 tasks {

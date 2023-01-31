@@ -6,11 +6,12 @@ import com.kotlindiscord.kord.extensions.commands.converters.impl.optionalUser
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
 import com.kotlindiscord.kord.extensions.types.respond
-import dev.kord.common.entity.UserFlag
 import dev.kord.rest.builder.message.create.embed
+import kotlinx.datetime.Clock
 
 class UserCommand : Extension() {
     override val name: String = "user"
+    override val bundle: String = "nabi.UserCommand"
 
     override suspend fun setup() {
         publicSlashCommand(::UserArguments) {
@@ -26,24 +27,21 @@ class UserCommand : Extension() {
 
                 respond {
                     embed {
-
+                        title = translate("embed.title", arrayOf(target.username, target.discriminator))
+                        field {
+                            name = translate("embed.UserInformation.title")
+                        }
+                        timestamp = Clock.System.now()
                     }
                 }
             }
         }
     }
+}
 
-    private fun getUserFlags(flags: UserFlag): String {
-        when (flags) {
-            UserFlag.VerifiedBot -> ""
-            else -> {} // return with nothing
-        }
-    }
-
-    inner class UserArguments : Arguments() {
-        val user by optionalUser {
-            name = "user"
-            description = "The user you want to look up."
-        }
+class UserArguments : Arguments() {
+    val user by optionalUser {
+        name = "user"
+        description = "The user you want to look up."
     }
 }

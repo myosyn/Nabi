@@ -11,33 +11,44 @@ import dev.kord.rest.builder.message.create.embed
 
 class ChannelCommand : Extension() {
     override val name: String = "channel"
+    override val bundle: String = "nabi.ChannelCommand"
 
     override suspend fun setup() {
-        publicSlashCommand {
+        publicSlashCommand(::ChannelArguments) {
             name = this@ChannelCommand.name
             description = "Provides information of a specified channel in this current guild."
+
+            allowInDms = false
 
             check {
                 anyGuild()
             }
 
             action {
-                val channel = this.channel.asChannel()
-                val name = channel.data.name
+                val target = arguments.channel ?: this.channel.asChannel()
+                val name = target.kord.rest
 
                 respond {
                     embed {
-                        when (channel.type) {
+                        title = "$name's information"
+
+                        when (target.type) {
 
                             ChannelType.GuildText -> {
                                 field {
-
+                                    value = translate("embed.TextChannel")
                                 }
                             }
 
                             ChannelType.PublicGuildThread, ChannelType.PrivateThread -> {
                                 field {
+                                    value = "Channel Type: Threads"
+                                }
+                            }
 
+                            ChannelType.GuildVoice -> {
+                                field {
+                                    value = "Channel Type: Voice Channel"
                                 }
                             }
 
