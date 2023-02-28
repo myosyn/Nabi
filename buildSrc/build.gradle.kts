@@ -10,7 +10,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("gradle-plugin"))
-    implementation("org.jetbrains.kotlinx:atomicfu-gradle-plugin:0.17.2")
+    implementation("org.jetbrains.kotlinx:atomicfu-gradle-plugin:0.20.0")
     implementation("com.google.devtools.ksp", "com.google.devtools.ksp.gradle.plugin", "1.6.21-1.0.5")
 
     implementation(kotlin("gradle-plugin", version = "1.6.21"))
