@@ -2,7 +2,7 @@ plugins {
     kotlin("jvm") version "1.7.21" apply false
     kotlin("plugin.serialization") version "1.7.21" apply false
     id("org.jetbrains.dokka") version "1.7.20"
-    id("com.github.johnrengelman.shadow") version "7.1.2" apply false
+    id("com.github.johnrengelman.shadow") version "8.1.0" apply false
     application
     java
 }
