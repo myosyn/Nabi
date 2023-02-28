@@ -13,6 +13,6 @@ dependencies {
     implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.5.3-SNAPSHOT")
 
     // Used for Logback
-    implementation("org.codehaus.groovy:groovy:3.0.10")
+    implementation("org.codehaus.groovy:groovy:3.0.15")
     implementation("ch.qos.logback:logback-classic:1.4.1")
 }
