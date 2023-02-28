@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  nabi-postgres:
+    image: postgres:15.2
+    container_name: "nabi-postgresql"
+    restart: always
+    ports:
+      - "80:80"

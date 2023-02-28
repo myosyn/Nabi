@@ -22,16 +22,3 @@ rootProject.name = "Nabi"
 // Generalization of the paths idk I just need this so it would work
 
 include(":discord")
-include(":discord:commands")
-include(":discord:database")
-
-gradle.settingsEvaluated{
-    // We have to use Java 11 for this because apparently I can't make it default to Java 18
-    if(!JavaVersion.current().isJava11Compatible) {
-        throw GradleException("This build requires JDK 18. You're currently using ${getBuildJavaHome()}. Please make sure you're on this version, and try again.")
-    }
-}
-
-fun getBuildJavaHome(){
-    System.getProperty("java.home")
-}

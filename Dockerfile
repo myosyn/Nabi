@@ -1,8 +1,9 @@
 FROM eclipse-temurin:17-alpine AS builder
 
-COPY build/libs/Nabi-*-all.jar /usr/local/lib/Nabi.jar
-
-RUN mkdir /bot
-RUN mkdir /data
+WORKDIR /opt/nabi
+COPY build/libs/discord/discord.jar ./discord.jar
+ENTRYPOINT java \
+    -Xmx4g \
+    nabi.jar
 
 
