@@ -1,12 +1,9 @@
 pluginManagement {
     repositories {
-        mavenLocal()
         gradlePluginPortal()
         mavenCentral()
-        google()
         maven("https://jitpack.io")
         maven("https://oss.sonatype.org/content/repositories/snapshots")
-        maven("https://maven.kotlindiscord.com/repository/maven-public/")
     }
     resolutionStrategy {
         eachPlugin{
@@ -21,4 +18,4 @@ rootProject.name = "Nabi"
 
 // Generalization of the paths idk I just need this so it would work
 
-include(":discord")
+include(":bot", ":bot:valement", ":commons:locales")
