@@ -1,5 +1,5 @@
 [versions]
-kord = "0.8.x-SNAPSHOT"
+kord = "0.8.0-M17"
 kordex = "1.5.6-SNAPSHOT"
 logback = "1.4.5"
 
