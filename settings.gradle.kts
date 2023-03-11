@@ -19,4 +19,4 @@ rootProject.name = "Nabi"
 
 // Generalization of the paths idk I just need this so it would work
 
-include(":bot", ":bot:valement", ":commons:locales")
+include(":bot", ":bot:valement", ":bot:discord", ":commons:locales")

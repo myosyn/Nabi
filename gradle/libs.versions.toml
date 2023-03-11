@@ -16,6 +16,10 @@ prometheus = "0.16.0"
 [libraries]
 kord-core = { module = "dev.kord:kord-core", version.ref = "kord" }
 kord-rest = { module = "dev.kord:kord-rest", version.ref = "kord" }
+kord-common = { module = "dev.kord:kord-common", version.ref = "kord" }
+kord-gateway = { module = "dev.kord:kord-gateway", version.ref = "kord" }
+# We don't need voice right now
+# kord-voice = { module = "dev.kord:kord-voice", version.ref = "kord" }
 
 kordex = { module = "com.kotlindiscord.kord.extensions:kord-extensions", version.ref = "kordex" }
 

@@ -4,6 +4,6 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.kord.core)
     implementation(libs.kord.rest)
+    implementation(libs.kord.core)
 }
