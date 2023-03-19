@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":bot:valement"))
+    implementation(project(":bot:discordinteraktions"))
 
     implementation(libs.kord.common)
     implementation(libs.kord.rest)
