@@ -4,10 +4,11 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":bot:discordinteraktions"))
+    api(project(":bot:discordinteraktions"))
 
-    implementation(libs.kord.common)
-    implementation(libs.kord.rest)
+    api(libs.kord.common)
+    api(libs.kord.rest)
+    api(libs.kord.core)
     implementation(libs.logback)
     implementation(libs.dotenv)
     implementation(libs.bundles.database)

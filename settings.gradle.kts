@@ -23,5 +23,6 @@ include(
     ":bot:discordinteraktions", // Forked version of Discord InteraKTions.
     ":bot:discord-kord",
     ":bot:discord-jda",
+    ":bot:gateway",
     ":commons:locales"
 )

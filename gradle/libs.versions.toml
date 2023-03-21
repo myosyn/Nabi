@@ -1,28 +1,24 @@
 [versions]
+jda = "5.0.0-beta.6"
+jda-ktx = "9fc90f6"
 kord = "0.8.x-SNAPSHOT"
-kordex = "1.5.6-SNAPSHOT"
 logback = "1.4.5"
-
-# Databases
 exposed = "0.41.1"
 postgresql = "42.5.4"
 hikaricp = "5.0.1"
-
-# Stats
 prometheus = "0.16.0"
-
-# Shut up
 dotenv = "6.4.1"
 
 [libraries]
+jda = { module = "net.dv8tion:JDA", version.ref = "jda" }
+jda-ktx = { module = "com.github.minndevelopment:jda-ktx", version.ref = "jda-ktx" }
+
 kord-core = { module = "dev.kord:kord-core", version.ref = "kord" }
 kord-rest = { module = "dev.kord:kord-rest", version.ref = "kord" }
 kord-common = { module = "dev.kord:kord-common", version.ref = "kord" }
 kord-gateway = { module = "dev.kord:kord-gateway", version.ref = "kord" }
 # We don't need voice right now
 # kord-voice = { module = "dev.kord:kord-voice", version.ref = "kord" }
-
-kordex = { module = "com.kotlindiscord.kord.extensions:kord-extensions", version.ref = "kordex" }
 
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 
