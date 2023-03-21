@@ -21,6 +21,7 @@ rootProject.name = "Nabi"
 
 include(
     ":bot:discordinteraktions", // Forked version of Discord InteraKTions.
-    ":bot:discord",
+    ":bot:discord-kord",
+    ":bot:discord-jda",
     ":commons:locales"
 )

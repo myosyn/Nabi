@@ -1,14 +1,16 @@
 # Discord
-
-**NOTE:** In the near future, we hope to deprecate the main bot (In the source root folder), as KordEx currently doesn't
-suffice our needs. We will plan to switch over to using our in-bot framework, which is a fork of Discord InteraKTions.
+Contains all of the files related to the Discord bot.
 
 ## Directories
 
-``discord``
+* ``discord-kord``
+  The directory of which we keep the Kord side of the Discord bot on.
 
-The directory of which we keep our Discord bot in.
+* ``discordinteraktions``
+  A REST-only framework for Kord that is based on pain and misery.
 
-``valement``
+* ``gateway``
+  Launches both instances of Kord and JDA in a synchronized pattern.
 
-A REST-only framework for Kord that is based on pain and misery. 
+* ``discord-jda``
+  The directory of which we keep the JDA side of the Discord bot on.
