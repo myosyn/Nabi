@@ -4,5 +4,5 @@ import live.shuuyu.discordinteraktions.common.commands.SlashCommandDeclarationWr
 import live.shuuyu.nabi.NabiCore
 
 // Todo: Yeah I don't know anymore
-abstract class NabiCommandDeclarationWrapper(nabi: NabiCore) : SlashCommandDeclarationWrapper {
+abstract class NabiSlashCommandDeclarationWrapper(nabi: NabiCore) : SlashCommandDeclarationWrapper {
 }

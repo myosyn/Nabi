@@ -5,6 +5,7 @@ import live.shuuyu.discordinteraktions.common.commands.ApplicationCommandContext
 import live.shuuyu.discordinteraktions.common.commands.SlashCommandExecutor
 import live.shuuyu.discordinteraktions.common.commands.options.ApplicationCommandOptions
 import live.shuuyu.discordinteraktions.common.commands.options.SlashCommandArguments
+import net.perfectdreams.discordinteraktions.common.utils.field
 
 class UserExecutor : SlashCommandExecutor() {
     inner class Options : ApplicationCommandOptions() {
@@ -14,14 +15,24 @@ class UserExecutor : SlashCommandExecutor() {
     override val options = Options()
 
     override suspend fun execute(context: ApplicationCommandContext, args: SlashCommandArguments) {
-        val target = args[options.user] ?: context.sender.asUser()
+        val target = args[options.user] ?: context.sender
 
         context.sendMessage {
             embed {
                 title = target.username
 
-                TODO("Finish this later I forgot to do this last night")
+                field(
+                    "» User Information",
+                    "**User ID:** ${target.id} \n" +
+                            "**Mention:** ${target.mention} \n",
+                    false
+                )
+
             }
         }
+    }
+
+    private fun userFlags() {
+
     }
 }

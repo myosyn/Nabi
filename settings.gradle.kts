@@ -20,7 +20,6 @@ rootProject.name = "Nabi"
 // Generalization of the paths idk I just need this so it would work
 
 include(
-    ":bot",
     ":bot:discordinteraktions", // Forked version of Discord InteraKTions.
     ":bot:discord",
     ":commons:locales"

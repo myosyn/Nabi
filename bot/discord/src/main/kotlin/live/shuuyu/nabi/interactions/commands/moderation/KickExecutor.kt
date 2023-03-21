@@ -9,7 +9,7 @@ import live.shuuyu.discordinteraktions.common.commands.options.ApplicationComman
 import live.shuuyu.discordinteraktions.common.commands.options.SlashCommandArguments
 import live.shuuyu.nabi.NabiCore
 
-class KickExecutor : SlashCommandExecutor() {
+class KickExecutor(val nabi: NabiCore) : SlashCommandExecutor() {
     inner class Options : ApplicationCommandOptions() {
         val user = user("user", "The user you want to kick from the server.")
         val reason = optionalString("reason", "The reason why this user is being kicked.")
@@ -20,7 +20,7 @@ class KickExecutor : SlashCommandExecutor() {
     override suspend fun execute(context: ApplicationCommandContext, args: SlashCommandArguments) {
         val user = args[options.user]
         val reason = args[options.reason] ?: "No reason provided."
-        // val guild = Guild(GuildData.from(), )
+        val rest = nabi.rest
 
         /*
         val KickData = KickData(

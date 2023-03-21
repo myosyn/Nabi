@@ -8,6 +8,8 @@ dependencies {
 
     implementation(libs.kord.common)
     implementation(libs.kord.rest)
+    implementation(libs.logback)
+    implementation(libs.dotenv)
     implementation(libs.bundles.database)
     implementation(libs.prometheus)
 }

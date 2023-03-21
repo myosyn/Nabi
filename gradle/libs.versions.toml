@@ -11,7 +11,8 @@ hikaricp = "5.0.1"
 # Stats
 prometheus = "0.16.0"
 
-# We're going to need this to offload everything to an http server.
+# Shut up
+dotenv = "6.4.1"
 
 [libraries]
 kord-core = { module = "dev.kord:kord-core", version.ref = "kord" }
@@ -32,6 +33,8 @@ exposed-dao = { module = "org.jetbrains.exposed:exposed-dao", version.ref = "exp
 hikaricp = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp" }
 
 prometheus = { module = "io.prometheus:simpleclient", version.ref = "prometheus" }
+
+dotenv = { module = "io.github.cdimascio:dotenv-kotlin", version.ref = "dotenv" }
 
 [bundles]
 database = [

@@ -1,29 +1,29 @@
 package live.shuuyu.nabi.interactions
 
-import dev.kord.common.entity.Snowflake
 import live.shuuyu.discordinteraktions.common.DiscordInteraKTions
+import live.shuuyu.nabi.NabiCore
 import live.shuuyu.nabi.interactions.commands.general.declarators.UserDeclarator
 import live.shuuyu.nabi.interactions.commands.moderation.declarators.KickDeclarator
 import live.shuuyu.nabi.interactions.commands.moderation.declarators.SlowmodeDeclarator
 import live.shuuyu.nabi.interactions.commands.moderation.declarators.TimeoutDeclarator
+import mu.KotlinLogging
 
 class RegisterInteractions(
-    val token: String
+    private val nabi: NabiCore,
+    val interaktions: DiscordInteraKTions
 ) {
     companion object {
-        val APPID = Snowflake("927084188237180979")
-        // App ID is already public so I don't mind putting it here
+        val logger = KotlinLogging.logger {}
     }
 
-    val interactions = DiscordInteraKTions(token, APPID)
-
     suspend fun registerCommands() {
-        interactions.manager.register(UserDeclarator)
+        interaktions.manager.register(UserDeclarator)
 
+        logger.info { "Registering all moderation related commands..." }
         // Moderation specific commands
-        interactions.manager.register(KickDeclarator)
-        interactions.manager.register(SlowmodeDeclarator)
-        interactions.manager.register(TimeoutDeclarator)
-        interactions.updateAllGlobalCommands()
+        interaktions.manager.register(KickDeclarator(nabi))
+        interaktions.manager.register(SlowmodeDeclarator)
+        interaktions.manager.register(TimeoutDeclarator)
+        interaktions.updateAllGlobalCommands()
     }
 }
