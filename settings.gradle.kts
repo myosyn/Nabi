@@ -24,5 +24,6 @@ include(
     ":bot:discord-kord",
     ":bot:discord-jda",
     ":bot:gateway",
+    ":bot:common",
     ":commons:locales"
 )

@@ -5,6 +5,7 @@ plugins {
 
 dependencies {
     api(project(":bot:discordinteraktions"))
+    api(project(":bot:common"))
 
     api(libs.kord.common)
     api(libs.kord.rest)

@@ -3,8 +3,8 @@ If you are contributing, you better know what you're doing.
 
 Nabi will remain a community driven bot for the foreseeable future, being completely free for usage, as
 well as most parts remaining open source for the foreseeable future. However, some parts are required
-to stay closed source, most likely because of the fact that people can abuse said features, and make
-work arounds for that feature. Therefore, we cannot risk letting those features out in the wild.
+to stay closed source, most likely because people can abuse said features, and make
+workarounds for that feature. Therefore, we cannot risk letting those features out in the wild.
 
 Since Nabi is a community maintained bot, we are very restrictive of the stuff that gets through and
 the things that don't. We really only want quality features that aren't useless, and if they prove to
@@ -25,12 +25,12 @@ You must state:
 * What it does
 * Why we should add it
 
-Based on this, we will ask the two owners (@euphorxa & @vispin) for their opinions. If they accept,
+Based on this, we will ask the two owners for their opinions. If they accept,
 the pull request will be merged into the repository. If not, it will be closed, and the feature won't
-be merged into the repository. 
+be merged into the repository.
 
 Also, if there are any issues that have the label `Feature` on it, these pull requests have higher priority
-over the rest, primarily because we absolutely need these features completed as soon as possible to help the 
+over the rest, primarily because we absolutely need these features completed as soon as possible to help the
 development of the bot.
 
 The main reason behind this system is to find out who would be a large help with the development of Nabi,

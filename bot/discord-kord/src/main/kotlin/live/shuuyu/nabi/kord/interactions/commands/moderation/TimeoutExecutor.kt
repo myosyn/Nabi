@@ -28,7 +28,7 @@ class TimeoutExecutor : SlashCommandExecutor() {
         val guild = Guild(data.guild, nabi.kord)
         val user = User(data.user, nabi.kord)
 
-
+        
     }
 
     class TimeoutData(

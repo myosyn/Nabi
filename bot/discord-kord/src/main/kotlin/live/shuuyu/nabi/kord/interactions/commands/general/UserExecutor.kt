@@ -1,11 +1,11 @@
 package live.shuuyu.nabi.kord.interactions.commands.general
 
+import kotlinx.datetime.Clock
 import live.shuuyu.discordinteraktions.common.builder.message.embed
 import live.shuuyu.discordinteraktions.common.commands.ApplicationCommandContext
 import live.shuuyu.discordinteraktions.common.commands.SlashCommandExecutor
 import live.shuuyu.discordinteraktions.common.commands.options.ApplicationCommandOptions
 import live.shuuyu.discordinteraktions.common.commands.options.SlashCommandArguments
-import net.perfectdreams.discordinteraktions.common.utils.field
 
 class UserExecutor : SlashCommandExecutor() {
     inner class Options : ApplicationCommandOptions() {
@@ -20,14 +20,12 @@ class UserExecutor : SlashCommandExecutor() {
         context.sendMessage {
             embed {
                 title = target.username
-
-                field(
-                    "» User Information",
-                    "**User ID:** ${target.id} \n" +
-                            "**Mention:** ${target.mention} \n",
-                    false
-                )
-
+                field {
+                    name = "**» User Information**"
+                    value = "**Mention:** ${target.mention} \n" +
+                            "**ID:** ${target.id}"
+                }
+                timestamp = Clock.System.now()
             }
         }
     }
