@@ -19,7 +19,7 @@ class RegisterInteractions(
     }
 
     suspend fun registerCommands() {
-        interaktions.manager.register(UserDeclarator)
+        interaktions.manager.register(UserDeclarator(nabi))
 
         logger.info { "Registering all moderation related commands..." }
         // Moderation specific commands

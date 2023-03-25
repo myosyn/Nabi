@@ -27,8 +27,6 @@ class TimeoutExecutor : SlashCommandExecutor() {
     private suspend fun timeout(nabi: NabiKordCore, data: TimeoutData) {
         val guild = Guild(data.guild, nabi.kord)
         val user = User(data.user, nabi.kord)
-
-        
     }
 
     class TimeoutData(
