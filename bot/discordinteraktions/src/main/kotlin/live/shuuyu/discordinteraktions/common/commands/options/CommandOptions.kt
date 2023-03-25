@@ -82,16 +82,19 @@ interface IntegerCommandOption : GenericCommandOption<Long>, ChoiceableCommandOp
     val maxValue: Long?
 
     override fun register(builder: BaseInputChatBuilder) {
-        builder.int(this@IntegerCommandOption.name, this@IntegerCommandOption.description) {
-            this.nameLocalizations = this@IntegerCommandOption.nameLocalizations?.toMutableMap()
-            this.descriptionLocalizations = this@IntegerCommandOption.descriptionLocalizations?.toMutableMap()
-            this.required = this@IntegerCommandOption.required
-            this.autocomplete = this@IntegerCommandOption.autocompleteExecutor != null
-            this.minValue = this@IntegerCommandOption.minValue
-            this.maxValue = this@IntegerCommandOption.maxValue
-
+        builder.integer(this@IntegerCommandOption.name, this@IntegerCommandOption.description) {
+            nameLocalizations = this@IntegerCommandOption.nameLocalizations?.toMutableMap()
+            descriptionLocalizations = this@IntegerCommandOption.descriptionLocalizations?.toMutableMap()
+            required = this@IntegerCommandOption.required
+            autocomplete = autocompleteExecutor != null
+            minValue = this@IntegerCommandOption.minValue
+            maxValue = this@IntegerCommandOption.maxValue
             this@IntegerCommandOption.choices?.forEach { choice ->
-                choice(choice.name, choice.value, choice.nameLocalizations.optional())
+                choice(
+                    choice.name,
+                    choice.value,
+                    choice.nameLocalizations.optional()
+                )
             }
         }
     }

@@ -1,7 +1,7 @@
 [versions]
 jda = "5.0.0-beta.6"
 jda-ktx = "9fc90f6"
-kord = "0.8.x-SNAPSHOT"
+kord = "0.9.x-SNAPSHOT"
 logback = "1.4.5"
 exposed = "0.41.1"
 postgresql = "42.5.4"

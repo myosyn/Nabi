@@ -82,7 +82,7 @@ class KordComponentChecker(val kord: Kord, val interactionsManager: Interactions
                 }
             }
 
-            ComponentType.SelectMenu -> {
+            ComponentType.StringSelect -> {
                 val executorDeclaration = interactionsManager.componentExecutorDeclarations
                     .asSequence()
                     .filter {
