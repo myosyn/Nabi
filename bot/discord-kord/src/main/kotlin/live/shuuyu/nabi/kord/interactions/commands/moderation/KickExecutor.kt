@@ -3,6 +3,7 @@ package live.shuuyu.nabi.kord.interactions.commands.moderation
 import dev.kord.core.cache.data.GuildData
 import dev.kord.core.cache.data.UserData
 import dev.kord.core.entity.Guild
+import dev.kord.core.entity.User
 import live.shuuyu.discordinteraktions.common.commands.ApplicationCommandContext
 import live.shuuyu.discordinteraktions.common.commands.SlashCommandExecutor
 import live.shuuyu.discordinteraktions.common.commands.options.ApplicationCommandOptions
@@ -31,10 +32,10 @@ class KickExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
          */
     }
 
-    private suspend fun kick(nabi: NabiKordCore, data: KickData) {
+    private suspend fun kick(data: KickData) {
         val reason = data.reason
         val guild = Guild(data.guild, nabi.kord)
-        val user = data.user
+        val user = User(data.user, nabi.kord)
 
         guild.kick(user.id, reason)
     }

@@ -26,7 +26,7 @@ class RegisterInteractions(
         interaktions.manager.register(KickDeclarator(nabi))
         interaktions.manager.register(NabiInfoDeclarator(nabi))
         interaktions.manager.register(RoleInfoDeclarator)
-        interaktions.manager.register(SlowmodeDeclarator)
+        interaktions.manager.register(SlowmodeDeclarator(nabi))
         interaktions.manager.register(TimeoutDeclarator)
         interaktions.updateAllGlobalCommands()
     }
