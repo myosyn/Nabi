@@ -1,12 +1,13 @@
 package live.shuuyu.nabi.kord.interactions.commands.general
 
 import dev.kord.common.entity.ChannelType
-import live.shuuyu.discordinteraktions.common.builder.message.embed
-import live.shuuyu.discordinteraktions.common.commands.ApplicationCommandContext
-import live.shuuyu.discordinteraktions.common.commands.SlashCommandExecutor
-import live.shuuyu.discordinteraktions.common.commands.options.ApplicationCommandOptions
-import live.shuuyu.discordinteraktions.common.commands.options.SlashCommandArguments
 import live.shuuyu.nabi.kord.NabiKordCore
+import net.perfectdreams.discordinteraktions.common.builder.message.actionRow
+import net.perfectdreams.discordinteraktions.common.builder.message.embed
+import net.perfectdreams.discordinteraktions.common.commands.ApplicationCommandContext
+import net.perfectdreams.discordinteraktions.common.commands.SlashCommandExecutor
+import net.perfectdreams.discordinteraktions.common.commands.options.ApplicationCommandOptions
+import net.perfectdreams.discordinteraktions.common.commands.options.SlashCommandArguments
 
 class ChannelInfoExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
     inner class Options : ApplicationCommandOptions() {
@@ -33,6 +34,9 @@ class ChannelInfoExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
                     name = "Channel Information"
                     value = "**Channel Type:** $channelType"
                 }
+            }
+            actionRow {
+                
             }
         }
     }

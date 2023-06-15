@@ -1,6 +1,5 @@
 package live.shuuyu.nabi.kord.interactions
 
-import live.shuuyu.discordinteraktions.common.DiscordInteraKTions
 import live.shuuyu.nabi.kord.NabiKordCore
 import live.shuuyu.nabi.kord.interactions.commands.general.declarators.NabiInfoDeclarator
 import live.shuuyu.nabi.kord.interactions.commands.general.declarators.RoleInfoDeclarator
@@ -9,6 +8,7 @@ import live.shuuyu.nabi.kord.interactions.commands.moderation.declarators.KickDe
 import live.shuuyu.nabi.kord.interactions.commands.moderation.declarators.SlowmodeDeclarator
 import live.shuuyu.nabi.kord.interactions.commands.moderation.declarators.TimeoutDeclarator
 import mu.KotlinLogging
+import net.perfectdreams.discordinteraktions.common.DiscordInteraKTions
 
 class RegisterInteractions(
     private val nabi: NabiKordCore,
@@ -29,5 +29,9 @@ class RegisterInteractions(
         interaktions.manager.register(SlowmodeDeclarator(nabi))
         interaktions.manager.register(TimeoutDeclarator)
         interaktions.updateAllGlobalCommands()
+    }
+
+    suspend fun registerGuildRelatedCommands() {
+
     }
 }

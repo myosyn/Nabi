@@ -6,4 +6,5 @@ plugins {
 dependencies {
     implementation(project(":bot:discord-jda"))
     implementation(project(":bot:discord-kord"))
+    implementation(libs.dotenv)
 }

@@ -5,5 +5,5 @@ plugins {
 
 dependencies {
     api(libs.jda)
-    api(libs.jda.ktx)
+    // api(libs.jda.ktx)
 }

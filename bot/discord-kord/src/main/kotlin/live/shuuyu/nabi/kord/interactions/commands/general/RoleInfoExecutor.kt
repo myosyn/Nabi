@@ -5,11 +5,11 @@ import dev.kord.common.toMessageFormat
 import dev.kord.rest.Image
 import kotlinx.coroutines.flow.count
 import kotlinx.datetime.Clock
-import live.shuuyu.discordinteraktions.common.builder.message.embed
-import live.shuuyu.discordinteraktions.common.commands.ApplicationCommandContext
-import live.shuuyu.discordinteraktions.common.commands.SlashCommandExecutor
-import live.shuuyu.discordinteraktions.common.commands.options.ApplicationCommandOptions
-import live.shuuyu.discordinteraktions.common.commands.options.SlashCommandArguments
+import net.perfectdreams.discordinteraktions.common.builder.message.embed
+import net.perfectdreams.discordinteraktions.common.commands.ApplicationCommandContext
+import net.perfectdreams.discordinteraktions.common.commands.SlashCommandExecutor
+import net.perfectdreams.discordinteraktions.common.commands.options.ApplicationCommandOptions
+import net.perfectdreams.discordinteraktions.common.commands.options.SlashCommandArguments
 
 class RoleInfoExecutor : SlashCommandExecutor() {
     inner class Options : ApplicationCommandOptions() {

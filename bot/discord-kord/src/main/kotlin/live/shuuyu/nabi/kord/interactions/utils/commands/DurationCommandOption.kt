@@ -4,7 +4,7 @@ import dev.kord.common.entity.CommandArgument
 import dev.kord.common.entity.DiscordInteraction
 import dev.kord.core.Kord
 import dev.kord.rest.builder.interaction.BaseInputChatBuilder
-import live.shuuyu.discordinteraktions.common.commands.options.InteraKTionsCommandOption
+import net.perfectdreams.discordinteraktions.common.commands.options.InteraKTionsCommandOption
 import kotlin.time.Duration
 
 class DurationCommandOption(

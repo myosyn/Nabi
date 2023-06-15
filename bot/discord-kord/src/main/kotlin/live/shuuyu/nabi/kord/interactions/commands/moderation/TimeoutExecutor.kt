@@ -5,11 +5,11 @@ import dev.kord.core.cache.data.MemberData
 import dev.kord.core.cache.data.UserData
 import dev.kord.core.entity.Member
 import kotlinx.datetime.Clock
-import live.shuuyu.discordinteraktions.common.commands.ApplicationCommandContext
-import live.shuuyu.discordinteraktions.common.commands.SlashCommandExecutor
-import live.shuuyu.discordinteraktions.common.commands.options.ApplicationCommandOptions
-import live.shuuyu.discordinteraktions.common.commands.options.SlashCommandArguments
 import live.shuuyu.nabi.kord.NabiKordCore
+import net.perfectdreams.discordinteraktions.common.commands.ApplicationCommandContext
+import net.perfectdreams.discordinteraktions.common.commands.SlashCommandExecutor
+import net.perfectdreams.discordinteraktions.common.commands.options.ApplicationCommandOptions
+import net.perfectdreams.discordinteraktions.common.commands.options.SlashCommandArguments
 import kotlin.time.Duration
 
 class TimeoutExecutor : SlashCommandExecutor() {

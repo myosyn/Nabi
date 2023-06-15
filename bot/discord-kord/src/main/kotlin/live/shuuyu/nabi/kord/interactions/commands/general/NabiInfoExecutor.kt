@@ -4,13 +4,13 @@ import dev.kord.common.annotation.KordExperimental
 import dev.kord.common.annotation.KordUnsafe
 import dev.kord.rest.route.Route
 import kotlinx.datetime.Clock
-import live.shuuyu.discordinteraktions.common.builder.message.actionRow
-import live.shuuyu.discordinteraktions.common.builder.message.embed
-import live.shuuyu.discordinteraktions.common.commands.ApplicationCommandContext
-import live.shuuyu.discordinteraktions.common.commands.SlashCommandExecutor
-import live.shuuyu.discordinteraktions.common.commands.options.SlashCommandArguments
 import live.shuuyu.nabi.common.Constants
 import live.shuuyu.nabi.kord.NabiKordCore
+import net.perfectdreams.discordinteraktions.common.builder.message.actionRow
+import net.perfectdreams.discordinteraktions.common.builder.message.embed
+import net.perfectdreams.discordinteraktions.common.commands.ApplicationCommandContext
+import net.perfectdreams.discordinteraktions.common.commands.SlashCommandExecutor
+import net.perfectdreams.discordinteraktions.common.commands.options.SlashCommandArguments
 import java.lang.management.ManagementFactory
 
 class NabiInfoExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {

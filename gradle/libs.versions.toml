@@ -2,6 +2,7 @@
 jda = "5.0.0-beta.6"
 jda-ktx = "9fc90f6"
 kord = "0.9.x-SNAPSHOT"
+interactions = "8d0b49900d"
 logback = "1.4.5"
 exposed = "0.41.1"
 postgresql = "42.5.4"
@@ -19,6 +20,9 @@ kord-common = { module = "dev.kord:kord-common", version.ref = "kord" }
 kord-gateway = { module = "dev.kord:kord-gateway", version.ref = "kord" }
 # We don't need voice right now
 # kord-voice = { module = "dev.kord:kord-voice", version.ref = "kord" }
+
+# Discord InteraKTions
+interactions = { module = "com.github.myosyn.DiscordInteraKTions:gateway-kord", version.ref = "interactions"}
 
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 

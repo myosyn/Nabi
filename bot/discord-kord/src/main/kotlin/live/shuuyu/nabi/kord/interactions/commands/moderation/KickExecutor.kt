@@ -4,11 +4,12 @@ import dev.kord.core.cache.data.GuildData
 import dev.kord.core.cache.data.UserData
 import dev.kord.core.entity.Guild
 import dev.kord.core.entity.User
-import live.shuuyu.discordinteraktions.common.commands.ApplicationCommandContext
-import live.shuuyu.discordinteraktions.common.commands.SlashCommandExecutor
-import live.shuuyu.discordinteraktions.common.commands.options.ApplicationCommandOptions
-import live.shuuyu.discordinteraktions.common.commands.options.SlashCommandArguments
 import live.shuuyu.nabi.kord.NabiKordCore
+import net.perfectdreams.discordinteraktions.common.commands.ApplicationCommandContext
+import net.perfectdreams.discordinteraktions.common.commands.GuildApplicationCommandContext
+import net.perfectdreams.discordinteraktions.common.commands.SlashCommandExecutor
+import net.perfectdreams.discordinteraktions.common.commands.options.ApplicationCommandOptions
+import net.perfectdreams.discordinteraktions.common.commands.options.SlashCommandArguments
 
 class KickExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
     inner class Options : ApplicationCommandOptions() {
@@ -21,15 +22,11 @@ class KickExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
     override suspend fun execute(context: ApplicationCommandContext, args: SlashCommandArguments) {
         val user = args[options.user]
         val reason = args[options.reason] ?: "No reason provided."
-        val rest = nabi.rest
 
-        /*
-        val KickData = KickData(
-            reason,
-            guild.data,
-            user.data
-        )
-         */
+        val guildId = (context as? GuildApplicationCommandContext)!!.guildId
+        val guild = GuildData.from(nabi.rest.guild.getGuild(guildId))
+
+
     }
 
     private suspend fun kick(data: KickData) {
