@@ -2,15 +2,18 @@ package live.shuuyu.nabi.kord.interactions.commands.general
 
 import dev.kord.common.annotation.KordExperimental
 import dev.kord.common.annotation.KordUnsafe
+import dev.kord.common.entity.ButtonStyle
 import dev.kord.rest.route.Route
 import kotlinx.datetime.Clock
 import live.shuuyu.nabi.common.Constants
 import live.shuuyu.nabi.kord.NabiKordCore
+import live.shuuyu.nabi.kord.utils.formatMemory
 import net.perfectdreams.discordinteraktions.common.builder.message.actionRow
 import net.perfectdreams.discordinteraktions.common.builder.message.embed
 import net.perfectdreams.discordinteraktions.common.commands.ApplicationCommandContext
 import net.perfectdreams.discordinteraktions.common.commands.SlashCommandExecutor
 import net.perfectdreams.discordinteraktions.common.commands.options.SlashCommandArguments
+import net.perfectdreams.discordinteraktions.common.components.interactiveButton
 import java.lang.management.ManagementFactory
 
 class NabiInfoExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
@@ -46,20 +49,7 @@ class NabiInfoExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
                 linkButton(Constants.SOURCE_REPO) {
                     label = "Source Code"
                 }
-                // linkButton() {} This was supposed to be for the Discord Server.
             }
-        }
-    }
-
-    private fun Long.formatMemory(): String {
-        val kb = this / 1024L
-        val mb = kb / 1024L
-        val gb = mb / 1024L
-
-        return when {
-            kb < 1024 -> "${kb}KB"
-            mb < 1024 -> "${mb}MB"
-            else -> "${gb}GB"
         }
     }
 }

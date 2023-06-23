@@ -2,6 +2,7 @@ package live.shuuyu.nabi.kord
 
 import dev.kord.common.annotation.KordExperimental
 import dev.kord.common.annotation.KordUnsafe
+import dev.kord.common.entity.DiscordShard
 import dev.kord.common.entity.PresenceStatus
 import dev.kord.common.entity.Snowflake
 import dev.kord.core.Kord
@@ -20,7 +21,7 @@ import net.perfectdreams.discordinteraktions.platforms.kord.installDiscordIntera
 
 class NabiKordCore(
     val token: String,
-    val applicationId: Snowflake
+    val applicationId: Snowflake,
 ) {
     companion object {
         val logger = KotlinLogging.logger("Nabi")
@@ -45,7 +46,7 @@ class NabiKordCore(
     val registerGlobalInteractions = RegisterInteractions(this, interactions)
 
     @OptIn(PrivilegedIntent::class)
-    suspend fun start() {
+    suspend fun start(shardIndex: Int, shardCount: Int) {
         val gateway = DefaultGateway {
             dispatcher = Dispatchers.Default
         }
@@ -63,6 +64,8 @@ class NabiKordCore(
                     presence {
                         status = PresenceStatus.Online
                     }
+
+                    shard = DiscordShard(shardIndex, shardCount)
 
                     gateway.installDiscordInteraKTions(interactions)
                     registerGlobalInteractions.registerCommands()

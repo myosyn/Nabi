@@ -14,4 +14,5 @@ dependencies {
     implementation(libs.dotenv)
     implementation(libs.bundles.database)
     implementation(libs.prometheus)
+    implementation(libs.kaml)
 }

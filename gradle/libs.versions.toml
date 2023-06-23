@@ -9,6 +9,7 @@ postgresql = "42.5.4"
 hikaricp = "5.0.1"
 prometheus = "0.16.0"
 dotenv = "6.4.1"
+kaml = "0.54.0"
 
 [libraries]
 jda = { module = "net.dv8tion:JDA", version.ref = "jda" }
@@ -35,6 +36,8 @@ hikaricp = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp" }
 prometheus = { module = "io.prometheus:simpleclient", version.ref = "prometheus" }
 
 dotenv = { module = "io.github.cdimascio:dotenv-kotlin", version.ref = "dotenv" }
+
+kaml = { module = "com.charleskorn.kaml:kaml", version.ref = "kaml" }
 
 [bundles]
 database = [

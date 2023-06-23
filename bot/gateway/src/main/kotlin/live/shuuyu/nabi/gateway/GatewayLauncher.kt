@@ -1,28 +1,19 @@
 package live.shuuyu.nabi.gateway
 
 import dev.kord.common.entity.Snowflake
-import io.github.cdimascio.dotenv.dotenv
 import live.shuuyu.nabi.kord.NabiKordCore
-import mu.KotlinLogging
+import live.shuuyu.nabi.kord.utils.env
 
 object GatewayLauncher {
-    private val env = dotenv()
-    private val token: String = env["TOKEN"]
-    private val applicationId = Snowflake(env["APPLICATIONID"])
-    private val logger = KotlinLogging.logger { }
+    private val token = env("TOKEN")
+    private val applicationId = Snowflake(env("APPLICATION_ID"))
 
-    suspend fun launch() {
-        logger.info("Launching the Kord instance!")
-        val nabi = NabiKordCore(token, applicationId)
-
-        nabi.start()
-    }
-
-    suspend fun initDatabase() {
-
+    suspend fun launchKordInstance() {
+        val core = NabiKordCore(token, applicationId)
+        core.start(1, 1)
     }
 }
 
-suspend fun main() {
-    GatewayLauncher.launch()
+suspend fun main(args: Array<String>) {
+    GatewayLauncher.launchKordInstance()
 }
