@@ -1,16 +1,16 @@
 package live.shuuyu.nabi.gateway
 
-import dev.kord.common.entity.Snowflake
 import live.shuuyu.nabi.kord.NabiKordCore
-import live.shuuyu.nabi.kord.utils.env
+import live.shuuyu.nabi.kord.config.config
+import live.shuuyu.nabi.kord.database.DatabaseManager
 
 object GatewayLauncher {
-    private val token = env("TOKEN")
-    private val applicationId = Snowflake(env("APPLICATION_ID"))
-
     suspend fun launchKordInstance() {
-        val core = NabiKordCore(token, applicationId)
-        core.start(1, 1)
+        val database = DatabaseManager()
+        database.initDatabaseConnection(config.databaseJDBC, config.databaseUsername, config.databasePassword)
+
+        val core = NabiKordCore(config.token, config.applicationId)
+        core.start(config.shardIndex, config.shardCount)
     }
 }
 

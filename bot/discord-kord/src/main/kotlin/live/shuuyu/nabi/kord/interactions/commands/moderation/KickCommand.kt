@@ -18,11 +18,13 @@ class KickExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
     override val options = Options()
 
     override suspend fun execute(context: ApplicationCommandContext, args: SlashCommandArguments) {
+        if (context !is GuildApplicationCommandContext)
+            return
+
         val user = args[options.user]
         val reason = args[options.reason] ?: "No reason provided."
 
-        val guildId = (context as? GuildApplicationCommandContext)!!.guildId
-        val guild = Guild(GuildData.from(nabi.rest.guild.getGuild(guildId)),nabi.kord)
+        val guild = Guild(GuildData.from(nabi.rest.guild.getGuild(context.guildId)),nabi.kord)
 
         kickUser(guild, user, reason)
     }

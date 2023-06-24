@@ -29,8 +29,7 @@ class BanExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
         val banReason = args[options.reason] ?: "No reason provided"
         val thisIntegerlol = args[options.messageDurationInt] ?: 7
 
-        val guildId = context.guildId
-        val guild = Guild(GuildData.from(nabi.rest.guild.getGuild(guildId)), nabi.kord)
+        val guild = Guild(GuildData.from(nabi.rest.guild.getGuild(context.guildId)), nabi.kord)
 
         banUser(guild, target, banReason, thisIntegerlol.days)
     }

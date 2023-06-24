@@ -65,8 +65,6 @@ class NabiKordCore(
                         status = PresenceStatus.Online
                     }
 
-                    shard = DiscordShard(shardIndex, shardCount)
-
                     gateway.installDiscordInteraKTions(interactions)
                     registerGlobalInteractions.registerCommands()
                     registerGlobalInteractions.registerGuildRelatedCommands()

@@ -6,4 +6,6 @@ services:
     container_name: "nabi-postgresql"
     restart: always
     ports:
-      - "80:80"
+      - "5432"
+    env_file:
+      - postgres.env
