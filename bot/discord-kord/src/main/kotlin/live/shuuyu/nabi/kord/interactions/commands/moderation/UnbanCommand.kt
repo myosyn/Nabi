@@ -6,10 +6,11 @@ import dev.kord.core.cache.data.GuildData
 import dev.kord.core.entity.Guild
 import dev.kord.core.entity.User
 import live.shuuyu.nabi.kord.NabiKordCore
+import live.shuuyu.nabi.kord.interactions.utils.commands.NabiSlashCommandExecutor
 import net.perfectdreams.discordinteraktions.common.commands.*
 import net.perfectdreams.discordinteraktions.common.commands.options.*
 
-class UnbanExecutor(val nabi: NabiKordCore): SlashCommandExecutor() {
+class UnbanExecutor(nabi: NabiKordCore): NabiSlashCommandExecutor(nabi) {
     inner class Options: ApplicationCommandOptions() {
         val user = user("user", "The user you want to unban.")
         val reason = optionalString("reason", "The reason why this user is being unbanned.")
@@ -23,32 +24,21 @@ class UnbanExecutor(val nabi: NabiKordCore): SlashCommandExecutor() {
 
         // This cannot be nullable as you require a guild to unban someone
         val guildId = (context as? GuildApplicationCommandContext)!!.guildId
-        val guild = Guild(GuildData.from(nabi.rest.guild.getGuild(guildId)), nabi.kord)
+        val guild = Guild(GuildData.from(rest.guild.getGuild(guildId)), kord)
 
-        unbanUser(target, guild, unbanReason)
+        unbanUser((context as? GuildApplicationCommandContext)!!,target, guild, unbanReason)
     }
 
     private suspend fun unbanUser(
+        context: GuildApplicationCommandContext,
         user: User,
         guild: Guild,
         reason: String?
     ) {
         guild.unban(user.id, reason)
-    }
 
-    private suspend fun checkPermissions(
-        context: ApplicationCommandContext,
-        args: SlashCommandArguments,
-        guild: Guild
-    ) {
-        val target = args[options.user]
-
-        when {
-            target.id == guild.ownerId -> {
-                context.sendEphemeralMessage {
-
-                }
-            }
+        context.sendEphemeralMessage {
+            content = "$user has been unbanned."
         }
     }
 }

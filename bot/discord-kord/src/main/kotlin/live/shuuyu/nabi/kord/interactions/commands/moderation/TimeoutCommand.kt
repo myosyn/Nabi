@@ -10,12 +10,12 @@ import dev.kord.core.entity.Member
 import dev.kord.core.entity.User
 import kotlinx.datetime.Clock
 import live.shuuyu.nabi.kord.NabiKordCore
+import live.shuuyu.nabi.kord.interactions.utils.commands.NabiSlashCommandExecutor
 import net.perfectdreams.discordinteraktions.common.commands.*
 import net.perfectdreams.discordinteraktions.common.commands.options.*
 import kotlin.time.Duration
-import kotlin.time.ExperimentalTime
 
-class TimeoutExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
+class TimeoutExecutor(nabi: NabiKordCore) : NabiSlashCommandExecutor(nabi) {
     inner class Options : ApplicationCommandOptions() {
         val user = user("user", "The user you want to timeout.")
 
@@ -26,14 +26,15 @@ class TimeoutExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
     override val options = Options()
 
     override suspend fun execute(context: ApplicationCommandContext, args: SlashCommandArguments) {
+        if (context !is GuildApplicationCommandContext)
+            return
+
         val target = args[options.user]
         val reason = args[options.reason] ?: "No reason provided."
 
-        val guildId = (context as? GuildApplicationCommandContext)!!.guildId
-
         val member = Member(
-            MemberData.from(target.id, guildId, nabi.rest.guild.getGuildMember(guildId, target.id)),
-            UserData.from(nabi.rest.user.getUser(target.id)),
+            MemberData.from(target.id, context.guildId, rest.guild.getGuildMember(context.guildId, target.id)),
+            UserData.from(rest.user.getUser(target.id)),
             nabi.kord
         )
 
@@ -46,7 +47,6 @@ class TimeoutExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
         reason: String?,
         duration: Duration
     ) {
-
         member.edit {
             // This is apparently the timeout thing, which makes zero sense
             this.communicationDisabledUntil = Clock.System.now().plus(duration)

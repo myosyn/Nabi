@@ -61,6 +61,8 @@ class NabiKordCore(
                         +Intent.GuildWebhooks
                     }
 
+                    shard = DiscordShard(shardIndex, shardCount)
+
                     presence {
                         status = PresenceStatus.Online
                     }

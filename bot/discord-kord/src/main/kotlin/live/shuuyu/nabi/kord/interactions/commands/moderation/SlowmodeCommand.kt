@@ -1,20 +1,27 @@
 package live.shuuyu.nabi.kord.interactions.commands.moderation
 
-import dev.kord.common.entity.ChannelType
 import dev.kord.common.entity.Permission
 import dev.kord.common.entity.Permissions
+import dev.kord.core.behavior.channel.edit
+import dev.kord.core.behavior.channel.threads.edit
 import dev.kord.core.entity.Guild
 import dev.kord.core.entity.channel.Channel
+import dev.kord.core.entity.channel.TextChannel
+import dev.kord.core.entity.channel.thread.ThreadChannel
 import live.shuuyu.nabi.kord.NabiKordCore
+import live.shuuyu.nabi.kord.interactions.utils.commands.NabiSlashCommandExecutor
 import net.perfectdreams.discordinteraktions.common.commands.*
 import net.perfectdreams.discordinteraktions.common.commands.options.*
+import java.util.ResourceBundle
+import kotlin.time.Duration
 
-class SlowmodeExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
+class SlowmodeExecutor(nabi: NabiKordCore) : NabiSlashCommandExecutor(nabi) {
     inner class Options : ApplicationCommandOptions() {
-        val channel = optionalChannel("channel", "The channel you want to slow down.") {
-
-        }
-
+        val duration = string(
+            "duration",
+            "The duration you want to slow the channel by. This cannot exceed 6 hours."
+        )
+        val channel = optionalChannel("channel", "The channel you want to slow down.")
     }
 
     override val options = Options()
@@ -23,12 +30,26 @@ class SlowmodeExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
         val targetChannel = args[options.channel]
     }
 
-    private suspend fun slowmode(guild: Guild, channel: Channel) {
-        val type = when (channel.type) {
-            is ChannelType.GuildText -> {
-
+    private suspend fun slowmode(
+        guild: Guild,
+        channel: Channel,
+        context: GuildApplicationCommandContext,
+        args: SlashCommandArguments
+    ) {
+        when (channel) {
+            is TextChannel -> {
+                channel.edit {
+                    rateLimitPerUser = Duration.parseIsoString(args[options.duration])
+                }
             }
-            else -> error("This should never return!")
+
+            is ThreadChannel -> {
+                channel.edit {
+                    rateLimitPerUser = Duration.parseIsoString(args[options.duration])
+                }
+            }
+
+            else -> context.sendEphemeralMessage { content = "You can't set a slowmode for this channel!" }
         }
     }
 }

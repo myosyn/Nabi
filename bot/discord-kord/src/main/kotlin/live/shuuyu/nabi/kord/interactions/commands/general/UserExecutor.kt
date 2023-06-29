@@ -1,5 +1,7 @@
 package live.shuuyu.nabi.kord.interactions.commands.general
 
+import dev.kord.core.cache.data.MemberData
+import dev.kord.core.entity.Member
 import kotlinx.datetime.Clock
 import live.shuuyu.nabi.kord.NabiKordCore
 import net.perfectdreams.discordinteraktions.common.builder.message.embed

@@ -6,10 +6,11 @@ import dev.kord.core.cache.data.GuildData
 import dev.kord.core.entity.Guild
 import dev.kord.core.entity.User
 import live.shuuyu.nabi.kord.NabiKordCore
+import live.shuuyu.nabi.kord.interactions.utils.commands.NabiSlashCommandExecutor
 import net.perfectdreams.discordinteraktions.common.commands.*
 import net.perfectdreams.discordinteraktions.common.commands.options.*
 
-class KickExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
+class KickExecutor(nabi: NabiKordCore) : NabiSlashCommandExecutor(nabi) {
     inner class Options : ApplicationCommandOptions() {
         val user = user("user", "The user you want to kick from the server.")
         val reason = optionalString("reason", "The reason why this user is being kicked.")
@@ -24,7 +25,7 @@ class KickExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
         val user = args[options.user]
         val reason = args[options.reason] ?: "No reason provided."
 
-        val guild = Guild(GuildData.from(nabi.rest.guild.getGuild(context.guildId)),nabi.kord)
+        val guild = Guild(GuildData.from(rest.guild.getGuild(context.guildId)), kord)
 
         kickUser(guild, user, reason)
     }

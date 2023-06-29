@@ -10,6 +10,7 @@ hikaricp = "5.0.1"
 prometheus = "0.16.0"
 dotenv = "6.4.1"
 kaml = "0.54.0"
+icu4j = "73.2"
 
 [libraries]
 jda = { module = "net.dv8tion:JDA", version.ref = "jda" }
@@ -38,6 +39,7 @@ prometheus = { module = "io.prometheus:simpleclient", version.ref = "prometheus"
 dotenv = { module = "io.github.cdimascio:dotenv-kotlin", version.ref = "dotenv" }
 
 kaml = { module = "com.charleskorn.kaml:kaml", version.ref = "kaml" }
+icu4j = { module = "com.ibm.icu:icu4j", version.ref = "icu4j" }
 
 [bundles]
 database = [

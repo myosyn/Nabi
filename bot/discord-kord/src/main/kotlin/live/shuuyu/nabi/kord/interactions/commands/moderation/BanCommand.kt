@@ -7,12 +7,13 @@ import dev.kord.core.cache.data.GuildData
 import dev.kord.core.entity.Guild
 import dev.kord.core.entity.User
 import live.shuuyu.nabi.kord.NabiKordCore
+import live.shuuyu.nabi.kord.interactions.utils.commands.NabiSlashCommandExecutor
 import net.perfectdreams.discordinteraktions.common.commands.*
 import net.perfectdreams.discordinteraktions.common.commands.options.*
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 
-class BanExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
+class BanExecutor(nabi: NabiKordCore) : NabiSlashCommandExecutor(nabi) {
     inner class Options : ApplicationCommandOptions() {
         val user = user("user", "The user you want to ban.")
         val reason = optionalString("reason", "The reason why this user is being banned.")
@@ -29,7 +30,7 @@ class BanExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
         val banReason = args[options.reason] ?: "No reason provided"
         val thisIntegerlol = args[options.messageDurationInt] ?: 7
 
-        val guild = Guild(GuildData.from(nabi.rest.guild.getGuild(context.guildId)), nabi.kord)
+        val guild = Guild(GuildData.from(rest.guild.getGuild(context.guildId)), kord)
 
         banUser(guild, target, banReason, thisIntegerlol.days)
     }
@@ -40,7 +41,6 @@ class BanExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
         reason: String?,
         messageDuration: Duration
     ) {
-
         guild.ban(user.id) {
             this.reason = reason
             this.deleteMessageDuration = messageDuration
@@ -54,6 +54,7 @@ class BanExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
         user: User
     ) {
         val target = args[options.user]
+        val deleteMessageDuration = args[options.messageDurationInt] ?: 7
 
         when {
             Permission.BanMembers !in context.appPermissions -> {
@@ -77,6 +78,18 @@ class BanExecutor(val nabi: NabiKordCore) : SlashCommandExecutor() {
             target.id == user.id -> {
                 context.sendEphemeralMessage {
                     content = "You're not allowed to ban yourself!"
+                }
+            }
+
+            0 > deleteMessageDuration -> {
+                context.sendEphemeralMessage {
+                    content = "You cannot delete less than 0 days worth of messages!"
+                }
+            }
+
+            7 < deleteMessageDuration -> {
+                context.sendEphemeralMessage {
+                    content = "You cannot delete more than 7 days worth of messages!"
                 }
             }
 

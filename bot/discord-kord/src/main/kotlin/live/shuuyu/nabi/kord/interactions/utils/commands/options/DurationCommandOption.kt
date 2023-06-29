@@ -1,4 +1,4 @@
-package live.shuuyu.nabi.kord.interactions.utils.commands
+package live.shuuyu.nabi.kord.interactions.utils.commands.options
 
 import dev.kord.common.entity.CommandArgument
 import dev.kord.common.entity.DiscordInteraction

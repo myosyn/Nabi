@@ -14,7 +14,7 @@ data class NabiConfig (
     val token: String = env("TOKEN"),
     val applicationId: Snowflake = Snowflake(env("APPLICATION_ID")),
     val shardCount: Int = 1,
-    val shardIndex: Int = 1,
+    val shardIndex: Int = 0,
     val databaseJDBC: String = env("DATABASE_JDBC"),
     val databaseUsername: String = env("DATABASE_USERNAME"),
     val databasePassword: String = env("DATABASE_PASSWORD")
