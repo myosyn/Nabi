@@ -4,9 +4,6 @@ import dev.kord.core.cache.data.ChannelData
 import dev.kord.core.entity.channel.Channel
 import live.shuuyu.nabi.kord.NabiKordCore
 import live.shuuyu.nabi.kord.interactions.utils.commands.NabiSlashCommandExecutor
-import live.shuuyu.nabi.kord.utils.locales.ResourceProvider
-import live.shuuyu.nabi.kord.utils.locales.translate
-import net.perfectdreams.discordinteraktions.common.builder.message.actionRow
 import net.perfectdreams.discordinteraktions.common.builder.message.embed
 import net.perfectdreams.discordinteraktions.common.commands.*
 import net.perfectdreams.discordinteraktions.common.commands.options.ApplicationCommandOptions
