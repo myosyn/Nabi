@@ -3,12 +3,14 @@ package live.shuuyu.nabi.kord.config
 import com.charleskorn.kaml.Yaml
 import com.charleskorn.kaml.YamlConfiguration
 import dev.kord.common.entity.Snowflake
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import live.shuuyu.nabi.kord.utils.env
 import java.io.File
 
+@SerialName("config")
 @Serializable
 data class NabiConfig (
     val token: String = env("TOKEN"),

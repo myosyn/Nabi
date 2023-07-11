@@ -3,6 +3,7 @@ package live.shuuyu.nabi.kord.database
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import live.shuuyu.nabi.kord.database.tables.BlacklistedUser
+import live.shuuyu.nabi.kord.database.tables.GuildSettings
 import mu.KotlinLogging
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.DatabaseConfig
@@ -37,7 +38,9 @@ class DatabaseManager() {
 
     fun createMissingSchemas() {
         transaction {
-            SchemaUtils.addMissingColumnsStatements(BlacklistedUser)
+            with(SchemaUtils) {
+                createMissingTablesAndColumns(GuildSettings )
+            }
         }
     }
 }

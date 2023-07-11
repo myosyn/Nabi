@@ -1,5 +1,7 @@
 package live.shuuyu.nabi.kord.interactions.commands.general
 
+import dev.kord.common.DiscordTimestampStyle
+import dev.kord.common.toMessageFormat
 import dev.kord.core.cache.data.GuildData
 import dev.kord.core.entity.Guild
 import live.shuuyu.nabi.kord.NabiKordCore
@@ -18,7 +20,10 @@ class GuildInfoExecutor(nabi: NabiKordCore) : NabiSlashCommandExecutor(nabi) {
 
         context.sendMessage {
             embed {
-
+                title = guild.name
+                description = "**Creation Date:** ${guild.id.timestamp.toMessageFormat(DiscordTimestampStyle.LongDate)} \n" +
+                        "**Owner:** ${guild.owner}"
+                 
             }
         }
     }

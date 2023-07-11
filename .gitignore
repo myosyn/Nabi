@@ -2,7 +2,7 @@
 /.gradle
 /.idea
 *.iml
-.env
+disabled.env
 database.db
 /bin/
 /.vscode/

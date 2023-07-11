@@ -10,6 +10,12 @@ import mu.KotlinLogging
 import net.perfectdreams.discordinteraktions.common.commands.ApplicationCommandContext
 import net.perfectdreams.discordinteraktions.common.commands.UserCommandExecutor
 
+/*
+ * There is little to no difference regarding the declaration of both the [UserCommandExecutor] and
+ * [NabiUserCommandExecutor], meaning they can be registered under the same registrar.
+ *
+ * You can only have up to 5 user commands in a single bot.
+ */
 @OptIn(DelicateCoroutinesApi::class)
 abstract class NabiUserCommandExecutor(val nabi: NabiKordCore) : UserCommandExecutor(), CommandExecutorUtils {
     companion object {

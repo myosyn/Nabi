@@ -11,6 +11,7 @@ object GatewayLauncher {
 
         val core = NabiKordCore(config.token, config.applicationId)
         core.start(config.shardIndex, config.shardCount)
+        database.createMissingSchemas()
     }
 }
 

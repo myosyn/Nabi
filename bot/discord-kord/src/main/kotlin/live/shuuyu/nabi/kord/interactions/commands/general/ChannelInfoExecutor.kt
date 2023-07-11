@@ -4,10 +4,8 @@ import dev.kord.core.cache.data.ChannelData
 import dev.kord.core.entity.channel.Channel
 import live.shuuyu.nabi.kord.NabiKordCore
 import live.shuuyu.nabi.kord.interactions.utils.commands.NabiSlashCommandExecutor
-import net.perfectdreams.discordinteraktions.common.builder.message.embed
 import net.perfectdreams.discordinteraktions.common.commands.*
-import net.perfectdreams.discordinteraktions.common.commands.options.ApplicationCommandOptions
-import net.perfectdreams.discordinteraktions.common.commands.options.SlashCommandArguments
+import net.perfectdreams.discordinteraktions.common.commands.options.*
 
 class ChannelInfoExecutor(nabi: NabiKordCore) : NabiSlashCommandExecutor(nabi) {
     inner class Options : ApplicationCommandOptions() {
@@ -18,12 +16,6 @@ class ChannelInfoExecutor(nabi: NabiKordCore) : NabiSlashCommandExecutor(nabi) {
 
     override suspend fun execute(context: ApplicationCommandContext, args: SlashCommandArguments) {
         val target = args[options.channel] ?: Channel.from(ChannelData.from(rest.channel.getChannel(context.channelId)), kord)
-
-        context.sendMessage {
-            embed {
-
-            }
-        }
     }
 }
 

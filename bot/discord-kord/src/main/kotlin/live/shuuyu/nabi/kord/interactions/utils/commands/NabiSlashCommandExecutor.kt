@@ -12,6 +12,8 @@ import net.perfectdreams.discordinteraktions.common.commands.options.SlashComman
 /*
  * There is little to no difference regarding the declaration of both the [SlashCommandExecutor] and
  * [NabiSlashCommandExecutor], meaning they can be registered under the same registrar.
+ *
+ * You can only have up to 100 application commands in a single bot.
  */
 @OptIn(DelicateCoroutinesApi::class)
 abstract class NabiSlashCommandExecutor(val nabi: NabiKordCore) : SlashCommandExecutor(), CommandExecutorUtils {

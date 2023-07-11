@@ -3,6 +3,7 @@ package live.shuuyu.nabi.kord.interactions.commands.moderation
 import dev.kord.common.entity.Permission
 import dev.kord.common.entity.Permissions
 import dev.kord.core.cache.data.GuildData
+import dev.kord.core.cache.data.UserData
 import dev.kord.core.entity.Guild
 import dev.kord.core.entity.User
 import live.shuuyu.nabi.kord.NabiKordCore
@@ -19,28 +20,30 @@ class UnbanExecutor(nabi: NabiKordCore): NabiSlashCommandExecutor(nabi) {
     override val options = Options()
 
     override suspend fun execute(context: ApplicationCommandContext, args: SlashCommandArguments) {
+        if(context !is GuildApplicationCommandContext)
+            return
+
         val target = args[options.user]
         val unbanReason = args[options.reason] ?: "No reason provided"
 
-        // This cannot be nullable as you require a guild to unban someone
-        val guildId = (context as? GuildApplicationCommandContext)!!.guildId
-        val guild = Guild(GuildData.from(rest.guild.getGuild(guildId)), kord)
+        val guild = GuildData.from(rest.guild.getGuild(context.guildId))
 
-        unbanUser((context as? GuildApplicationCommandContext)!!,target, guild, unbanReason)
+
+        unbanUser(UnbanData(guild, target.data, unbanReason))
     }
 
-    private suspend fun unbanUser(
-        context: GuildApplicationCommandContext,
-        user: User,
-        guild: Guild,
-        reason: String?
-    ) {
-        guild.unban(user.id, reason)
+    private suspend fun unbanUser(data: UnbanData) {
+        val guild = Guild(data.guild, kord)
+        val user = User(data.user, kord)
 
-        context.sendEphemeralMessage {
-            content = "$user has been unbanned."
-        }
+        guild.unban(user.id, data.reason)
     }
+
+    private class UnbanData(
+        val guild: GuildData,
+        val user: UserData,
+        val reason: String
+    )
 }
 
 class UnbanDeclarator(val nabi: NabiKordCore) : SlashCommandDeclarationWrapper {
