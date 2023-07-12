@@ -8,8 +8,12 @@ import dev.kord.core.cache.data.GuildData
 import dev.kord.core.cache.data.UserData
 import dev.kord.core.entity.Guild
 import dev.kord.core.entity.User
+import kotlinx.datetime.Clock
 import live.shuuyu.nabi.kord.NabiKordCore
 import live.shuuyu.nabi.kord.interactions.utils.commands.NabiSlashCommandExecutor
+import live.shuuyu.nabi.kord.utils.ColorUtils
+import net.perfectdreams.discordinteraktions.common.builder.message.create.InteractionOrFollowupMessageCreateBuilder
+import net.perfectdreams.discordinteraktions.common.builder.message.embed
 import net.perfectdreams.discordinteraktions.common.commands.*
 import net.perfectdreams.discordinteraktions.common.commands.options.*
 import kotlin.time.Duration.Companion.days
@@ -18,7 +22,20 @@ class BanExecutor(nabi: NabiKordCore) : NabiSlashCommandExecutor(nabi) {
     inner class Options : ApplicationCommandOptions() {
         val user = user("user", "The user you want to ban.")
         val reason = optionalString("reason", "The reason why this user is being banned.")
-        val messageDurationInt = optionalInteger("delete_message_days", "The days worth of messages you want to delete.")
+        val messageDurationInt = optionalInteger("delete_message_days", "The days worth of messages you want to delete.") {
+            mapOf(
+                "0 days" to 0,
+                "1 day" to 1,
+                "2 days" to 2,
+                "3 days" to 3,
+                "4 days" to 4,
+                "5 days" to 5,
+                "6 days" to 6,
+                "7 days" to 7
+            ).forEach { (days, int) ->
+                choice(days, int.toLong())
+            }
+        }
     }
 
     override val options = Options()
@@ -30,13 +47,16 @@ class BanExecutor(nabi: NabiKordCore) : NabiSlashCommandExecutor(nabi) {
         val target = args[options.user]
         val banReason = args[options.reason] ?: "No reason provided"
         val deleteMessageInteger = args[options.messageDurationInt] ?: 7
-
         val guildData = GuildData.from(rest.guild.getGuild(context.guildId))
 
-        banUser(BanData(guildData, target.data, banReason, deleteMessageInteger.days))
+        if (validateBan(context, args, Guild(guildData, kord), context.sender))
+            return banUser(
+                BanData(guildData, target.data, banReason, deleteMessageInteger.days, context.sender),
+                context
+            )
     }
 
-    private suspend fun banUser(data: BanData) {
+    private suspend fun banUser(data: BanData, context: GuildApplicationCommandContext) {
         val guild = Guild(data.guild, kord)
         val user = User(data.user, kord)
 
@@ -44,13 +64,90 @@ class BanExecutor(nabi: NabiKordCore) : NabiSlashCommandExecutor(nabi) {
             reason = data.reason
             deleteMessageDuration = data.deleteMessageDays
         }
+
+        context.sendMessage {
+            banConfirmationEmbed(user, guild, data.reason, data.moderator)
+        }
+    }
+
+    private suspend fun validateBan(
+        context: GuildApplicationCommandContext,
+        args: SlashCommandArguments,
+        guild: Guild,
+        moderator: User
+    ): Boolean {
+        val target = args[options.user]
+        val messageDurationInt = args[options.messageDurationInt] ?: 7
+
+        when {
+            Permission.BanMembers !in context.appPermissions -> {
+                context.sendEphemeralMessage {
+                    content = "**I'm currently missing the `BAN_MEMBERS` permission!**"
+                }
+                return false
+            }
+
+            target.isBot -> {
+                context.sendEphemeralMessage {
+                    content = "**I'm not allowed to ban other bots!**"
+                }
+                return false
+            }
+
+            target.id == guild.ownerId -> {
+                context.sendEphemeralMessage {
+                    content = "**You're not allowed to ban the owner!**"
+                }
+                return false
+            }
+
+            target.id == moderator.id -> {
+                context.sendEphemeralMessage {
+                    content = "**You cannot ban yourself!**"
+                }
+                return false
+            }
+
+            messageDurationInt < 0 -> {
+                context.sendEphemeralMessage {
+                    content = "**You cannot delete less than 0 days worth of messages!**"
+                }
+                return false
+            }
+
+            messageDurationInt > 7 -> {
+                context.sendEphemeralMessage {
+                    content = "**You cannot delete more than 7 days worth of messages!**"
+                }
+                return false
+            }
+
+            else -> return true
+        }
+    }
+
+    private fun InteractionOrFollowupMessageCreateBuilder.banConfirmationEmbed(
+        user: User,
+        guild: Guild,
+        reason: String,
+        moderator: User
+    ) {
+        embed {
+            title = "${user.username} Banned"
+            image = (user.avatar ?: user.defaultAvatar).cdnUrl.toUrl()
+            description = "${user.username} has been banned from ${guild.name} for **$reason**" +
+                    "**Moderator: ${moderator.mention}"
+            color = ColorUtils.SUCCESS_COLOR
+            timestamp = Clock.System.now()
+        }
     }
 
     private class BanData(
         val guild: GuildData,
         val user: UserData,
         val reason: String,
-        val deleteMessageDays: DurationInDays
+        val deleteMessageDays: DurationInDays,
+        val moderator: User
     )
 }
 
