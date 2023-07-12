@@ -22,7 +22,10 @@ class BanExecutor(nabi: NabiKordCore) : NabiSlashCommandExecutor(nabi) {
     inner class Options : ApplicationCommandOptions() {
         val user = user("user", "The user you want to ban.")
         val reason = optionalString("reason", "The reason why this user is being banned.")
-        val messageDurationInt = optionalInteger("delete_message_days", "The days worth of messages you want to delete.") {
+        val messageDurationInt = optionalInteger(
+            "delete_message_days",
+            "The days worth of messages you want to delete. This option can be between 0 and 7."
+        ) {
             mapOf(
                 "0 days" to 0,
                 "1 day" to 1,
@@ -35,6 +38,9 @@ class BanExecutor(nabi: NabiKordCore) : NabiSlashCommandExecutor(nabi) {
             ).forEach { (days, int) ->
                 choice(days, int.toLong())
             }
+
+            minValue = 0
+            maxValue = 7
         }
     }
 
@@ -77,7 +83,6 @@ class BanExecutor(nabi: NabiKordCore) : NabiSlashCommandExecutor(nabi) {
         moderator: User
     ): Boolean {
         val target = args[options.user]
-        val messageDurationInt = args[options.messageDurationInt] ?: 7
 
         when {
             Permission.BanMembers !in context.appPermissions -> {
@@ -104,20 +109,6 @@ class BanExecutor(nabi: NabiKordCore) : NabiSlashCommandExecutor(nabi) {
             target.id == moderator.id -> {
                 context.sendEphemeralMessage {
                     content = "**You cannot ban yourself!**"
-                }
-                return false
-            }
-
-            messageDurationInt < 0 -> {
-                context.sendEphemeralMessage {
-                    content = "**You cannot delete less than 0 days worth of messages!**"
-                }
-                return false
-            }
-
-            messageDurationInt > 7 -> {
-                context.sendEphemeralMessage {
-                    content = "**You cannot delete more than 7 days worth of messages!**"
                 }
                 return false
             }
@@ -156,6 +147,10 @@ class BanDeclarator(val nabi: NabiKordCore) : SlashCommandDeclarationWrapper {
         defaultMemberPermissions = Permissions {
             +Permission.BanMembers
         }
+
+        // Why would you ban from your dms?
+        dmPermission = false
+
         executor = BanExecutor(nabi)
     }
 }
