@@ -53,6 +53,8 @@ class UnmuteDeclarator(val nabi: NabiKordCore): SlashCommandDeclarationWrapper {
             + Permission.ModerateMembers
         }
 
+        dmPermission = false
+
         executor = UnmuteExecutor(nabi)
     }
 }

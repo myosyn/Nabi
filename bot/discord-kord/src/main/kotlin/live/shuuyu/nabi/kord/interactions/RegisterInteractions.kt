@@ -18,9 +18,10 @@ class RegisterInteractions(
     suspend fun registerCommands() {
         with(interactions.manager) {
             logger.info("Registering all general related commands.")
-            register(UserDeclarator(this@RegisterInteractions.nabi))
+            register(UserInfoSlashDeclarator(this@RegisterInteractions.nabi))
             register(ChannelInfoDeclarator(this@RegisterInteractions.nabi))
             register(NabiInfoDeclarator(this@RegisterInteractions.nabi))
+            register(RoleInfoDeclarator(this@RegisterInteractions.nabi))
 
             logger.info("Registering all moderation related commands.")
             register(BanDeclarator(this@RegisterInteractions.nabi))
@@ -29,9 +30,12 @@ class RegisterInteractions(
             register(UnbanDeclarator(this@RegisterInteractions.nabi))
             register(MuteDeclarator(this@RegisterInteractions.nabi))
             register(UnmuteDeclarator(this@RegisterInteractions.nabi))
+
+            logger.info("Registering User Commands.")
+            register(UserInfoUserDeclarator(this@RegisterInteractions.nabi))
         }
 
-        logger.info("Uprooting all of the commands")
+        logger.info("Uprooting all of the commands.")
         interactions.updateAllGlobalCommands()
     }
 

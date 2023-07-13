@@ -28,7 +28,6 @@ class UnbanExecutor(nabi: NabiKordCore): NabiSlashCommandExecutor(nabi) {
 
         val guild = GuildData.from(rest.guild.getGuild(context.guildId))
 
-
         unbanUser(UnbanData(guild, target.data, unbanReason))
     }
 
@@ -51,6 +50,8 @@ class UnbanDeclarator(val nabi: NabiKordCore) : SlashCommandDeclarationWrapper {
         defaultMemberPermissions = Permissions {
             +Permission.BanMembers
         }
+
+        dmPermission = false
 
         executor = UnbanExecutor(nabi)
     }

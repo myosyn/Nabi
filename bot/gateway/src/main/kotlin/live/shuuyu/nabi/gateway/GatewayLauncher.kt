@@ -1,5 +1,6 @@
 package live.shuuyu.nabi.gateway
 
+import kotlinx.coroutines.runBlocking
 import live.shuuyu.nabi.kord.NabiKordCore
 import live.shuuyu.nabi.kord.config.config
 import live.shuuyu.nabi.kord.database.DatabaseManager
@@ -7,11 +8,14 @@ import live.shuuyu.nabi.kord.database.DatabaseManager
 object GatewayLauncher {
     suspend fun launchKordInstance() {
         val database = DatabaseManager()
-        database.initDatabaseConnection(config.databaseJDBC, config.databaseUsername, config.databasePassword)
-
         val core = NabiKordCore(config.token, config.applicationId)
-        core.start(config.shardIndex, config.shardCount)
-        database.createMissingSchemas()
+
+        runBlocking {
+            database.initDatabaseConnection(config.databaseJDBC, config.databaseUsername, config.databasePassword)
+            database.createMissingSchemas()
+
+            core.start(config.shardIndex, config.shardCount)
+        }
     }
 }
 

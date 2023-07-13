@@ -9,6 +9,10 @@ import net.perfectdreams.discordinteraktions.common.commands.options.SlashComman
 
 // This is a developer option, so I can delete the RATs that I get.
 class DeleteWebhookCommand(nabi: NabiKordCore): NabiSlashCommandExecutor(nabi) {
+    companion object {
+        val DISCORD_WEBHOOK_REGEX = Regex("")
+    }
+
     inner class Options: ApplicationCommandOptions() {
         val url = string("webhook", "The webhook that you want to delete.") {
 

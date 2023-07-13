@@ -2,16 +2,20 @@ package live.shuuyu.nabi.kord.interactions.commands.general
 
 import dev.kord.common.DiscordTimestampStyle
 import dev.kord.common.toMessageFormat
+import dev.kord.core.entity.Role
 import dev.kord.rest.Image
 import kotlinx.coroutines.flow.count
 import kotlinx.datetime.Clock
+import live.shuuyu.nabi.kord.NabiKordCore
+import live.shuuyu.nabi.kord.interactions.utils.commands.NabiSlashCommandExecutor
+import net.perfectdreams.discordinteraktions.common.builder.message.create.InteractionOrFollowupMessageCreateBuilder
 import net.perfectdreams.discordinteraktions.common.builder.message.embed
 import net.perfectdreams.discordinteraktions.common.commands.ApplicationCommandContext
 import net.perfectdreams.discordinteraktions.common.commands.SlashCommandExecutor
 import net.perfectdreams.discordinteraktions.common.commands.options.ApplicationCommandOptions
 import net.perfectdreams.discordinteraktions.common.commands.options.SlashCommandArguments
 
-class RoleInfoExecutor : SlashCommandExecutor() {
+class RoleInfoExecutor(nabi: NabiKordCore) : NabiSlashCommandExecutor(nabi) {
     inner class Options : ApplicationCommandOptions() {
         val role = role("role", "The role you want to gather information from.")
     }
@@ -21,28 +25,29 @@ class RoleInfoExecutor : SlashCommandExecutor() {
     override suspend fun execute(context: ApplicationCommandContext, args: SlashCommandArguments) {
         val role = args[options.role]
 
-        val iconUrl = role.icon?.cdnUrl?.toUrl {
-            this.size = Image.Size.Size2048
-        }
-
         context.sendMessage {
-            embed {
-                title = role.name
-                field {
-                    name = "**» Role Information**"
-                    value = "**Mention:** ${role.mention} \n" +
-                            "**ID:** ${role.id} \n" +
-                            "**Creation Date**: ${role.id.timestamp.toMessageFormat(DiscordTimestampStyle.ShortDate)} \n" +
-                            "**RGB:** ${role.color.red}, ${role.color.green}, ${role.color.blue} \n" +
-                            "**User Count:** ${role.guild.roles.count()}"
-                }
-                field {
-                    name = "**» Role Permissions**"
-                    value = "**Role Permissions Count:** ${role.permissions.values.count()}"
-                }
-                color = role.color
-                timestamp = Clock.System.now()
+            createRoleInformationEmbed(role)
+        }
+    }
+
+    private suspend fun InteractionOrFollowupMessageCreateBuilder.createRoleInformationEmbed(role: Role) {
+        embed {
+            title = role.name
+            field {
+                name = "**» General Information**"
+                value = "**Mention:** ${role.mention} \n" +
+                        "**ID:** ${role.id} \n" +
+                        "**Creation Date**: ${role.id.timestamp.toMessageFormat(DiscordTimestampStyle.ShortDate)} \n" +
+                        "**RGB:** ${role.color.red}, ${role.color.green}, ${role.color.blue} \n" +
+                        "**User Count:** ${role.guild.roles.count()}"
             }
+
+            field {
+                name = "**» Role Permissions**"
+                value = role.permissions.copy {  }.toString()
+            }
+            color = role.color
+            timestamp = Clock.System.now()
         }
     }
 }

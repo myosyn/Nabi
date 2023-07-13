@@ -6,8 +6,12 @@ import dev.kord.core.cache.data.GuildData
 import dev.kord.core.cache.data.UserData
 import dev.kord.core.entity.Guild
 import dev.kord.core.entity.User
+import kotlinx.datetime.Clock
 import live.shuuyu.nabi.kord.NabiKordCore
 import live.shuuyu.nabi.kord.interactions.utils.commands.NabiSlashCommandExecutor
+import live.shuuyu.nabi.kord.utils.ColorUtils
+import net.perfectdreams.discordinteraktions.common.builder.message.create.InteractionOrFollowupMessageCreateBuilder
+import net.perfectdreams.discordinteraktions.common.builder.message.embed
 import net.perfectdreams.discordinteraktions.common.commands.*
 import net.perfectdreams.discordinteraktions.common.commands.options.*
 
@@ -29,14 +33,18 @@ class KickExecutor(nabi: NabiKordCore) : NabiSlashCommandExecutor(nabi) {
         val guildData = GuildData.from(rest.guild.getGuild(context.guildId))
 
         if (validateKick(context, args, Guild(guildData, kord), context.sender))
-            return kickUser(KickData(guildData, target.data, reason))
+            return kickUser(KickData(guildData, target.data, reason, context.sender), context)
     }
 
-    private suspend fun kickUser(data: KickData) {
+    private suspend fun kickUser(data: KickData, context: ApplicationCommandContext) {
         val guild = Guild(data.guild, kord)
         val user = User(data.user, kord)
 
         guild.kick(user.id, data.reason)
+
+        context.sendMessage {
+            createKickConfirmationEmbed(user, guild, data.reason, data.moderator)
+        }
     }
 
     private suspend fun validateKick(
@@ -81,10 +89,26 @@ class KickExecutor(nabi: NabiKordCore) : NabiSlashCommandExecutor(nabi) {
         }
     }
 
+    private fun InteractionOrFollowupMessageCreateBuilder.createKickConfirmationEmbed(
+        user: User,
+        guild: Guild,
+        reason: String,
+        moderator: User,
+    ) {
+        embed {
+            title = "${user.username} Kicked"
+            description = "**${user.username}** was kicked from **${guild.name}** for **$reason** \n" +
+                "**Moderator:** ${moderator.mention}"
+            color = ColorUtils.SUCCESS_COLOR
+            timestamp = Clock.System.now()
+        }
+    }
+
     private class KickData(
         val guild: GuildData,
         val user: UserData,
-        val reason: String
+        val reason: String,
+        val moderator: User
     )
 }
 
@@ -93,6 +117,8 @@ class KickDeclarator(val nabi: NabiKordCore): SlashCommandDeclarationWrapper {
         defaultMemberPermissions = Permissions {
             +Permission.KickMembers
         }
+
+        dmPermission = false
 
         executor = KickExecutor(nabi)
     }

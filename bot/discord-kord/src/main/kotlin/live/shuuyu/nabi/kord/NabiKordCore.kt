@@ -14,6 +14,8 @@ import dev.kord.rest.service.RestClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import live.shuuyu.nabi.kord.config.NabiConfig
+import live.shuuyu.nabi.kord.database.DatabaseManager
 import live.shuuyu.nabi.kord.interactions.RegisterInteractions
 import mu.KotlinLogging
 import net.perfectdreams.discordinteraktions.common.DiscordInteraKTions
@@ -21,7 +23,7 @@ import net.perfectdreams.discordinteraktions.platforms.kord.installDiscordIntera
 
 class NabiKordCore(
     val token: String,
-    val applicationId: Snowflake,
+    val applicationId: Snowflake
 ) {
     companion object {
         val logger = KotlinLogging.logger("Nabi")
@@ -44,6 +46,7 @@ class NabiKordCore(
 
     val interactions = DiscordInteraKTions(token, applicationId)
     val registerGlobalInteractions = RegisterInteractions(this, interactions)
+    val database = DatabaseManager()
 
     @OptIn(PrivilegedIntent::class)
     suspend fun start(shardIndex: Int, shardCount: Int) {
@@ -65,6 +68,7 @@ class NabiKordCore(
 
                     presence {
                         status = PresenceStatus.Online
+                        playing("in the skies")
                     }
 
                     gateway.installDiscordInteraKTions(interactions)

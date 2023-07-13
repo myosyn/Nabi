@@ -19,7 +19,8 @@ data class NabiConfig (
     val shardIndex: Int = 0,
     val databaseJDBC: String = env("DATABASE_JDBC"),
     val databaseUsername: String = env("DATABASE_USERNAME"),
-    val databasePassword: String = env("DATABASE_PASSWORD")
+    val databasePassword: String = env("DATABASE_PASSWORD"),
+    val presenceName: String = env("PRESENCE_NAME")
 )
 
 val config: NabiConfig by lazy {

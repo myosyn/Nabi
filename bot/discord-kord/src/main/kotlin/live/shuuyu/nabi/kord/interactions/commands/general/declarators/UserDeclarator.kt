@@ -1,12 +1,16 @@
 package live.shuuyu.nabi.kord.interactions.commands.general.declarators
 
 import live.shuuyu.nabi.kord.NabiKordCore
-import live.shuuyu.nabi.kord.interactions.commands.general.UserExecutor
-import net.perfectdreams.discordinteraktions.common.commands.SlashCommandDeclarationWrapper
-import net.perfectdreams.discordinteraktions.common.commands.slashCommand
+import live.shuuyu.nabi.kord.interactions.commands.general.UserInfoSlashExecutor
+import live.shuuyu.nabi.kord.interactions.commands.general.UserInfoUserExecutor
+import net.perfectdreams.discordinteraktions.common.commands.*
 
-class UserDeclarator(val nabi: NabiKordCore) : SlashCommandDeclarationWrapper {
+class UserInfoSlashDeclarator(val nabi: NabiKordCore) : SlashCommandDeclarationWrapper {
     override fun declaration() = slashCommand("user", "Looks up information on a user.") {
-        executor = UserExecutor(nabi)
+        executor = UserInfoSlashExecutor(nabi)
     }
+}
+
+class UserInfoUserDeclarator(val nabi: NabiKordCore) : UserCommandDeclarationWrapper {
+    override fun declaration() = userCommand("Look up user information", UserInfoUserExecutor(nabi))
 }
